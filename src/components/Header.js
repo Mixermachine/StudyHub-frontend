@@ -19,7 +19,30 @@ class Header extends React.Component {
                 colored
                 nav={<Button onClick={() => this.props.history.push('/')} icon>home</Button>}
                 title={this.props.title}
-                actions={<KebabMenu id="toolbar-colored-kebab-menu" />}>
+                actions={
+                    <div>
+                        <Button
+                            flat
+                            onClick={() => this.props.history.push('/studies')}>
+                            Find a Study
+                        </Button>
+                        <Button
+                            flat
+                            onClick={() => this.props.history.push('/studies/create')}>
+                            Create a Study
+                        </Button>
+                        <Button
+                            flat
+                            onClick={() => this.props.history.push('/studies/approve')}>
+                            Approve Studies
+                        </Button>
+                        <Button
+                            flat
+                            onClick={() => this.props.history.push('/settings')}>
+                            Settings
+                        </Button>
+                    </div>
+                }>
             </Toolbar>
         );
     }
