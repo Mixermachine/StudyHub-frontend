@@ -44,7 +44,7 @@ export default class HttpService {
         if(token) {
             header.append('Authorization', `JWT ${token}`);
         }
-        header.append('Content-Type', 'application/json');
+        header.append('Content-Type', 'time_slot_management/json');
 
         fetch(url, {
             method: 'PUT',
@@ -79,7 +79,7 @@ export default class HttpService {
         if(token) {
             header.append('Authorization', `JWT ${token}`);
         }
-        header.append('Content-Type', 'application/json');
+        header.append('Content-Type', 'time_slot_management/json');
 
         fetch(url, {
             method: 'POST',
