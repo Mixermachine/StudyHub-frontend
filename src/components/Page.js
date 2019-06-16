@@ -12,7 +12,7 @@ export default class Page extends React.Component {
         super(props);
 
         this.state = {
-            title: ''
+            title: 'StudyHub'
         }
     }
 
