@@ -3,7 +3,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import { MovieListView } from './views/MovieListView';
+import { StudyFindingView } from './views/StudyFindingView';
 import { MovieDetailView }   from './views/MovieDetailView';
 import { MovieFormView }   from './views/MovieFormView';
 import { UserLoginView } from "./views/UserLoginView";
@@ -18,10 +18,10 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            title: 'Movie Example App',
+            title: 'StudyHub',
             routes: [
-                { component: MovieListView , path: '/', exact: true},
-                { component: MovieDetailView , path: '/show/:id'},
+                { component: StudyFindingView , path: '/', exact: true},
+                /*{ component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
                             return (<MovieFormView {... props} />)
@@ -37,7 +37,7 @@ export default class App extends React.Component {
                         return (<Redirect to={'/login'}/>)
                     }}, path: '/add',},
                 { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}
+                { component: UserSignupView, path: '/register'}*/
             ]
         };
     }
