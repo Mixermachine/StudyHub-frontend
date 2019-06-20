@@ -21,7 +21,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <Navbar bg="light" expand="lg">
+            <Navbar className="navigation">
                 <Navbar.Brand href="/">StudyHub</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -37,13 +37,13 @@ class Header extends React.Component {
                 <Navbar.Collapse className="justify-content-end">
                     <ButtonToolbar>
                         <Dropdown as={ButtonGroup}>
-                            <Button block onClick={() => this.props.history.push("/profile")}>
+                            <Button className="picture-button" block onClick={() => this.props.history.push("/profile")}>
                                 <Container>
                                     <Row>
-                                        <Col xs={"5"}>
-                                            <Navbar.Text>John Doe</Navbar.Text>
+                                        <Col md="auto">
+                                            <Navbar.Text className="picture-button-name">John Doe</Navbar.Text>
                                         </Col>
-                                        <Col xs={"1"}>
+                                        <Col>
                                             <Image height="50"
                                                    src="https://i1.rgstatic.net/ii/profile.image/645390030352384-1530884382040_Q128/Nico_Schreder.jpg"
                                                    roundedCircle/>
@@ -51,7 +51,7 @@ class Header extends React.Component {
                                     </Row>
                                 </Container>
                             </Button>
-                            <Dropdown.Toggle>
+                            <Dropdown.Toggle className="picture-button">
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
