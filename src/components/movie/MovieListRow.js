@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { SimpleLink } from './SimpleLink';
 
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 
 
 export class MovieListRow extends React.Component {
