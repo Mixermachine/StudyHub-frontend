@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import {withRouter} from 'react-router-dom'
+import {withRouter, NavLink} from 'react-router-dom'
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 
 import Col from "react-bootstrap/Col";
@@ -26,9 +26,11 @@ class Header extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link></Nav.Link>
-                        <Nav.Link href="/studies/manage">My Studies</Nav.Link>
-                        <Nav.Link href="/support">Support</Nav.Link>
+                        <Nav.Link as={NavLink} to="/studies/my">My Studies</Nav.Link>
+                        <Nav.Link as={NavLink} to="/support">Support</Nav.Link>
+                        <Nav.Link as={NavLink} to="/studies/application">StudyApplication</Nav.Link>
+                        <Nav.Link as={NavLink} to="/studies/create">StudyCreation</Nav.Link>
+                        <Nav.Link as={NavLink} to="/studies/manage">StudyManagement</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
@@ -51,8 +53,8 @@ class Header extends React.Component {
                             <Dropdown.Toggle>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="/settings">Settings</Dropdown.Item>
-                                <Dropdown.Item href="/signout">Sign Out</Dropdown.Item>
+                                <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
+                                <Dropdown.Item as={NavLink} to="/">Sign Out</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </ButtonToolbar>

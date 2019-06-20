@@ -5,7 +5,7 @@ import { Card, Button, TextField } from 'react-md';
 import { withRouter, Link } from 'react-router-dom';
 
 import { AlertMessage } from './AlertMessage';
-import Page from './Page';
+import Page from '../Page';
 
 
 const style = { maxWidth: 500 };
