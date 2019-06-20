@@ -16,6 +16,16 @@ h1 {
     font-size: 22px;
 }
 
+h2 {
+    color: #282828;
+    font-size: 18px;
+}
+
+h3 {
+    color: #282828;
+    font-size: 16px;
+}
+
 .row {
     display: flex;
     align-items: center;
@@ -53,4 +63,8 @@ h1 {
     border: none;
     color: white;
     display: inline-block;
+}
+
+.toolbar_btn {
+    margin: 0px 12px 0px 0px;
 }
