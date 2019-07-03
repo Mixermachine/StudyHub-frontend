@@ -3,9 +3,8 @@
 import React from 'react';
 
 import Page from './Page';
-import {Button, DatePicker} from "react-md";
 
-import {TimeSlotList} from "./time_slot_management/TimeSlotList";
+import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
 
 export const StudyApplication = ({data}) => (
     <Page>
@@ -33,19 +32,16 @@ export const StudyApplication = ({data}) => (
 
             <h3>Contact</h3>
             <p>{data.contact}</p>
-            <Button raised>Edit</Button>
+
+            <button>Edit</button>
         </div>
         <div>
-            <h3>Select a date:</h3>
-            <DatePicker
-                DateTimeFormat={Intl.DateTimeFormat}
-                okLabel={"Select"}
-                onOkClick={() => {
-                }}
-                cancelLabel={"Cancel"}/>
+            <TimeSlotManagement timeslots={data.timeslots}/>
         </div>
         <div>
-            <TimeSlotList timeslots={data.timeslots}/>
+            <button>
+                Confirm
+            </button>
         </div>
     </Page>
 );
