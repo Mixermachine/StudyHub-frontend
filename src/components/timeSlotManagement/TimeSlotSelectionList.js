@@ -1,10 +1,8 @@
 "use strict";
 
 import React from 'react';
-import {DataTable, TableHeader, TableBody, TableRow, TableColumn} from 'react-md';
 
 import {TimeSlotSelectionListRow} from './TimeSlotSelectionListRow'
-import {DaySelectionListRow} from "./DaySelectionListRow";
 import {Table} from "react-bootstrap";
 
 export class TimeSlotSelectionList extends React.Component {
