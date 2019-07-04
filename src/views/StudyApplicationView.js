@@ -8,6 +8,7 @@ import {StudyApplication} from '../components/StudyApplication';
 export class StudyApplicationView extends React.Component {
 
     // TODO load timeslots from backend and sort out booked ones
+    // TODO add componentWillMount
 
     constructor(props) {
         super(props);
