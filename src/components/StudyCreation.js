@@ -5,6 +5,7 @@ import React from 'react';
 import Page from './Page'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import StudyService from "../services/StudyService";
 
 export class StudyCreation extends React.Component {
 
@@ -22,9 +23,9 @@ export class StudyCreation extends React.Component {
             street: '',
             number: '',
             additionalLocationInfo: '',
-            rewardCurrency: '',
+            rewardCurrency: 'EUR',
             rewardAmount: '',
-            rewardType: '',
+            rewardType: 'PayPal',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -62,7 +63,9 @@ export class StudyCreation extends React.Component {
             rewardType: this.state.rewardType,
         }
 
-        // TODO do submit
+        StudyService.createStudy(study)
+            .then(test => console.log(text))
+            .catch(e => console.error(e));
     }
 
     render() {
@@ -204,7 +207,7 @@ export class StudyCreation extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>RewardType</Form.Label>
+                        <Form.Label>Reward Type</Form.Label>
                         <Form.Control
                             name='rewardType'
                             as='select'

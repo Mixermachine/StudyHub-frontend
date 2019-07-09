@@ -6,7 +6,9 @@ export default class StudyService {
     constructor() {
     }
 
-    static baseUrl() {return 'http://localhost:3000/study';}
+    static baseUrl() {
+        return 'http://localhost:3000/study';
+    }
 
     static getStudy(id) {
         return new Promise((resolve, reject) => {
@@ -19,6 +21,16 @@ export default class StudyService {
             }, textStatus => {
                 reject(textStatus);
             });
+        });
+    }
+
+    static createStudy(study) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(StudyService.baseUrl(), study, data => {
+                resolve(data);
+            }, textStatus => {
+                reject(textStatus);
+            })
         });
     }
 }
