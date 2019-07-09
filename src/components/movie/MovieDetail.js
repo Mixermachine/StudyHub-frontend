@@ -4,9 +4,9 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { Card, CardTitle, CardText, Media, MediaOverlay, Grid, Cell, Button, FontIcon } from 'react-md';
 
-import Page from './Page';
+import Page from '../Page';
 
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 
 const style = { maxWidth: 500 };
 

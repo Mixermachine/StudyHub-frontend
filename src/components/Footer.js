@@ -1,10 +1,9 @@
 "use strict";
 
 import React from 'react';
-import Styled from 'styled-components';
 
 
-class PlainFooter extends React.Component {
+export class Footer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,23 +11,9 @@ class PlainFooter extends React.Component {
 
     render() {
         return (
-            <div className={this.props.className}>
-                <hr/>
-                <p>© {new Date().getFullYear()} sebis. All rights reserved.</p>
-            </div>
+            <footer className={this.props.className}>
+                <p>© {new Date().getFullYear()} StudyHub. All rights reserved.</p>
+            </footer>
         );
     }
 }
-
-export const Footer = Styled(PlainFooter)`
-    max-height: 35px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    background: white;
-    > p {
-        text-align: center;
-        margin-top: 4px;
-    }
-`;
