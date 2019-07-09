@@ -1,0 +1,70 @@
+body {
+    font-family: "Gotham A", "Gotham B", Arial, sans-serif;
+}
+
+#body {
+    margin: 24px;
+}
+
+footer {
+    padding: 24px 24px 12px 24px;
+    background-color: #5F88BF;
+}
+
+h1 {
+    color: #282828;
+    font-size: 22px;
+}
+
+h2 {
+    color: #282828;
+    font-size: 18px;
+}
+
+h3 {
+    color: #282828;
+    font-size: 16px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    padding: 0px 0px 0px 24px;
+}
+
+.nav-link {
+    color: #282828 !important;
+}
+
+.picture-button-name {
+    color: #282828 !important;
+}
+
+.navigation {
+    padding: 0px;
+    background: #5F88BF;
+}
+
+.picture-button {
+    background: transparent;
+    border: 0px;
+}
+
+.picture-button:hover {
+    background: #729CCE;
+    border: 0px;
+}
+
+.btn {
+    background-color: #5F88BF;
+    border: none;
+    color: white;
+    display: inline-block;
+}
+
+.toolbar_btn {
+    margin: 0px 12px 0px 0px;
+}
