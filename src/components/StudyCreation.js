@@ -27,89 +27,19 @@ export class StudyCreation extends React.Component {
             rewardType: '',
         };
 
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-        this.handleCapacityChange = this.handleCapacityChange.bind(this);
-
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleTitleChange(event) {
-        console.log(event.target.name)
-        this.setState({
-            title: event.target.value
-        });
-    }
+    handleChange(event) {
+        let target = event.target;
+        let name = target.name;
+        let value = target.value;
 
-    handleDescriptionChange(event) {
-        this.setState({
-            description: event.target.value
-        });
-    }
+        // TODO checks will be here
 
-    handlePrerequisitesChange(event) {
         this.setState({
-            prerequisites: event.target.value
-        });
-    }
-
-    handleCapacityChange(event) {
-        this.setState({
-            capacity: event.target.value
-        });
-    }
-
-    handleCountryChange(event) {
-        this.setState({
-            country: event.target.value
-        });
-    }
-
-    handleCityChange(event) {
-        this.setState({
-            city: event.target.value
-        });
-    }
-
-    handleZipChange(event) {
-        this.setState({
-            zip: event.target.value
-        });
-    }
-
-    handleStreetChange(event) {
-        this.setState({
-            street: event.target.value
-        });
-    }
-
-    handleNumberChange(event) {
-        this.setState({
-            number: event.target.value
-        });
-    }
-
-    handleAddLocInfoChange(event) {
-        this.setState({
-            additionalLocationInfo: event.target.value
-        });
-    }
-
-    handleRewardCurrencyChange(event) {
-        this.setState({
-            rewardCurrency: event.target.value
-        });
-    }
-
-    handleRewardAmountChange(event) {
-        this.setState({
-            rewardAmount: event.target.value
-        });
-    }
-
-    handleRewardTypeChange(event) {
-        this.setState({
-            rewardType: event.target.value
+            [name]: value,
         });
     }
 
@@ -147,7 +77,7 @@ export class StudyCreation extends React.Component {
                             type='text'
                             placeholder='Enter study title'
                             value={this.state.title}
-                            onChange={this.handleTitleChange}
+                            onChange={this.handleChange}
                         />
                     </Form.Group>
 
@@ -158,40 +88,131 @@ export class StudyCreation extends React.Component {
                             as='textarea'
                             rows='5'
                             value={this.state.description}
-                            onChange={this.handleDescriptionChange}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Prerequisites</Form.Label>
+                        <Form.Control
+                            name='prerequisites'
+                            as='textarea'
+                            rows='3'
+                            value={this.state.prerequisites}
+                            onChange={this.handleChange}
                         />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Participant Capacity</Form.Label>
-                        <Form.Control 
+                        <Form.Control
                             name='capacity'
-                            type='text' 
-                            placeholder='Enter participants'
+                            type='text'
+                            placeholder='Enter participant capacity'
                             value={this.state.capacity}
-                            onChange={this.handleCapacityChange}
+                            onChange={this.handleChange}
                         />
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Time schedule</Form.Label>
-                        <Form.Control id='studyTimeSchedule'/>
+                        <Form.Label>Country</Form.Label>
+                        <Form.Control
+                            name='country'
+                            type='text'
+                            placeholder='Enter country'
+                            value={this.state.country}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Tags</Form.Label>
-                        <Form.Control type='text' placeholder='Enter tags' />
+                        <Form.Label>City</Form.Label>
+                        <Form.Control
+                            name='city'
+                            type='text'
+                            placeholder='Enter city'
+                            value={this.state.city}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Reward (per participant)</Form.Label>
-                        <Form.Control type='text' placeholder='Enter reward per participant' />
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control
+                            name='zip'
+                            type='text'
+                            placeholder='Enter zip code'
+                            value={this.state.zip}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Payment method</Form.Label>
-                        <Form.Control id='studyPaymentMethod' as='select'>
+                        <Form.Label>Street</Form.Label>
+                        <Form.Control
+                            name='street'
+                            type='text'
+                            placeholder='Enter street'
+                            value={this.state.street}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Number</Form.Label>
+                        <Form.Control
+                            name='number'
+                            type='text'
+                            placeholder='Enter street number'
+                            value={this.state.number}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Additional Location Information (Room number, etc.)</Form.Label>
+                        <Form.Control
+                            name='additionalLocationInfo'
+                            type='text'
+                            placeholder='Enter information'
+                            value={this.state.additionalLocationInfo}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Reward Currency</Form.Label>
+                        <Form.Control
+                            name='rewardCurrency'
+                            as='select'
+                            value={this.state.rewardCurrency}
+                            onChange={this.handleChange}
+                        >
+                            <option>EUR</option>
+                            <option>USD</option>
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Reward Amount in {this.state.rewardCurrency}</Form.Label>
+                        <Form.Control
+                            name='rewardAmount'
+                            type='text'
+                            value={this.state.rewardAmount}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>RewardType</Form.Label>
+                        <Form.Control
+                            name='rewardType'
+                            as='select'
+                            value={this.state.rewardType}
+                            onChange={this.handleChange}
+                        >
                             <option>PayPal</option>
+                            <option>IBAN</option>
                         </Form.Control>
                     </Form.Group>
 
@@ -203,3 +224,25 @@ export class StudyCreation extends React.Component {
         );
     }
 }
+
+{/*<Form.Group>*/}
+{/*    <Form.Label>Time schedule</Form.Label>*/}
+{/*    <Form.Control id='studyTimeSchedule'/>*/}
+{/*</Form.Group>*/}
+
+{/*<Form.Group>*/}
+{/*    <Form.Label>Tags</Form.Label>*/}
+{/*    <Form.Control type='text' placeholder='Enter tags' />*/}
+{/*</Form.Group>*/}
+
+{/*<Form.Group>*/}
+{/*    <Form.Label>Reward (per participant)</Form.Label>*/}
+{/*    <Form.Control type='text' placeholder='Enter reward per participant' />*/}
+{/*</Form.Group>*/}
+
+{/*<Form.Group>*/}
+{/*    <Form.Label>Payment method</Form.Label>*/}
+{/*    <Form.Control id='studyPaymentMethod' as='select'>*/}
+{/*        <option>PayPal</option>*/}
+{/*    </Form.Control>*/}
+{/*</Form.Group*/}
