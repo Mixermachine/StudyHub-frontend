@@ -35,7 +35,7 @@ export default class App extends React.Component {
                 { component: ProfileView, path: '/profile', exact: true},
                 { component: RegisterView, path: '/register', exact: true},
                 { component: SettingsView, path: '/settings'},
-                { component: StudyApplicationView, path: '/studies/application'},
+                { component: StudyApplicationView, path: '/studies/application/:id'},
                 { component: StudyCreationView, path: '/studies/create'},
                 { component: StudyFindingView, path: '/', exact: true},
                 { component: StudyManagementView, path: '/studies/manage'},

@@ -6,37 +6,43 @@ import Page from './Page';
 
 import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
 
-export const StudyApplication = ({data}) => (
+export const StudyApplication = ({study}) => (
     <Page>
         <div>
-            <h1>{data.title}</h1>
+            <h1>{study.title}</h1>
 
             <h3>Description</h3>
-            <p>{data.description}</p>
+            <p>{study.description}</p>
 
             <hr/>
 
             <h3>Prerequisites</h3>
-            <p>{data.prerequisites}</p>
+            <p>{study.prerequisites}</p>
 
             <hr/>
 
-            <h3>Reward: {data.reward}€</h3>
+            <h3>Reward: {study.reward}€</h3>
+
+            <hr/>
+
+            <h3>Capacity: {study.capacity}</h3>
 
             <hr/>
 
             <h3>Location</h3>
-            <p>{data.location}</p>
+            <p>{study.street + ' ' + study.number + ', ' + study.zip + ' ' + study.city + '. ' + study.country}</p>
 
             <hr/>
 
             <h3>Contact</h3>
-            <p>{data.contact}</p>
+            <p>
+                // TODO contact
+            </p>
 
             <button>Edit</button>
         </div>
         <div>
-            <TimeSlotManagement timeslots={data.timeslots}/>
+            <TimeSlotManagement timeslots={study.timeslots}/>
         </div>
         <div>
             <button>
