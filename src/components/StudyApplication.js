@@ -18,9 +18,8 @@ export class StudyApplication extends React.Component {
     handleSubmit(timeslot) {
         let studyId = this.props.studyId;
         let participantId = 123;
-        timeslot.participantId = participantId;
 
-        StudyService.updateTimeslot(studyId, timeslot).then((data => console.log(data)).catch(e => console.log(e)));
+        StudyService.updateTimeslot(studyId, timeslot.id, {participantId: participantId}).then((data => console.log(data)).catch(e => console.log(e)));
     }
 
     render() {
