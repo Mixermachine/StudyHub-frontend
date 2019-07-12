@@ -32,7 +32,7 @@ export default class StudyService {
         }));
     }
 
-    static updateTimeslot(studyId, timeslot) {
+    static updateTimeslot(studyId, timeslotId, timeslot) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${StudyService.baseUrl()}/${studyId}/${timeslot.id}`, timeslot, data => {
                 resolve(data);
