@@ -32,7 +32,7 @@ export class TimeSlotSelectionListRow extends React.Component {
         return (
             <tr>
                 <td>
-                    <input type="radio" name="tsSelection"/>
+                    <input type="radio" name="tsSelection" onClick={() => this.props.onTimeSlotClick()}/>
                 </td>
                 <td>
                     {this.buildTimeSlot()}

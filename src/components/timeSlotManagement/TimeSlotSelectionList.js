@@ -28,7 +28,7 @@ export class TimeSlotSelectionList extends React.Component {
                     </thead>
                     <tbody>
                     {this.props.timeslots.map((timeslot, i) =>
-                        <TimeSlotSelectionListRow key={i} timeslot={timeslot} radioName={'radioName'}/>
+                        <TimeSlotSelectionListRow key={i} timeslot={timeslot} radioName={'radioName'} onTimeSlotClick={() => this.props.onTimeSlotClick(timeslot)}/>
                     )}
                     </tbody>
                 </Table>

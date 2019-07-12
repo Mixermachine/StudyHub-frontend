@@ -7,6 +7,7 @@ import {TimeSlotSelectionList} from './TimeSlotSelectionList';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/es/Button";
 
 export class TimeSlotManagement extends React.Component {
 
@@ -67,21 +68,24 @@ export class TimeSlotManagement extends React.Component {
     onTimeSlotClick(i) {
         this.setState({
             selectedTimeSlot: i
-        })
+        });
     }
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <DaySelectionList days={this.availableDays()} onDayClick={(day) => this.onDayClick(day)}/>
-                    </Col>
-                    <Col>
-                        <TimeSlotSelectionList timeslots={this.state.availableTimeSlots}/>
-                    </Col>
-                </Row>
-            </Container>
+            <div>
+                <Container>
+                    <Row>
+                        <Col>
+                            <DaySelectionList days={this.availableDays()} onDayClick={(day) => this.onDayClick(day)}/>
+                        </Col>
+                        <Col>
+                            <TimeSlotSelectionList timeslots={this.state.availableTimeSlots} onTimeSlotClick={(i) => this.onTimeSlotClick(i)}/>
+                        </Col>
+                    </Row>
+                </Container>
+                <Button variant='primary' onClick={() => this.props.handleClick(selectedTimeSlot)}>Confirm</Button>
+            </div>
         );
     }
 }
