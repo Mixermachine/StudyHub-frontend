@@ -21,7 +21,7 @@ export const StudyApplication = ({study}) => (
 
             <hr/>
 
-            <h3>Reward: {study.reward}€</h3>
+            <h3>Reward: {study.rewardAmount + ' ' + study.rewardCurrency}</h3>
 
             <hr/>
 
@@ -31,6 +31,7 @@ export const StudyApplication = ({study}) => (
 
             <h3>Location</h3>
             <p>{study.street + ' ' + study.number + ', ' + study.zip + ' ' + study.city + '. ' + study.country}</p>
+            {JSON.parse(study.additionalLocationInfo).room}
 
             <hr/>
 
