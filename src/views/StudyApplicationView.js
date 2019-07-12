@@ -7,9 +7,6 @@ import StudyService from "../services/StudyService";
 
 export class StudyApplicationView extends React.Component {
 
-    // TODO load timeslots from backend and sort out booked ones
-    // TODO add componentWillMount
-
     constructor(props) {
         super(props);
     }
@@ -32,13 +29,13 @@ export class StudyApplicationView extends React.Component {
         });
 
         StudyService.getTimeslots(id).then(timeslots => {
-            let freeTS = [];
+            let availableTS = [];
             for (let timeslot of timeslots) {
-                if (!timeslot.reserved) freeTS.push(timeslot);
-                console.log(new Date());
+                let future = new Date(timeslot.start) >= new Date();
+                if (future && !timeslot.reserved) availableTS.push(timeslot);
             }
             this.setState({
-                timeslots: freeTS,
+                timeslots: availableTS,
                 timeslotsLoading: false
             });
         }).catch(e => {

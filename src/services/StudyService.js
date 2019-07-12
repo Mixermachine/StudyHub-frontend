@@ -31,4 +31,12 @@ export default class StudyService {
             }, textStatus => reject(textStatus));
         }));
     }
+
+    static updateTimeslot(studyId, timeslot) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${StudyService.baseUrl()}/${studyId}/${timeslot.id}`, timeslot, data => {
+                resolve(data);
+            }, textStatus => reject(textStatus));
+        });
+    }
 }
