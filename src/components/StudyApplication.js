@@ -16,7 +16,7 @@ export class StudyApplication extends React.Component {
     }
 
     handleSubmit(timeslot) {
-        let studyId = this.props.match.params.id;
+        let studyId = this.props.studyId;
         let participantId = 123;
         timeslot.participantId = participantId;
 
@@ -53,21 +53,13 @@ export class StudyApplication extends React.Component {
                     <hr/>
 
                     <h3>Contact</h3>
-                    <p>
-                        // TODO contact
-                    </p>
+                    <p></p>
 
                     <button>Edit</button>
                 </div>
 
                 <div>
-                    <TimeSlotManagement timeslots={this.props.timeslots}/>
-                </div>
-
-                <div>
-                    <button>
-                        Confirm
-                    </button>
+                    <TimeSlotManagement timeslots={this.props.timeslots} handleSubmit={(timeslot) => this.handleSubmit(timeslot)}/>
                 </div>
             </Page>
         );

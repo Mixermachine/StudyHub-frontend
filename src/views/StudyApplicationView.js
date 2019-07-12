@@ -40,7 +40,7 @@ export class StudyApplicationView extends React.Component {
             });
         }).catch(e => {
             console.error(e);
-        })
+        });
     }
 
     render() {
@@ -49,7 +49,11 @@ export class StudyApplicationView extends React.Component {
         }
 
         return (
-            <StudyApplication study={this.state.study} timeslots={this.state.timeslots}/>
+            <StudyApplication
+                study={this.state.study}
+                studyId={this.props.match.params.id}
+                timeslots={this.state.timeslots}
+            />
         );
     }
 }
