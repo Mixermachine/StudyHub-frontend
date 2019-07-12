@@ -37,39 +37,86 @@ export class StudyCreation extends React.Component {
         let name = target.name;
         let value = target.value;
 
-        // TODO checks will be here
-
         this.setState({
             [name]: value,
         });
     }
 
+    static inBoundaries(string, min, max, name) {
+        if (string.length < min) return name + ' is too short.\n';
+        if (string.length > max) return name + ' is too long.\n';
+        return '';
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
-        let study = {
-            title: this.state.title,
-            description: this.state.description,
-            prerequisites: this.state.prerequisites,
-            capacity: this.state.capacity,
-            country: this.state.country,
-            city: this.state.city,
-            zip: this.state.zip,
-            street: this.state.street,
-            number: this.state.number,
-            additionalLocationInfo: this.state.additionalLocationInfo,
-            rewardCurrency: this.state.rewardCurrency,
-            rewardAmount: this.state.rewardAmount,
-            rewardType: this.state.rewardType,
+        let errorMessage = '';
+
+        errorMessage += StudyCreation.inBoundaries(this.state.title, 1, 255, 'Title');
+        errorMessage += StudyCreation.inBoundaries(this.state.description, 1, 2500, 'Description');
+        errorMessage += StudyCreation.inBoundaries(this.state.prerequisites, 0, 1000, 'Prerequisites');
+
+        let capacity = Number(this.state.capacity);
+        if (!Number.isInteger(capacity)) {
+            errorMessage += 'Capacity has to be a integer number.\n';
+        }
+        if (capacity <= 0) {
+            errorMessage += 'Capacity has to be positive and greater than 0.\n'
+        }
+        if (capacity > 1000) {
+            errorMessage += 'Capacity maximum is at 1000.\n';
         }
 
-        StudyService.createStudy(study)
-            .then(test => console.log(text))
-            .catch(e => console.error(e));
+        errorMessage += StudyCreation.inBoundaries(this.state.city, 1, 100, 'City name');
+        errorMessage += StudyCreation.inBoundaries(this.state.zip, 1, 20, 'Zip code');
+        errorMessage += StudyCreation.inBoundaries(this.state.street, 1, 50, 'Street name');
+        errorMessage += StudyCreation.inBoundaries(this.state.number, 1, 20, 'Street number');
+        errorMessage += StudyCreation.inBoundaries(this.state.additionalLocationInfo, 0, 255,
+            'Additional location info');
+
+        let rewardAmount = Number(this.state.rewardAmount);
+        if (isNaN(rewardAmount)) {
+            errorMessage += 'Reward amount has to be a real number (e.g. 5 or 1.23)\n';
+        }
+        if (rewardAmount < 0) {
+            errorMessage += 'Reward amount has to be non-negative\n';
+        }
+        if (rewardAmount > 20) {
+            errorMessage += 'The maximum reward per participant is 20\n'; // TODO add currency
+        }
+
+        if (!errorMessage) {
+            let study = {
+                title: this.state.title,                    // 255
+                description: this.state.description,        // 2500
+                prerequisites: this.state.prerequisites,    // 1000
+                capacity: this.state.capacity,              // 1000 und positiv, keine buchstaben
+                country: this.state.country,                // 3    TODO ISO3166 country-code-lookup
+                city: this.state.city,                      // 100
+                zip: this.state.zip,                        // 20
+                street: this.state.street,                  // 50
+                number: this.state.number,                  // 20 Zeichen
+                additionalLocationInfo: this.state.additionalLocationInfo,  // 255
+                rewardCurrency: this.state.rewardCurrency,  // 3 Zeichen
+                rewardAmount: this.state.rewardAmount,      // 20
+                rewardType: this.state.rewardType,          // selection
+                //TODO Tags 50
+            };
+
+            console.log(study);
+
+            // StudyService.createStudy(study)
+            //     .then(test => console.log(text))
+            //     .catch(e => console.error(e));
+        } else {
+            errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
+            alert(errorMessage)
+        }
     }
 
     render() {
-        return(
+        return (
             <Page>
                 <h1>Create new study</h1>
                 <Form onSubmit={this.handleSubmit}>
@@ -227,25 +274,3 @@ export class StudyCreation extends React.Component {
         );
     }
 }
-
-{/*<Form.Group>*/}
-{/*    <Form.Label>Time schedule</Form.Label>*/}
-{/*    <Form.Control id='studyTimeSchedule'/>*/}
-{/*</Form.Group>*/}
-
-{/*<Form.Group>*/}
-{/*    <Form.Label>Tags</Form.Label>*/}
-{/*    <Form.Control type='text' placeholder='Enter tags' />*/}
-{/*</Form.Group>*/}
-
-{/*<Form.Group>*/}
-{/*    <Form.Label>Reward (per participant)</Form.Label>*/}
-{/*    <Form.Control type='text' placeholder='Enter reward per participant' />*/}
-{/*</Form.Group>*/}
-
-{/*<Form.Group>*/}
-{/*    <Form.Label>Payment method</Form.Label>*/}
-{/*    <Form.Control id='studyPaymentMethod' as='select'>*/}
-{/*        <option>PayPal</option>*/}
-{/*    </Form.Control>*/}
-{/*</Form.Group*/}
