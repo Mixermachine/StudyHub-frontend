@@ -16,9 +16,19 @@ export default class StudyService {
                 } else {
                     reject('Error while retrieving study');
                 }
-            }, textStatus => {
-                reject(textStatus);
-            });
+            }, textStatus => reject(textStatus));
         });
+    }
+
+    static getTimeslots(id) {
+        return new Promise(((resolve, reject) => {
+            HttpService.get(`${StudyService.baseUrl()}/${id}/timeslot`, data => {
+                if (data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving timeslots');
+                }
+            }, textStatus => reject(textStatus));
+        }));
     }
 }
