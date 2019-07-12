@@ -6,7 +6,7 @@ import Page from './Page';
 
 import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
 
-export const StudyApplication = ({study}) => (
+export const StudyApplication = ({study, timeslots}) => (
     <Page>
         <div>
             <h1>{study.title}</h1>
@@ -31,7 +31,6 @@ export const StudyApplication = ({study}) => (
 
             <h3>Location</h3>
             <p>{study.street + ' ' + study.number + ', ' + study.zip + ' ' + study.city + '. ' + study.country}</p>
-            {JSON.parse(study.additionalLocationInfo).room}
 
             <hr/>
 
@@ -43,7 +42,7 @@ export const StudyApplication = ({study}) => (
             <button>Edit</button>
         </div>
         <div>
-            <TimeSlotManagement timeslots={study.timeslots}/>
+            <TimeSlotManagement timeslots={timeslots}/>
         </div>
         <div>
             <button>

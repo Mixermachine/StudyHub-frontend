@@ -24,7 +24,7 @@ export class TimeSlotManagement extends React.Component {
         let days = [];
         if (this.props.timeslots == undefined) return days;
         for (let timeslot of this.props.timeslots) {
-            let start = timeslot.start;
+            let start = new Date(timeslot.start);
             let day = new Date(start.getFullYear(), start.getMonth(), start.getDate());
 
             let check = false;
@@ -40,7 +40,7 @@ export class TimeSlotManagement extends React.Component {
     availableTimeSlots(day) {
         let timeslots = [];
         for (let timeslot of this.props.timeslots) {
-            if (this.sameDate(timeslot.start, day)) {
+            if (this.sameDate(new Date(timeslot.start), day)) {
                 timeslots.push(timeslot)
             }
         }

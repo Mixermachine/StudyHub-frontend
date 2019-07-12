@@ -16,7 +16,8 @@ export class StudyApplicationView extends React.Component {
 
     componentWillMount() {
         this.setState({
-            loading: true
+            studyLoading: true,
+            timeslotsLoading: true,
         });
 
         let id = this.props.match.params.id;
@@ -24,21 +25,34 @@ export class StudyApplicationView extends React.Component {
         StudyService.getStudy(id).then(study => {
             this.setState({
                 study: study,
-                loading: false
+                studyLoading: false
             });
-            console.log(study);
         }).catch(e => {
             console.error(e);
         });
+
+        StudyService.getTimeslots(id).then(timeslots => {
+            let freeTS = [];
+            for (let timeslot of timeslots) {
+                if (!timeslot.reserved) freeTS.push(timeslot);
+                console.log(new Date());
+            }
+            this.setState({
+                timeslots: freeTS,
+                timeslotsLoading: false
+            });
+        }).catch(e => {
+            console.error(e);
+        })
     }
 
     render() {
-        if (this.state.loading) {
+        if (this.state.studyLoading || this.state.timeslotsLoading) {
             return (<h2>Loading...</h2>);
         }
 
         return (
-            <StudyApplication study={this.state.study}/>
+            <StudyApplication study={this.state.study} timeslots={this.state.timeslots}/>
         );
     }
 }

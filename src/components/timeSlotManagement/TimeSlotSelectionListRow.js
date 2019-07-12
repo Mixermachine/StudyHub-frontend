@@ -12,9 +12,9 @@ export class TimeSlotSelectionListRow extends React.Component {
     }
 
     buildTimeSlot() {
-        let ts = this.hoursMinutes(this.props.timeslot.start);
+        let ts = this.hoursMinutes(new Date(this.props.timeslot.start));
         ts += ' - ';
-        return ts + this.hoursMinutes(this.props.timeslot.stop);
+        return ts + this.hoursMinutes(new Date(this.props.timeslot.stop));
     }
 
     hoursMinutes(d) {
