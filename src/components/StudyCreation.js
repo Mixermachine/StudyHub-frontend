@@ -82,9 +82,6 @@ export class StudyCreation extends React.Component {
         if (rewardAmount < 0) {
             errorMessage += 'Reward amount has to be non-negative\n';
         }
-        if (rewardAmount > 20) {
-            errorMessage += 'The maximum reward per participant is 20\n'; // TODO add currency
-        }
 
         if (!errorMessage) {
             let study = {
