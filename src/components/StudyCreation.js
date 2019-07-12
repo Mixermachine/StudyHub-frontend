@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import CountryList from 'country-list';
 
 import Page from './Page'
 import Form from 'react-bootstrap/Form';
@@ -32,6 +33,12 @@ export class StudyCreation extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    static inBoundaries(string, min, max, name) {
+        if (string.length < min) return name + ' is too short.\n';
+        if (string.length > max) return name + ' is too long.\n';
+        return '';
+    }
+
     handleChange(event) {
         let target = event.target;
         let name = target.name;
@@ -40,12 +47,6 @@ export class StudyCreation extends React.Component {
         this.setState({
             [name]: value,
         });
-    }
-
-    static inBoundaries(string, min, max, name) {
-        if (string.length < min) return name + ' is too short.\n';
-        if (string.length > max) return name + ' is too long.\n';
-        return '';
     }
 
     handleSubmit(event) {
@@ -84,12 +85,13 @@ export class StudyCreation extends React.Component {
         }
 
         if (!errorMessage) {
+            let countryCode = CountryList.getCode(this.state.country);
             let study = {
                 title: this.state.title,                    // 255
                 description: this.state.description,        // 2500
                 prerequisites: this.state.prerequisites,    // 1000
                 capacity: this.state.capacity,              // 1000 und positiv, keine buchstaben
-                country: this.state.country,                // 3    TODO ISO3166 country-code-lookup
+                country: countryCode,                       // 3    TODO ISO3166 country-code-lookup
                 city: this.state.city,                      // 100
                 zip: this.state.zip,                        // 20
                 street: this.state.street,                  // 50
@@ -118,7 +120,7 @@ export class StudyCreation extends React.Component {
                 <h1>Create new study</h1>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Title</Form.Label>
                         <Form.Control
                             name='title'
                             type='text'
@@ -165,11 +167,12 @@ export class StudyCreation extends React.Component {
                         <Form.Label>Country</Form.Label>
                         <Form.Control
                             name='country'
-                            type='text'
-                            placeholder='Enter country'
+                            as='select'
                             value={this.state.country}
                             onChange={this.handleChange}
-                        />
+                        >
+                            {CountryList.getData().map(country => (<option key={country.code}>{country.name}</option>))}
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group>
