@@ -5,49 +5,71 @@ import React from 'react';
 import Page from './Page';
 
 import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
+import StudyService from "../services/StudyService";
 
-export const StudyApplication = ({study, timeslots}) => (
-    <Page>
-        <div>
-            <h1>{study.title}</h1>
+export class StudyApplication extends React.Component {
 
-            <h3>Description</h3>
-            <p>{study.description}</p>
+    constructor(props) {
+        super(props);
 
-            <hr/>
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-            <h3>Prerequisites</h3>
-            <p>{study.prerequisites}</p>
+    handleSubmit(timeslot) {
+        let studyId = this.props.match.params.id;
+        let participantId = 123;
+        timeslot.participantId = participantId;
 
-            <hr/>
+        StudyService.updateTimeslot(studyId, timeslot).then((data => console.log(data)).catch(e => console.log(e)));
+    }
 
-            <h3>Reward: {study.rewardAmount + ' ' + study.rewardCurrency}</h3>
+    render() {
+        return (
+            <Page>
+                <div>
+                    <h1>{this.props.study.title}</h1>
 
-            <hr/>
+                    <h3>Description</h3>
+                    <p>{this.props.study.description}</p>
 
-            <h3>Capacity: {study.capacity}</h3>
+                    <hr/>
 
-            <hr/>
+                    <h3>Prerequisites</h3>
+                    <p>{this.props.study.prerequisites}</p>
 
-            <h3>Location</h3>
-            <p>{study.street + ' ' + study.number + ', ' + study.zip + ' ' + study.city + '. ' + study.country}</p>
+                    <hr/>
 
-            <hr/>
+                    <h3>Reward: {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}</h3>
 
-            <h3>Contact</h3>
-            <p>
-                // TODO contact
-            </p>
+                    <hr/>
 
-            <button>Edit</button>
-        </div>
-        <div>
-            <TimeSlotManagement timeslots={timeslots}/>
-        </div>
-        <div>
-            <button>
-                Confirm
-            </button>
-        </div>
-    </Page>
-);
+                    <h3>Capacity: {this.props.study.capacity}</h3>
+
+                    <hr/>
+
+                    <h3>Location</h3>
+                    <p>{this.props.study.street + ' ' + this.props.study.number + ', ' + this.props.study.zip + ' ' + this.props.study.city + '. ' + this.props.study.country}</p>
+
+                    <hr/>
+
+                    <h3>Contact</h3>
+                    <p>
+                        // TODO contact
+                    </p>
+
+                    <button>Edit</button>
+                </div>
+
+                <div>
+                    <TimeSlotManagement timeslots={this.props.timeslots}/>
+                </div>
+
+                <div>
+                    <button>
+                        Confirm
+                    </button>
+                </div>
+            </Page>
+        );
+    }
+}
