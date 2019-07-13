@@ -116,7 +116,8 @@ class MovieForm extends React.Component {
                             errorText="Synopsis is required"/>
 
                         <Button id="submit" type="submit"
-                                disabled={this.state.year.toString().length != 4 || this.state.title == undefined || this.state.title == '' || this.state.year == undefined || this.state.year == '' || this.state.synopsis == undefined || this.state.synopsis == ''}
+                                disabled={this.state.year.toString().length != 4 || this.state.title == undefined || this.state.title == '' || this.state.year == undefined ||
+                                this.state.year == '' || this.state.synopsis == undefined || this.state.synopsis == ''}
                                 raised primary className="md-cell md-cell--2">Save</Button>
                         <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
