@@ -28,33 +28,28 @@ export class StudyApplication extends React.Component {
                 <div>
                     <h1>{this.props.study.title}</h1>
 
-                    <h3>Description</h3>
+                    <h2>Description</h2>
                     <p>{this.props.study.description}</p>
 
                     <hr/>
 
-                    <h3>Prerequisites</h3>
+                    <h2>Prerequisites</h2>
                     <p>{this.props.study.prerequisites}</p>
 
                     <hr/>
 
-                    <h3>Reward: {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}</h3>
+                    <h2>Reward: {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}</h2>
 
                     <hr/>
 
-                    <h3>Capacity: {this.props.study.capacity}</h3>
+                    <h2>Capacity: {this.props.study.capacity}</h2>
 
                     <hr/>
 
-                    <h3>Location</h3>
+                    <h2>Location</h2>
                     <p>{this.props.study.street + ' ' + this.props.study.number + ', ' + this.props.study.zip + ' ' + this.props.study.city + '. ' + this.props.study.country}</p>
 
                     <hr/>
-
-                    <h3>Contact</h3>
-                    <p></p>
-
-                    <button>Edit</button>
                 </div>
 
                 <div>
