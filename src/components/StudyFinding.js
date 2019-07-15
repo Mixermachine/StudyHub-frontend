@@ -3,10 +3,29 @@
 import React from 'react';
 
 import Page from './Page'
+import Form from "react-bootstrap/Form";
+
+import {StudyList} from './StudyList';
 
 
-export const StudyFinding = () => (
-    <Page>
-        <h1>Hello World</h1>
-    </Page>
-);
+export class StudyFinding extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Page>
+                <div>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Search</Form.Label>
+                            <Form.Control type="text" placeholder="Enter search term"/>
+                        </Form.Group>
+                    </Form>
+                    <StudyList studies={this.props.studies}/>
+                </div>
+            </Page>
+        );
+    }
+}
