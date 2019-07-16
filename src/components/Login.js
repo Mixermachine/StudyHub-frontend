@@ -5,7 +5,6 @@ import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {AlertMessage} from "./movie/AlertMessage";
-import ReactDOM from "react-dom";
 
 export class Login extends React.Component {
 
@@ -17,18 +16,51 @@ export class Login extends React.Component {
             password : ''
         };
 
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        let target = event.target;
+        let name = target.name;
+        let value = target.value;
+
+        this.setState({
+            [name]: value,
+        });
+    }
+
+    static inBoundaries(string, min, max, name, minlength) {
+        if (string.length < min) return name + ' is too short (min. ' + minlength + ')\n';
+        if (string.length > max) return name + ' is too long.\n';
+        return '';
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        let user = {
-            email: ReactDOM.findDOMNode(this.email).value,
-            password: ReactDOM.findDOMNode(this.password).value
-        };
+        let errorMessage = '';
 
-        this.props.onSubmit(user);
+        errorMessage += Login.inBoundaries(this.state.email, 1, 255, 'Email', 3);
+        errorMessage += Login.inBoundaries(this.state.password, 1, 255, 'Password', 3);
+
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!re.test(this.state.email)) {
+            errorMessage += "Email is not correct."
+        }
+
+        if (!errorMessage) {
+            let user = {
+                email: this.state.email,
+                password: this.state.password
+            };
+
+            this.props.onSubmit(user);
+        } else {
+            errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
+            alert(errorMessage)
+        }
     }
 
     render() {
@@ -38,20 +70,21 @@ export class Login extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="formLogin">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email"
+                        <Form.Control name="email"
+                                      type="email"
+                                      placeholder="Enter email"
                                       required={true}
-                                      ref={email => {
-                                          this.email = email
-                                      }}/>
+                                      value={this.state.email}
+                                      onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group controlId="formLogin">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password"
+                        <Form.Control name="password"
+                                      type="password"
                                       required={true}
-                                      ref={password => {
-                                          this.password = password
-                                      }}/>
+                                      value={this.state.password}
+                                      onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Button variant="primary" id="submit" type="submit">

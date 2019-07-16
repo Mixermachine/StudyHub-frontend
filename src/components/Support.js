@@ -15,22 +15,18 @@ export const Support = () => (
         <Accordion>
             <Card>
                 <Card.Header>
-                    <Accordion.Toggle as={Card.Header} eventKey="0">
-                        Click me!
-                    </Accordion.Toggle>
+                    <Accordion.Toggle as={Card.Header} eventKey="0">How to create a study</Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                    <Card.Body>Hello! I'm the body</Card.Body>
+                    <Card.Body>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Card.Body>
                 </Accordion.Collapse>
             </Card>
             <Card>
                 <Card.Header>
-                    <Accordion.Toggle as={Card.Header} eventKey="1">
-                        Click me!
-                    </Accordion.Toggle>
+                    <Accordion.Toggle as={Card.Header} eventKey="1">How to apply for a study</Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
+                    <Card.Body>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Card.Body>
                 </Accordion.Collapse>
             </Card>
         </Accordion>

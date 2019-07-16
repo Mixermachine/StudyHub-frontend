@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom'
 
 import Page from './Page'
 import Form from "react-bootstrap/Form";
@@ -23,11 +22,26 @@ export class Register extends React.Component {
             passwordwdh: ''
         };
 
+        this.genderDivers;
+        this.genderFemale;
+        this.genderMale;
+
         this.handleChangeGenderMale = this.handleChangeGenderMale.bind(this);
         this.handleChangeGenderFemale = this.handleChangeGenderFemale.bind(this);
         this.handleChangeGenderDivers = this.handleChangeGenderDivers.bind(this);
 
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        let target = event.target;
+        let name = target.name;
+        let value = target.value;
+
+        this.setState({
+            [name]: value,
+        });
     }
 
     handleChangeGenderMale(value) {
@@ -42,20 +56,46 @@ export class Register extends React.Component {
         this.setState(Object.assign({}, this.state, {gender: 'd'}));
     }
 
+    static inBoundaries(string, min, max, name, minlength) {
+        if (string.length < min) return name + ' is too short (min. ' + minlength + ')\n';
+        if (string.length > max) return name + ' is too long.\n';
+        return '';
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
-        let user = {
-            firstName: ReactDOM.findDOMNode(this.firstName).value,
-            lastName: ReactDOM.findDOMNode(this.lastName).value,
-            DoB: ReactDOM.findDOMNode(this.birthday).value,
-            gender: this.state.gender,
-            email: ReactDOM.findDOMNode(this.email).value,
-            password: ReactDOM.findDOMNode(this.password).value,
-            passwordwdh: ReactDOM.findDOMNode(this.passwordwdh).value
-        };
+        let errorMessage = '';
 
-        this.props.onSubmit(user);
+        errorMessage += Register.inBoundaries(this.state.firstName, 3, 255, 'Firstname', 3);
+        errorMessage += Register.inBoundaries(this.state.lastName, 3, 255, 'Lastname', 3);
+        errorMessage += Register.inBoundaries(this.state.password, 3, 255, 'Passwort', 3);
+
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!re.test(this.state.email)) {
+            errorMessage += "Email is not correct."
+        }
+
+        if(this.state.password != this.state.passwordwdh) {
+            errorMessage += "Password don't match."
+        }
+
+        if (!errorMessage) {
+            let user = {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                DoB: this.state.DoB,
+                gender: this.state.gender,
+                email: this.state.email,
+                password: this.state.password
+            };
+
+            this.props.onSubmit(user);
+        } else {
+            errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
+            alert(errorMessage)
+        }
     }
 
     render() {
@@ -63,21 +103,27 @@ export class Register extends React.Component {
             <Page>
                 <h1>Register</h1>
                 <Form onSubmit={this.handleSubmit} >
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Firstname</Form.Label>
-                        <Form.Control type="text" placeholder="Enter firstname"
+                        <Form.Control name="firstName"
+                                      type="text"
+                                      placeholder="Enter firstname"
                                       required={true}
-                                      ref={ firstname => { this.firstName = firstname }} />
+                                      value={this.state.firstName}
+                                      onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Lastname</Form.Label>
-                        <Form.Control type="text" placeholder="Enter lastname"
+                        <Form.Control name="lastName"
+                                      type="text"
+                                      placeholder="Enter lastname"
                                       required={true}
-                                      ref={ lastname => { this.lastName = lastname }} />
+                                      value={this.state.lastName}
+                                      onChange={this.handleChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Gender</Form.Label>
 
                         <div>
@@ -98,32 +144,42 @@ export class Register extends React.Component {
                         </div>
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Birthday</Form.Label>
-                        <Form.Control type="date"
+                        <Form.Control name="DoB"
+                                      type="text"
+                                      placeholder="Enter birthday (dd.mm.yyyy)"
                                       required={true}
-                                      ref={ birthday => { this.birthday = birthday }} />
+                                      value={this.state.DoB}
+                                      onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email"
+                        <Form.Control name="email"
+                                      type="email"
+                                      placeholder="Enter email"
                                       required={true}
-                                      ref={ email => { this.email = email }} />
+                                      value={this.state.email}
+                                      onChange={this.handleChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password"
+                        <Form.Control name="password"
+                                      type="password"
                                       required={true}
-                                      ref={ password => { this.password = password }} />
+                                      value={this.state.password}
+                                      onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formCreateStudy">
+                    <Form.Group>
                         <Form.Label>Confirm password</Form.Label>
-                        <Form.Control type="password"
+                        <Form.Control name="passwordwdh"
+                                      type="password"
                                       required={true}
-                                      ref={ passwordwdh => { this.passwordwdh = passwordwdh }} />
+                                      value={this.state.passwordwdh}
+                                      onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group>
@@ -143,16 +199,3 @@ export class Register extends React.Component {
         );
     }
 };
-
-/*
-disabled={
-            this.state.firstname == undefined || this.state.firstname == '' ||
-            this.state.lastname == undefined || this.state.lastname == '' ||
-            this.state.password == undefined || this.state.password == '' ||
-            this.state.email == undefined || this.state.email == '' ||
-            this.state.password == undefined || this.state.password == '' ||
-            this.state.password != this.state.passwordwdh ||
-            this.state.gender == undefined || this.state.gender == ''||
-            this.state.dob == undefined || this.state.dob == ''  ? true : false}
-
- */
