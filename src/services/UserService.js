@@ -26,6 +26,23 @@ export default class UserService {
         });
     }
 
+    static changeUser(firstname, lastname, pass, dob, gender, email) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${UserService.baseURL()}/user`, {
+                firstName: firstname,
+                lastName: lastname,
+                DoB: dob,
+                gender: gender,
+                email: email,
+                password: pass
+            }, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static login(email, pass) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/auth/login`, {
@@ -48,29 +65,13 @@ export default class UserService {
         if (!token) return {};
 
         return new Promise((resolve, reject) => {
-            HttpService.get(`${UserService.baseURL()}/user`, function(data) {
+            HttpService.get(`${UserService.baseURL()}/user/`, data => {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
             });
         });
     }
-
-    /*static getCurrentUser() {
-        let token = window.localStorage['jwtToken'];
-        if (!token) return {};
-
-        let base64Url = token.split('.')[1];
-        let base64 = base64Url.replace('-', '+').replace('_', '/');
-        return {
-            id : JSON.parse(window.atob(base64)).id,
-            firstName: JSON.parse(window.atob(base64)).firstName,
-            lastName: JSON.parse(window.atob(base64)).lastName,
-            DoB: JSON.parse(window.atob(base64)).DoB,
-            email: JSON.parse(window.atob(base64)).email,
-            gender: JSON.parse(window.atob(base64)).gender,
-        };
-    }*/
 
     static isAuthenticated() {
         return !!window.localStorage['jwtToken'];

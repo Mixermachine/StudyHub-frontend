@@ -16,13 +16,13 @@ export class RegisterView extends React.Component {
 
     signup(user) {
         UserService.register(user.firstName, user.lastName, user.password, user.DoB, user.gender, user.email).then((data) => {
-            this.props.history.push('/');
-        }).catch((e) => {
-            console.error(e);
-            this.setState({
-                error: e
-            });
-        })
+                this.props.history.push('/');
+            }).catch((e) => {
+                console.error(e);
+                this.setState({
+                    error: e
+                });
+            })
     }
 
     render() {
