@@ -18,6 +18,10 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        }
     }
 
     logout() {
@@ -41,16 +45,17 @@ class Header extends React.Component {
             menu = <Nav className="mr-auto">
                 <Nav.Link as={NavLink} to="/studies/my">Dashboard</Nav.Link>
                 <Nav.Link as={NavLink} to="/support">Support</Nav.Link>
-                <Nav.Link as={NavLink} to="/studies/application">StudyApplication</Nav.Link>
             </Nav>;
-// {this.state.user.firstName + ' ' + this.state.user.lastName}
+
             usermenu = <ButtonToolbar>
                 <Dropdown as={ButtonGroup}>
                     <Button className="picture-button" block onClick={() => this.props.history.push("/profile")}>
                         <Container>
                             <Row>
                                 <Col md="auto">
-                                    <Navbar.Text className="picture-button-name"></Navbar.Text>
+                                    <Navbar.Text className="picture-button-name">
+                                        {this.state.user.firstName + ' ' + this.state.user.lastName}
+                                    </Navbar.Text>
                                 </Col>
                                 <Col>
                                     <Image height="50"

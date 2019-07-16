@@ -4,6 +4,7 @@ import React from 'react';
 
 import {StudyApplication} from '../components/StudyApplication';
 import StudyService from "../services/StudyService";
+import UserService from "../services/UserService";
 
 export class StudyApplicationView extends React.Component {
 
@@ -41,15 +42,23 @@ export class StudyApplicationView extends React.Component {
         }).catch(e => {
             console.error(e);
         });
+
+        UserService.getCurrentUser().then(user => {
+            this.setState({
+                userId: user.id,
+                userLoading: false
+            });
+        });
     }
 
     render() {
-        if (this.state.studyLoading || this.state.timeslotsLoading) {
+        if (this.state.studyLoading || this.state.timeslotsLoading || this.state.userLoading) {
             return (<h2>Loading...</h2>);
         }
 
         return (
             <StudyApplication
+                participantId={this.state.userId}
                 study={this.state.study}
                 studyId={this.props.match.params.id}
                 timeslots={this.state.timeslots}

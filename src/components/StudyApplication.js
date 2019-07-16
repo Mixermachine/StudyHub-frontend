@@ -6,20 +6,23 @@ import Page from './Page';
 
 import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
 import StudyService from "../services/StudyService";
+import UserService from "../services/UserService";
 
 export class StudyApplication extends React.Component {
 
     constructor(props) {
         super(props);
 
+        UserService.getCurrentUser().then(data => {
+            this.setState()
+        });
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(timeslot) {
-        let studyId = this.props.studyId;
-        let participantId = 123;
-
-        StudyService.updateTimeslot(studyId, timeslot.id, {participantId: participantId}).then((data => console.log(data)).catch(e => console.log(e)));
+        StudyService.updateTimeslot(this.props.studyId, timeslot.id, {participantId: this.props.participantId})
+            .then((data => this.props.history.goBack()).catch(e => console.error(e)));
     }
 
     render() {
