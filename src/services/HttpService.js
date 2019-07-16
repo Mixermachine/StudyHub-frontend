@@ -45,7 +45,7 @@ export default class HttpService {
         if(token) {
             header.append('Authorization', `Bearer ${token}`);
         }
-        header.append('Content-Type', 'application/json');
+        header.append('Content-Type', 'timeSlotManagement/json');
 
         fetch(url, {
             method: 'PUT',
@@ -80,7 +80,7 @@ export default class HttpService {
         if(token) {
             header.append('Authorization', `Bearer ${token}`);
         }
-        header.append('Content-Type', 'application/json');
+        header.append('Content-Type', 'timeSlotManagement/json');
 
         fetch(url, {
             method: 'POST',
