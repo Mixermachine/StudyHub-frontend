@@ -61,17 +61,17 @@ const AdvancedSearch = () => (
         <h1>Advanced filter</h1>
         <Row>
             <Col>
-                <Form.Label>City</Form.Label>
+                <Form.Label className="form-label">City</Form.Label>
                 <Form.Control className="input-data"
                               type="text" placeholder="Enter city name"/>
             </Col>
             <Col>
-                <Form.Label>Zip code</Form.Label>
+                <Form.Label className="form-label">Zip code</Form.Label>
                 <Form.Control className="input-data"
                               type="text" placeholder="Enter zip code"/>
             </Col>
             <Col>
-                <Form.Label>Organizer</Form.Label>
+                <Form.Label className="form-label">Organizer</Form.Label>
                 <div className="input-select-wrapper">
                     <Form.Control className="input-select" type="text" as="select">
                         <option>Student</option>
@@ -81,12 +81,12 @@ const AdvancedSearch = () => (
                 </div>
             </Col>
             <Col>
-                <Form.Label>Minimal Reward</Form.Label>
+                <Form.Label className="form-label">Minimal Reward</Form.Label>
                 <Form.Control className="input-data"
                               type="text" placeholder="Enter minimal desired reward"/>
             </Col>
             <Col>
-                <Form.Label>Reward Type</Form.Label>
+                <Form.Label className="form-label">Reward Type</Form.Label>
                 <div className="input-select-wrapper">
                     <Form.Control className="input-select"
                                   type="text" as="select">
