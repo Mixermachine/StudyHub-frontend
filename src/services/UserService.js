@@ -65,7 +65,7 @@ export default class UserService {
         if (!token) return {};
 
         return new Promise((resolve, reject) => {
-            HttpService.get(`${UserService.baseURL()}/user/`, data => {
+            HttpService.get(`${UserService.baseURL()}/user`, data => {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

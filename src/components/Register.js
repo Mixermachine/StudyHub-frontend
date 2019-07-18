@@ -5,6 +5,10 @@ import React from 'react';
 import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import {AlertMessage} from "./movie/AlertMessage";
 
 export class Register extends React.Component {
@@ -101,11 +105,45 @@ export class Register extends React.Component {
     render() {
         return (
             <Page>
-                <h1>Register</h1>
+                <Container>
+                    <p className="hightlight-text">Not a member? Let’s fix that!</p>
+                    <br />
+                    <Row>
+                        <Col>
+                            <Card>
+                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fstudents.png&action=download" />
+                                <Card.Body>
+                                    <Card.Title className="search-result-card-title">Students</Card.Title>
+                                    <Card.Text>
+                                        <img src="https://img.icons8.com/windows/32/000000/filled-star.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Finding interesting studies to join<br />
+                                        <img src="https://img.icons8.com/windows/32/000000/money.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Earn money in your free time<br />
+                                        <img src="https://img.icons8.com/windows/32/000000/share.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Networking with researcher and students<br /><br />
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                                <Card.Body>
+                                    <Card.Title className="search-result-card-title">Researcher</Card.Title>
+                                    <Card.Text>
+                                        <img src="https://img.icons8.com/windows/32/000000/joining-queue.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Finding participants for studies and managing them<br />
+                                        <img src="https://img.icons8.com/windows/32/000000/talk-female.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Getting feedback from participants<br />
+                                        <img src="https://img.icons8.com/windows/32/000000/accept-database.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Centralized data management<br />
+                                        <img src="https://img.icons8.com/windows/32/000000/cheap-2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Calculable costs for each participant
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <br /><br />
                 <Form onSubmit={this.handleSubmit} >
                     <Form.Group>
-                        <Form.Label>Firstname</Form.Label>
-                        <Form.Control name="firstName"
+                        <Form.Label><div className="form-label">Firstname</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="firstName"
                                       type="text"
                                       placeholder="Enter firstname"
                                       required={true}
@@ -114,8 +152,9 @@ export class Register extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Lastname</Form.Label>
-                        <Form.Control name="lastName"
+                        <Form.Label><div className="form-label">Lastname</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="lastName"
                                       type="text"
                                       placeholder="Enter lastname"
                                       required={true}
@@ -124,7 +163,7 @@ export class Register extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Gender</Form.Label>
+                        <Form.Label><div className="form-label">Gender</div></Form.Label>
 
                         <div>
                             <Form.Check inline label="Male" type="radio" id="male" name="gender"
@@ -145,18 +184,20 @@ export class Register extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Birthday</Form.Label>
-                        <Form.Control name="DoB"
+                        <Form.Label><div className="form-label">Birthday</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="DoB"
                                       type="text"
-                                      placeholder="Enter birthday (dd.mm.yyyy)"
+                                      placeholder="Enter birthday (yyyy-mm-dd)"
                                       required={true}
                                       value={this.state.DoB}
                                       onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control name="email"
+                        <Form.Label><div className="form-label">Email</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="email"
                                       type="email"
                                       placeholder="Enter email"
                                       required={true}
@@ -165,8 +206,9 @@ export class Register extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control name="password"
+                        <Form.Label><div className="form-label">Password</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="password"
                                       type="password"
                                       required={true}
                                       value={this.state.password}
@@ -174,8 +216,9 @@ export class Register extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Confirm password</Form.Label>
-                        <Form.Control name="passwordwdh"
+                        <Form.Label><div className="form-label">Confirm password</div></Form.Label>
+                        <Form.Control className="input-data"
+                                      name="passwordwdh"
                                       type="password"
                                       required={true}
                                       value={this.state.passwordwdh}
@@ -190,11 +233,13 @@ export class Register extends React.Component {
                         />
                     </Form.Group>
 
-                    <Button variant="primary" id="submit" type="submit">
+                    <Button className="input-button" variant="primary" id="submit" type="submit">
                         Register
                     </Button>
                     <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                 </Form>
+
+                </Container>
             </Page>
         );
     }
