@@ -4,6 +4,7 @@ body {
 
 #body {
     margin: 24px;
+    margin-bottom: 100px;
 }
 
 footer {
@@ -161,15 +162,22 @@ h3 {
     height: 100%;
 }
 
+.btn-primary.dropdown-toggle {
+    background: #201d1d !important;
+}
+
 /* Footer */
 .footer {
     /*position: absolute;
-    bottom: 0;*/
-    margin-top: 40px;
-    width: 100%;
+    bottom: 0;
+    margin-top: 40px;*/
     height: 75px;
+    width: 100%;
     background: #201d1d;
     color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
 .nav-footer-links {
@@ -332,4 +340,13 @@ h3 {
 
 .form-label {
     font-weight: bolder;
+}
+
+.table-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    border: 1px solid #3d3d3d;
+    background-color: #3d3d3d;
+    color: white;
 }
