@@ -5,7 +5,7 @@ import React from 'react';
 import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Link from "react-router-dom/es/Link";
+import Container from "react-bootstrap/Container";
 
 
 import UserService from "../services/UserService";
@@ -66,32 +66,36 @@ export class Settings extends React.Component {
     render() {
         return (
             <Page>
-                <h1>Settings</h1>
+                <Container>
+                    <h1>Settings</h1>
+                    <br />
+                    <h2>Password</h2>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>New password</Form.Label>
+                            <Form.Control  className="input-data"
+                                           name="password"
+                                           type="password"
+                                           required={true}
+                                           value={this.state.password}
+                                           onChange={this.handleChange} />
+                        </Form.Group>
 
-                <h2>Password</h2>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>New password</Form.Label>
-                        <Form.Control  name="password"
-                                       type="password"
-                                       required={true}
-                                       value={this.state.password}
-                                       onChange={this.handleChange} />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Confirm new password</Form.Label>
+                            <Form.Control  className="input-data"
+                                           name="passwordwdh"
+                                           type="password"
+                                           required={true}
+                                           value={this.state.passwordwdh}
+                                           onChange={this.handleChange}  />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Confirm new password</Form.Label>
-                        <Form.Control  name="passwordwdh"
-                                       type="password"
-                                       required={true}
-                                       value={this.state.passwordwdh}
-                                       onChange={this.handleChange}  />
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                        Change password
-                    </Button>
-                </Form>
+                        <Button className="input-button" variant="primary" type="submit">
+                            Change password
+                        </Button>
+                    </Form>
+                </Container>
             </Page>
         );
     }
