@@ -6,6 +6,9 @@ import CountryList from 'country-list';
 import Page from './Page'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import StudyService from "../services/StudyService";
 
 export class StudyCreation extends React.Component {
@@ -117,159 +120,210 @@ export class StudyCreation extends React.Component {
     render() {
         return (
             <Page>
-                <h1>Create new study</h1>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                            name='title'
-                            type='text'
-                            placeholder='Enter study title'
-                            value={this.state.title}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                <Container>
+                    <h1>Create new study</h1>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                            <Form.Label className="form-label">Title</Form.Label>
+                            <Form.Control
+                                className="input-data"
+                                name='title'
+                                type='text'
+                                placeholder='Enter study title'
+                                value={this.state.title}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            name='description'
-                            as='textarea'
-                            rows='5'
-                            value={this.state.description}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label">Description</Form.Label>
+                            <Form.Control
+                                className="input-data"
+                                name='description'
+                                as='textarea'
+                                rows='5'
+                                value={this.state.description}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Prerequisites</Form.Label>
-                        <Form.Control
-                            name='prerequisites'
-                            as='textarea'
-                            rows='3'
-                            value={this.state.prerequisites}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label" className="form-label">Prerequisites</Form.Label>
+                            <Form.Control
+                                className="input-data"
+                                name='prerequisites'
+                                as='textarea'
+                                rows='3'
+                                value={this.state.prerequisites}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Participant Capacity</Form.Label>
-                        <Form.Control
-                            name='capacity'
-                            type='text'
-                            placeholder='Enter participant capacity'
-                            value={this.state.capacity}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label">Participant capacity</Form.Label>
+                            <Form.Control
+                                className="input-data"
+                                name='capacity'
+                                type='text'
+                                placeholder='Enter participant capacity'
+                                value={this.state.capacity}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control
-                            name='country'
-                            as='select'
-                            value={this.state.country}
-                            onChange={this.handleChange}
-                        >
-                            {CountryList.getData().map(country => (<option key={country.code}>{country.name}</option>))}
-                        </Form.Control>
-                    </Form.Group>
+                        <br />
+                        <Row>
+                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png" /></Col>
+                            <Col><h1>Location informations</h1></Col>
+                        </Row>
+                        <br />
 
-                    <Form.Group>
-                        <Form.Label>City</Form.Label>
-                        <Form.Control
-                            name='city'
-                            type='text'
-                            placeholder='Enter city'
-                            value={this.state.city}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label className="form-label">Street</Form.Label>
+                                    <Form.Control
+                                        className="input-data"
+                                        name='street'
+                                        type='text'
+                                        placeholder='Enter street'
+                                        value={this.state.street}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col md="3">
+                                <Form.Group>
+                                    <Form.Label className="form-label">Number</Form.Label>
+                                    <Form.Control
+                                        className="input-data"
+                                        name='number'
+                                        type='text'
+                                        placeholder='Enter street number'
+                                        value={this.state.number}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                    <Form.Group>
-                        <Form.Label>Zip Code</Form.Label>
-                        <Form.Control
-                            name='zip'
-                            type='text'
-                            placeholder='Enter zip code'
-                            value={this.state.zip}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Row>
+                            <Col md="3">
+                                <Form.Group>
+                                    <Form.Label className="form-label">Zip code</Form.Label>
+                                    <Form.Control
+                                        className="input-data"
+                                        name='zip'
+                                        type='text'
+                                        placeholder='Enter zip code'
+                                        value={this.state.zip}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label className="form-label">City</Form.Label>
+                                    <Form.Control
+                                        className="input-data"
+                                        name='city'
+                                        type='text'
+                                        placeholder='Enter city'
+                                        value={this.state.city}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                    <Form.Group>
-                        <Form.Label>Street</Form.Label>
-                        <Form.Control
-                            name='street'
-                            type='text'
-                            placeholder='Enter street'
-                            value={this.state.street}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label">Country</Form.Label>
+                            <div className="input-select-wrapper">
+                                <Form.Control
+                                    className="input-select"
+                                    name='country'
+                                    as='select'
+                                    value={this.state.country}
+                                    onChange={this.handleChange}
+                                >
+                                    {CountryList.getData().map(country => (<option key={country.code}>{country.name}</option>))}
+                                </Form.Control>
+                            </div>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Number</Form.Label>
-                        <Form.Control
-                            name='number'
-                            type='text'
-                            placeholder='Enter street number'
-                            value={this.state.number}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label">Additional information (room number, etc.)</Form.Label>
+                            <Form.Control
+                                className="input-data"
+                                name='additionalLocationInfo'
+                                type='text'
+                                placeholder='Enter information'
+                                value={this.state.additionalLocationInfo}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Additional Location Information (Room number, etc.)</Form.Label>
-                        <Form.Control
-                            name='additionalLocationInfo'
-                            type='text'
-                            placeholder='Enter information'
-                            value={this.state.additionalLocationInfo}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <br />
+                        <Row>
+                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
+                            <Col><h1>Reward</h1></Col>
+                        </Row>
+                        <br />
 
-                    <Form.Group>
-                        <Form.Label>Reward Currency</Form.Label>
-                        <Form.Control
-                            name='rewardCurrency'
-                            as='select'
-                            value={this.state.rewardCurrency}
-                            onChange={this.handleChange}
-                        >
-                            <option>EUR</option>
-                            <option>USD</option>
-                        </Form.Control>
-                    </Form.Group>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label className="form-label">Amount in {this.state.rewardCurrency}</Form.Label>
+                                    <Form.Control
+                                        className="input-data"
+                                        name='rewardAmount'
+                                        type='text'
+                                        value={this.state.rewardAmount}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col md="3">
+                                <Form.Group>
+                                    <Form.Label className="form-label">Currency</Form.Label>
+                                    <div className="input-select-wrapper">
+                                        <Form.Control
+                                            className="input-select"
+                                            name='rewardCurrency'
+                                            as='select'
+                                            value={this.state.rewardCurrency}
+                                            onChange={this.handleChange}
+                                        >
+                                            <option>EUR</option>
+                                            <option>USD</option>
+                                        </Form.Control>
+                                    </div>
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                    <Form.Group>
-                        <Form.Label>Reward Amount in {this.state.rewardCurrency}</Form.Label>
-                        <Form.Control
-                            name='rewardAmount'
-                            type='text'
-                            value={this.state.rewardAmount}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="form-label">Type</Form.Label>
+                            <div className="input-select-wrapper">
+                                <Form.Control
+                                    className="input-select"
+                                    name='rewardType'
+                                    as='select'
+                                    value={this.state.rewardType}
+                                    onChange={this.handleChange}
+                                >
+                                    <option>PayPal</option>
+                                    <option>IBAN</option>
+                            </Form.Control>
+                            </div>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Reward Type</Form.Label>
-                        <Form.Control
-                            name='rewardType'
-                            as='select'
-                            value={this.state.rewardType}
-                            onChange={this.handleChange}
-                        >
-                            <option>PayPal</option>
-                            <option>IBAN</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Button variant='primary' type='submit'>
-                        Create
-                    </Button>
-                </Form>
+                        <br />
+                        <Button variant='primary' type='submit' className="input-button">
+                            Create
+                        </Button>
+                    </Form>
+                </Container>
             </Page>
         );
     }
