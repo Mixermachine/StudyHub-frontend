@@ -84,7 +84,8 @@ export class TimeSlotManagement extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <Button variant='primary' onClick={() => this.props.handleSubmit(this.state.selectedTimeSlot)}>Confirm</Button>
+                <br />
+                <Button variant='primary' className="input-button" onClick={() => this.props.handleSubmit(this.state.selectedTimeSlot)}>Confirm</Button>
             </div>
         );
     }
