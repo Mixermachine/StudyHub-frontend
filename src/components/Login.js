@@ -5,6 +5,10 @@ import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {AlertMessage} from "./movie/AlertMessage";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 
 export class Login extends React.Component {
 
@@ -66,32 +70,48 @@ export class Login extends React.Component {
     render() {
         return (
             <Page>
-                <h1>Login</h1>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="formLogin">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control name="email"
-                                      type="email"
-                                      placeholder="Enter email"
-                                      required={true}
-                                      value={this.state.email}
-                                      onChange={this.handleChange}/>
-                    </Form.Group>
+                <Container>
+                    <Row>
+                        <Col>
+                            <p className="hightlight-text">Hello again!</p>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Group>
+                                    <Form.Label className="form-label">Email</Form.Label>
+                                    <Form.Control className="input-data"
+                                                  name="email"
+                                                  type="email"
+                                                  placeholder="Enter email"
+                                                  required={true}
+                                                  value={this.state.email}
+                                                  onChange={this.handleChange}/>
+                                </Form.Group>
 
-                    <Form.Group controlId="formLogin">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control name="password"
-                                      type="password"
-                                      required={true}
-                                      value={this.state.password}
-                                      onChange={this.handleChange}/>
-                    </Form.Group>
+                                <Form.Group>
+                                    <Form.Label className="form-label">Password</Form.Label>
+                                    <Form.Control className="input-data"
+                                                  name="password"
+                                                  type="password"
+                                                  required={true}
+                                                  value={this.state.password}
+                                                  onChange={this.handleChange}/>
+                                </Form.Group>
 
-                    <Button variant="primary" id="submit" type="submit">
-                        Login
-                    </Button>
-                    <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
-                </Form>
+                                <Button className="input-button" variant="primary" id="submit" type="submit">
+                                    Login
+                                </Button>
+                                <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                                <br /><br /><br /><br /><br /><br /><br />
+                            </Form>
+                        </Col>
+                        <Col>
+                            <Card>
+                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin.png&action=download" />
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+
+
             </Page>
         );
     }

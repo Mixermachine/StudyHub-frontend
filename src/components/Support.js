@@ -7,46 +7,80 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 export const Support = () => (
     <Page>
-        <h1>Support</h1>
+        <Container>
+            <h1>Support</h1>
+            <br />
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fstudents.png&action=download" />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Create a study</Card.Title>
+                            <Card.Text>
 
-        <Accordion>
-            <Card>
-                <Card.Header>
-                    <Accordion.Toggle as={Card.Header} eventKey="0">How to create a study</Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                    <Card.Body>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Card.Body>
-                </Accordion.Collapse>
-            </Card>
-            <Card>
-                <Card.Header>
-                    <Accordion.Toggle as={Card.Header} eventKey="1">How to apply for a study</Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="1">
-                    <Card.Body>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </Accordion>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Managing data</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Payout</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">FAQ</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         <br />
-
-        <h2>Contact us</h2>
-        <Form id="formContactUs">
-            <Form.Group controlId="formContactUs">
+        <br />
+        <h2>Get in contact with us</h2>
+        <Form>
+            <Form.Group>
                 <Form.Label>Subject</Form.Label>
-                <Form.Control type="text" placeholder="Enter subject" />
+                <Form.Control className="input-data" type="text" placeholder="Enter subject" />
             </Form.Group>
 
-            <Form.Group controlId="formContactUs">
+            <Form.Group>
                 <Form.Label>Message</Form.Label>
-                <Form.Control as="textarea" rows="5" />
+                <Form.Control className="input-data" as="textarea" rows="5" />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button className="input-button" variant="primary" type="submit">
                 Send
             </Button>
         </Form>
+
+        </Container>
     </Page>
 );

@@ -20,7 +20,24 @@ class Header extends React.Component {
         super(props);
 
         this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+            loading: false,
+            user: {}
+        }
+    }
+
+    componentWillMount() {
+        this.setState({
+            loading: true,
+        });
+
+        if(UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    user: user,
+                    loading: false,
+                });
+
+            }).catch(e => console.error(e));
         }
     }
 
@@ -43,29 +60,27 @@ class Header extends React.Component {
 
         if (UserService.isAuthenticated()) {
             menu = <Nav className="mr-auto">
-                <Nav.Link as={NavLink} to="/studies/my">Dashboard</Nav.Link>
-                <Nav.Link as={NavLink} to="/support">Support</Nav.Link>
+                <Nav.Link as={NavLink} to="/studies/my"><div className="nav-header-links">Dashboard</div></Nav.Link>
+                <Nav.Link as={NavLink} to="/support"><div className="nav-header-links">Support</div></Nav.Link>
             </Nav>;
 
-            usermenu = <ButtonToolbar>
+            usermenu = <ButtonToolbar className="justify-content-end">
                 <Dropdown as={ButtonGroup}>
-                    <Button className="picture-button" block onClick={() => this.props.history.push("/profile")}>
-                        <Container>
+                    <Button className="nav-header-button" block onClick={() => this.props.history.push("/profile")}>
                             <Row>
                                 <Col md="auto">
-                                    <Navbar.Text className="picture-button-name">
+                                    <Navbar.Text className="nav-header-button-text">
                                         {this.state.user.firstName + ' ' + this.state.user.lastName}
                                     </Navbar.Text>
                                 </Col>
                                 <Col>
                                     <Image height="50"
-                                           src="https://i1.rgstatic.net/ii/profile.image/645390030352384-1530884382040_Q128/Nico_Schreder.jpg"
+                                           src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin_icon.png&action=download"
                                            roundedCircle/>
                                 </Col>
                             </Row>
-                        </Container>
                     </Button>
-                    <Dropdown.Toggle className="picture-button">
+                    <Dropdown.Toggle className="nav-header-button">
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
@@ -75,19 +90,36 @@ class Header extends React.Component {
             </ButtonToolbar>;
         } else {
             menu = <Nav className="mr-auto">
-                <Nav.Link as={NavLink} to="/register">Register</Nav.Link>
+                <Nav.Link as={NavLink} to="/register"><div className="nav-header-links">Sign up</div></Nav.Link>
             </Nav>;
 
-            usermenu = <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
+            /*usermenu = <Nav.Link as={NavLink} to="/login"><div className="nav-header-links">Login</div></Nav.Link>*/
+            usermenu = <ButtonToolbar className="justify-content-end">
+                    <Dropdown as={ButtonGroup}><Button className="nav-header-button" block onClick={() => this.props.history.push("/login")}>
+                        <Row>
+                            <Col md="auto">
+                                <Navbar.Text className="nav-header-button-text">Login</Navbar.Text>
+                            </Col>
+                            <Col>
+                                <Image height="50"
+                                       src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin_icon.png&action=download" />
+                            </Col>
+                        </Row>
+                    </Button>
+                </Dropdown>
+            </ButtonToolbar>;
         }
 
         return (
-            <Navbar className="navigation">
-                <Navbar.Brand href="/">StudyHub</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    {menu}
-                </Navbar.Collapse>
+            <Navbar className="nav-header">
+                <Image className="nav-header-logo"
+                       src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2FStudyHub.png&action=download" />
+                <Navbar.Brand href="/"><div className="nav-header-brand" >StudyHub</div></Navbar.Brand>
+                <Container className="navbar-fill">
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        {menu}
+                    </Navbar.Collapse>
+                </Container>
                 <Navbar.Collapse className="justify-content-end">
                     {usermenu}
                 </Navbar.Collapse>
