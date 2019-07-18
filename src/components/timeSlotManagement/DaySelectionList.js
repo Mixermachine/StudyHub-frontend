@@ -13,7 +13,7 @@ export class DaySelectionList extends React.Component {
     render() {
         return (
             <div>
-                <h3>Select a Day:</h3>
+                <h3><strong>Select a day</strong></h3>
                 <Table striped bordered hover>
                     <thead>
                     <tr>
