@@ -13,6 +13,7 @@ import { StudyCreationView } from './views/StudyCreationView';
 import { StudyFindingView } from './views/StudyFindingView';
 import { StudyManagementView } from './views/StudyManagementView';
 import { SupportView } from './views/SupportView';
+import { AttendTimeslotView } from './views/AttendTimeslotView';
 
 import { MovieDetailView }   from './views/movie/MovieDetailView';
 import { MovieFormView }   from './views/movie/MovieFormView';
@@ -40,6 +41,7 @@ export default class App extends React.Component {
                 { component: StudyFindingView, path: '/', exact: true},
                 { component: StudyManagementView, path: '/studies/manage'},
                 { component: SupportView, path: '/support'},
+                { component: AttendTimeslotView, path: '/attend-timeslot'},
                 /*{ component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
