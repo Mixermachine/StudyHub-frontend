@@ -6,7 +6,6 @@ import Page from './Page'
 import {StudyList} from './StudyList';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,14 +15,31 @@ export class StudyFinding extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isHidden: true
-        }
+            isHidden: true,
+            searchText: '',
+            city: '',
+            zip: '',
+            organizer: '',
+            minReward: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    toggleAdvancedSearch () {
+    handleChange(event) {
+        let target = event.target;
+        let name = target.name;
+        let value = target.value;
+
+        this.setState({
+            [name]: value,
+        });
+    }
+
+    toggleAdvancedSearch() {
         this.setState({
             isHidden: !this.state.isHidden
-        })
+        });
     }
 
     render() {
@@ -33,18 +49,33 @@ export class StudyFinding extends React.Component {
                     <Form>
                         <Row className="search-bar">
                             <Col>
-                                <Form.Control className="search-bar-box" type="text"
-                                              placeholder="Search for studies..." />
+                                <Form.Control
+                                    name='searchText'
+                                    className="search-bar-box"
+                                    type="text"
+                                    placeholder="Search for studies..."
+                                    value={this.state.searchText}
+                                    onChange={this.handleChange}
+                                />
                             </Col>
                             <Col xs="auto">
-                                <Button className="search-bar-submit" />
+                                <Button className="search-bar-submit" onClick={() => {
+                                    this.props.handleSearchClick(this.state.searchText, this.state.city,
+                                        this.state.zip, this.state.organizer, this.state.minReward)
+                                }}/>
                             </Col>
                             <Col xs="auto">
-                                <Button className="search-bar-extend" className="search-bar-extend" onClick={this.toggleAdvancedSearch.bind(this)} />
+                                <Button className="search-bar-extend" className="search-bar-extend"
+                                        onClick={this.toggleAdvancedSearch.bind(this)}/>
                             </Col>
                         </Row>
                         <Row>
-                            { !this.state.isHidden && <AdvancedSearch /> }
+                            {!this.state.isHidden && <AdvancedSearch
+                                city={this.state.city}
+                                zip={this.state.zip}
+                                organizer={this.state.organizer}
+                                minReward={this.state.minReward}
+                                handleChange={this.handleChange}/>}
                         </Row>
                     </Form>
                 </Container>
@@ -56,24 +87,43 @@ export class StudyFinding extends React.Component {
     }
 }
 
-const AdvancedSearch = () => (
+const AdvancedSearch = (props) => (
     <Container className="search-bar-extend-area">
         <h1>Advanced filter</h1>
         <Row>
             <Col>
                 <Form.Label>City</Form.Label>
-                <Form.Control className="input-data"
-                              type="text" placeholder="Enter city name"/>
+                <Form.Control
+                    name="city"
+                    className="input-data"
+                    type="text"
+                    placeholder="Enter city name"
+                    value={props.city}
+                    onChange={props.handleChange}
+                />
             </Col>
             <Col>
                 <Form.Label>Zip code</Form.Label>
-                <Form.Control className="input-data"
-                              type="text" placeholder="Enter zip code"/>
+                <Form.Control
+                    name="zip"
+                    className="input-data"
+                    type="text"
+                    placeholder="Enter zip code"
+                    value={props.zip}
+                    onChange={props.handleChange}
+                />
             </Col>
             <Col>
                 <Form.Label>Organizer</Form.Label>
                 <div className="input-select-wrapper">
-                    <Form.Control className="input-select" type="text" as="select">
+                    <Form.Control
+                        name="organizer"
+                        className="input-select"
+                        type="text"
+                        as="select"
+                        value={props.organizer}
+                        onChange={props.handleChange}
+                    >
                         <option>Student</option>
                         <option>University</option>
                         <option>Organization</option>
@@ -82,19 +132,24 @@ const AdvancedSearch = () => (
             </Col>
             <Col>
                 <Form.Label>Minimal Reward</Form.Label>
-                <Form.Control className="input-data"
-                              type="text" placeholder="Enter minimal desired reward"/>
+                <Form.Control
+                    className="input-data"
+                    type="text"
+                    placeholder="Enter minimal desired reward"
+                    value={props.minReward}
+                    onChange={props.handleChange}
+                />
             </Col>
             <Col>
-                <Form.Label>Reward Type</Form.Label>
-                <div className="input-select-wrapper">
-                    <Form.Control className="input-select"
-                                  type="text" as="select">
-                        <option>PayPal</option>
-                        <option>Direct Deposit</option>
-                        <option>Amazon Gift Card</option>
-                    </Form.Control>
-                </div>
+                {/*<Form.Label>Reward Type</Form.Label>*/}
+                {/*<div className="input-select-wrapper">*/}
+                {/*    <Form.Control className="input-select"*/}
+                {/*                  type="text" as="select">*/}
+                {/*        <option>PayPal</option>*/}
+                {/*        <option>Direct Deposit</option>*/}
+                {/*        <option>Amazon Gift Card</option>*/}
+                {/*    </Form.Control>*/}
+                {/*</div>*/}
             </Col>
         </Row>
     </Container>
