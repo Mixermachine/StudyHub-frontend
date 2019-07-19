@@ -89,7 +89,7 @@ export class TimeSlotManagement extends React.Component {
                 <br />
                 {
                     UserService.isAuthenticated()
-                        ? <Button variant='primary' className="input-button" onClick={() => this.props.handleSubmit(this.state.selectedTimeSlot)}>Confirm</Button>
+                        ? <Button variant='primary' className="input-button" onClick={() => this.props.handleClick(this.state.selectedTimeSlot)}>Confirm</Button>
                         : <Link to="/login"><Button variant='primary' className="input-button">Login</Button></Link>
                 }
             </div>
