@@ -31,9 +31,9 @@ export class StudyListRow extends React.Component {
                                             {this.props.study.zip} {this.props.study.city}</Col>
 
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/conference.png" /></Col>
-                                        <Col>3 / {this.props.study.capacity}</Col>
+                                        <Col>{this.props.study.capacity - this.props.study.availableCapacity} / {this.props.study.capacity}</Col>
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/time.png" /></Col>
-                                        <Col>30 min</Col>
+                                        <Col>{this.props.study.timeslotDuration / 60000} min</Col>
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
                                         <Col>{this.props.study.rewardAmount} {this.props.study.rewardCurrency}</Col>
                                     </Row>
