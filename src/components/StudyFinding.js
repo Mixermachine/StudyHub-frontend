@@ -24,6 +24,7 @@ export class StudyFinding extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleOrganizerChange = this.handleOrganizerChange.bind(this);
     }
 
     handleChange(event) {
@@ -33,6 +34,33 @@ export class StudyFinding extends React.Component {
 
         this.setState({
             [name]: value,
+        });
+    }
+
+    handleOrganizerChange(event) {
+        let value = event.target.value;
+
+        let shortValue = '';
+
+        switch (value) {
+            case Organizers.STUDENT:
+                shortValue = 's';
+                break;
+            case Organizers.UNIVERSITY:
+                shortValue = 'u';
+                break;
+            case Organizers.ORGANIZATION:
+                shortValue = 'o';
+                break;
+            case Organizers.ALL:
+                break;
+            default:
+                alert('Error while changing the organizer');
+        }
+
+        this.setState({
+            organizer: value,
+            shortOrganizer: shortValue
         });
     }
 
@@ -61,7 +89,7 @@ export class StudyFinding extends React.Component {
                             <Col xs="auto">
                                 <Button className="search-bar-submit" onClick={() => {
                                     this.props.handleSearchClick(this.state.searchText, this.state.city,
-                                        this.state.zip, this.state.organizer, this.state.minReward)
+                                        this.state.zip, this.state.shortOrganizer, this.state.minReward)
                                 }}/>
                             </Col>
                             <Col xs="auto">
@@ -75,7 +103,9 @@ export class StudyFinding extends React.Component {
                                 zip={this.state.zip}
                                 organizer={this.state.organizer}
                                 minReward={this.state.minReward}
-                                handleChange={this.handleChange}/>}
+                                handleChange={this.handleChange}
+                                handleOrganizerChange={this.handleOrganizerChange}
+                            />}
                         </Row>
                     </Form>
                 </Container>
@@ -117,16 +147,16 @@ const AdvancedSearch = (props) => (
                 <Form.Label>Organizer</Form.Label>
                 <div className="input-select-wrapper">
                     <Form.Control
-                        name="organizer"
                         className="input-select"
                         type="text"
                         as="select"
                         value={props.organizer}
-                        onChange={props.handleChange}
+                        onChange={props.handleOrganizerChange}
                     >
-                        <option>Student</option>
-                        <option>University</option>
-                        <option>Organization</option>
+                        <option>{Organizers.STUDENT}</option>
+                        <option>{Organizers.UNIVERSITY}</option>
+                        <option>{Organizers.ORGANIZATION}</option>
+                        <option>{Organizers.ALL}</option>
                     </Form.Control>
                 </div>
             </Col>
@@ -140,69 +170,13 @@ const AdvancedSearch = (props) => (
                     onChange={props.handleChange}
                 />
             </Col>
-            <Col>
-                {/*<Form.Label>Reward Type</Form.Label>*/}
-                {/*<div className="input-select-wrapper">*/}
-                {/*    <Form.Control className="input-select"*/}
-                {/*                  type="text" as="select">*/}
-                {/*        <option>PayPal</option>*/}
-                {/*        <option>Direct Deposit</option>*/}
-                {/*        <option>Amazon Gift Card</option>*/}
-                {/*    </Form.Control>*/}
-                {/*</div>*/}
-            </Col>
         </Row>
     </Container>
-)
+);
 
-
-/*<OverlayTrigger placement="bottom" overlay={
-    <Tooltip>Search for studies</Tooltip>
-}>
-
-</OverlayTrigger>*/
-
-/*<Col xs="auto"><Button className="search-bar-extend" eventKey="0" /></Col>*/
-
-/*<Card class="search-bar-advanced">
-    <Card.Header>
-        <Accordion.Toggle as={Card.Header} eventKey="1">Advanced Search</Accordion.Toggle>
-    </Card.Header>
-    <Accordion.Collapse eventKey="1">
-        <Card.Body>
-            <Form.Group>
-                <Form.Label>Search Term</Form.Label>
-                <Form.Control type="text" placeholder="Enter search term"/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>City</Form.Label>
-                <Form.Control type="text" placeholder="Enter city name"/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Zip code</Form.Label>
-                <Form.Control type="text" placeholder="Enter zip code"/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Organizer</Form.Label>
-                <Form.Control type="text" as="select">
-                    <option>Student</option>
-                    <option>University</option>
-                    <option>Organization</option>
-                </Form.Control>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Minimal Reward</Form.Label>
-                <Form.Control type="text" placeholder="Enter minimal desired reward"/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Reward Type</Form.Label>
-                <Form.Control type="text" as="select">
-                    <option>PayPal</option>
-                    <option>Direct Deposit</option>
-                    <option>Amazon Gift Card</option>
-                </Form.Control>
-            </Form.Group>
-        </Card.Body>
-    </Accordion.Collapse>
-</Card>*/
-
+const Organizers = {
+    STUDENT: 'Student',
+    UNIVERSITY: 'University',
+    ORGANIZATION: 'Organization',
+    ALL: 'All Types'
+};
