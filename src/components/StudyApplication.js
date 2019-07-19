@@ -16,16 +16,13 @@ export class StudyApplication extends React.Component {
     constructor(props) {
         super(props);
 
-        UserService.getCurrentUser().then(data => {
-            this.setState()
-        });
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(timeslot) {
         StudyService.updateTimeslot(this.props.studyId, timeslot.id, {participantId: this.props.participantId})
-            .then((data => this.props.history.goBack()).catch(e => console.error(e)));
+            .then((data => this.props.history.goBack())
+                .catch(e => console.error(e)));
     }
 
     render() {
@@ -39,72 +36,73 @@ export class StudyApplication extends React.Component {
                             {this.props.study.description}
                         </Col>
                     </Row>
-                    <br />
+                    <br/>
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/overview-pages-2.png"/><br /><br />
+                            <img src="https://img.icons8.com/windows/32/000000/overview-pages-2.png"/><br/><br/>
                         </Col>
                         <Col md="2">
-                            <strong>Prerequisites</strong><br /><br />
+                            <strong>Prerequisites</strong><br/><br/>
                         </Col>
                         <Col>
-                            {this.props.study.prerequisites}<br /><br />
+                            {this.props.study.prerequisites}<br/><br/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/money-bag.png" /><br /><br />
+                            <img src="https://img.icons8.com/windows/32/000000/money-bag.png"/><br/><br/>
                         </Col>
                         <Col md="2">
-                            <strong>Reward</strong><br /><br />
+                            <strong>Reward</strong><br/><br/>
                         </Col>
                         <Col>
-                            {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}<br /><br />
+                            {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}<br/><br/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/conference.png" /><br /><br />
+                            <img src="https://img.icons8.com/windows/32/000000/conference.png"/><br/><br/>
                         </Col>
                         <Col md="2">
-                            <strong>Capacity</strong><br /><br />
+                            <strong>Capacity</strong><br/><br/>
                         </Col>
                         <Col>
-                            3 / {this.props.study.capacity}<br /><br />
+                            3 / {this.props.study.capacity}<br/><br/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/address.png" /><br /><br /><br /><br />
+                            <img src="https://img.icons8.com/windows/32/000000/address.png"/><br/><br/><br/><br/>
                         </Col>
                         <Col md="2">
-                            <strong>Address</strong><br /><br /><br /><br />
+                            <strong>Address</strong><br/><br/><br/><br/>
                         </Col>
                         <Col>
-                            {this.props.study.street + ' ' + this.props.study.number}<br />
-                            {this.props.study.zip + ' ' + this.props.study.city}<br />
-                            {this.props.study.country}<br /><br />
+                            {this.props.study.street + ' ' + this.props.study.number}<br/>
+                            {this.props.study.zip + ' ' + this.props.study.city}<br/>
+                            {this.props.study.country}<br/><br/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/time.png" /><br />
+                            <img src="https://img.icons8.com/windows/32/000000/time.png"/><br/>
                         </Col>
                         <Col md="2">
-                            <strong>Time</strong><br />
+                            <strong>Time</strong><br/>
                         </Col>
                         <Col>
-                            30 min<br />
+                            30 min<br/>
                         </Col>
                     </Row>
 
-                    <br /><br />
-                    <TimeSlotManagement timeslots={this.props.timeslots} handleSubmit={(timeslot) => this.handleSubmit(timeslot)}/>
+                    <br/><br/>
+                    <TimeSlotManagement timeslots={this.props.timeslots}
+                                        handleSubmit={(timeslot) => this.handleSubmit(timeslot)}/>
                 </Container>
             </Page>
         );

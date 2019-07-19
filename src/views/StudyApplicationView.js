@@ -10,25 +10,13 @@ export class StudyApplicationView extends React.Component {
 
     constructor(props) {
         super(props);
-    }
 
-    componentWillMount() {
-        this.setState({
-            studyLoading: true,
+        this.state = {
             timeslotsLoading: true,
-        });
+            timeslots: [],
+        };
 
         let id = this.props.match.params.id;
-
-        StudyService.getStudy(id).then(study => {
-            this.setState({
-                study: study,
-                studyLoading: false
-            });
-        }).catch(e => {
-            console.error(e);
-        });
-
         StudyService.getTimeslots(id).then(timeslots => {
             let availableTS = [];
             for (let timeslot of timeslots) {
@@ -43,16 +31,34 @@ export class StudyApplicationView extends React.Component {
             console.error(e);
         });
 
-        UserService.getCurrentUser().then(user => {
-            this.setState({
-                userId: user.id,
-                userLoading: false
+        if (UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    userId: user.id,
+                    userLoading: false
+                });
             });
+        }
+    }
+
+    componentWillMount() {
+        this.setState({
+            studyLoading: true,
+        });
+
+        let id = this.props.match.params.id;
+        StudyService.getStudy(id).then(study => {
+            this.setState({
+                study: study,
+                studyLoading: false
+            });
+        }).catch(e => {
+            console.error(e);
         });
     }
 
     render() {
-        if (this.state.studyLoading || this.state.timeslotsLoading || this.state.userLoading) {
+        if (this.state.studyLoading) {
             return (<h2>Loading...</h2>);
         }
 

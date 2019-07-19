@@ -8,6 +8,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/es/Button";
+import UserService from "../../services/UserService";
+import Link from "react-router-dom/Link";
 
 export class TimeSlotManagement extends React.Component {
 
@@ -85,7 +87,11 @@ export class TimeSlotManagement extends React.Component {
                     </Row>
                 </Container>
                 <br />
-                <Button variant='primary' className="input-button" onClick={() => this.props.handleSubmit(this.state.selectedTimeSlot)}>Confirm</Button>
+                {
+                    UserService.isAuthenticated()
+                        ? <Button variant='primary' className="input-button" onClick={() => this.props.handleSubmit(this.state.selectedTimeSlot)}>Confirm</Button>
+                        : <Link to="/login"><Button variant='primary' className="input-button">Login</Button></Link>
+                }
             </div>
         );
     }
