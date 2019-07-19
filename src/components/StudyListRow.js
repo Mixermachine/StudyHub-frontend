@@ -16,14 +16,6 @@ export class StudyListRow extends React.Component {
 
     render() {
         return (
-            /*<tr>
-                <td></td>
-                <td>
-                    {this.props.study.street + ' ' + this.props.study.number + ', ' + this.props.study.city + '. ' + this.props.study.country}
-                </td>
-                <td>{this.props.study.rewardAmount + ' ' + this.props.study.rewardType}</td>
-                <td><Link to={'studies/application/' + this.props.study.id}><Button>Details</Button></Link></td>
-            </tr>*/
             <Container className="search-result-card">
                 <Row>
                     <Col>
