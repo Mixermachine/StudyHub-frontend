@@ -76,4 +76,15 @@ export default class UserService {
     static isAuthenticated() {
         return !!window.localStorage['jwtToken'];
     }
+
+    static getPayoutMethods(userId) {
+        if (!UserService.isAuthenticated()) return undefined;
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/${userId}/payout-method`, data => {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 }
