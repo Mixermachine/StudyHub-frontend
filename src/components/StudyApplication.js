@@ -152,7 +152,7 @@ export class StudyApplication extends React.Component {
                             {
                                 this.props.timeslotLengthMin
                                     ? this.props.timeslotLengthMin + ' min'
-                                    : 'Loading'
+                                    : 'Loading...'
                             }
                             <br/><br/>
                         </Col>
