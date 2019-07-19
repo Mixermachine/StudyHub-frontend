@@ -3,7 +3,6 @@
 import React from 'react';
 
 import Page from './Page'
-import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
@@ -11,8 +10,50 @@ import Link from "react-router-dom/es/Link";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import UserService from "../services/UserService";
+import {StudyListCreated} from "./StudyListCreated";
+import {StudyListApplied} from "./StudyListApplied";
 
 export class MyStudies extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false,
+            studies_created: {},
+            studies_applied: {}
+        }
+    }
+
+    componentWillMount() {
+        this.setState({
+            loading: true,
+        });
+
+        if(UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    user: user,
+                    loading: false,
+                });
+            }).catch(e => console.error(e));
+
+            UserService.getStudiesCreated(this.state.user.id).then(studies => {
+                this.setState({
+                    studies_created: studies,
+                    loading: false,
+                });
+            }).catch(e => console.error(e));
+
+            UserService.getStudiesApplied(this.state.user.id).then(studies => {
+                this.setState({
+                    studies_created: studies,
+                    loading: false,
+                });
+            }).catch(e => console.error(e));
+        }
+    }
 
     render() {
         return (
@@ -23,26 +64,9 @@ export class MyStudies extends React.Component {
                     <br />
                     <h2>My studies</h2>
 
-                        <Card>
-                            <Card.Header as="h5">
-                                <Row>
-                                    <Col>Electric fans study</Col>
-                                    <Col md="auto"><Button variant="primary" className="input-button">Edit</Button></Col>
-                                    <Col md="auto"><Button variant="primary" className="input-button">Delete</Button></Col>
-                                </Row>
-                            </Card.Header>
-                            <Card.Body>
-                                <Row>
-                                    <p style={{"margin-left": "15px"}}>Experiment on the beneficial effect of electric fans in extreme heat and humidity.</p>
-                                </Row>
-                                <Row>
-                                    <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/conference.png" /></Col>
-                                    <Col>3 / 25</Col>
-                                    <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
-                                    <Col></Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
+                    <StudyListCreated studies={this.state.studies_created} />
+
+
                     <br />
 
                     <ButtonToolbar>
@@ -50,31 +74,9 @@ export class MyStudies extends React.Component {
                     </ButtonToolbar>
 
                     <br/>
-
                     <h2>Applied studies</h2>
 
-                    <Card>
-                        <Card.Header as="h5">
-                            <Row>
-                                <Col>Electric fans study</Col>
-                                <Col md="auto"><Button variant="primary" className="input-button">Check in</Button></Col>
-                                <Col md="auto"><Button variant="primary" className="input-button">Cancel</Button></Col>
-                            </Row>
-                        </Card.Header>
-                        <Card.Body>
-                            <Row>
-                                <p style={{"margin-left": "15px"}}>Experiment on the beneficial effect of electric fans in extreme heat and humidity.</p>
-                            </Row>
-                            <Row>
-                                <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png" /></Col>
-                                <Col></Col>
-                                <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/time.png" /></Col>
-                                <Col>30 min</Col>
-                                <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
-                                <Col></Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
+                    <StudyListApplied studies={this.state.studies_applied}  />
                 </Container>
             </Page>
         )
