@@ -63,17 +63,4 @@ export default class StudyService {
             })
         });
     }
-
-    static getAvailableCapacity(studyId) {
-        return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseUrl()}/${studyId}/availableCapacity`, data => {
-                if (data !== undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving available capacity')
-                }
-            }, textStatus => reject(textStatus));
-        });
-    }
 }

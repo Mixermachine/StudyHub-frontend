@@ -118,11 +118,8 @@ export class StudyApplication extends React.Component {
                             <strong>Capacity</strong><br/><br/>
                         </Col>
                         <Col>
-                            {
-                                this.props.availableCapacity
-                                    ? this.props.study.capacity - this.props.availableCapacity + ' / ' + this.props.study.capacity
-                                    : 'Loading...'
-                            }
+                            {this.props.study.capacity - this.props.study.availableCapacity + ' / ' +
+                            this.props.study.capacity}
                             <br/><br/>
                         </Col>
                     </Row>
@@ -149,11 +146,7 @@ export class StudyApplication extends React.Component {
                             <strong>Time</strong><br/><br/>
                         </Col>
                         <Col>
-                            {
-                                this.props.timeslotLengthMin
-                                    ? this.props.timeslotLengthMin + ' min'
-                                    : 'Loading...'
-                            }
+                            {this.props.study.timeslotDuration / 60000} min
                             <br/><br/>
                         </Col>
                     </Row>
@@ -167,7 +160,8 @@ export class StudyApplication extends React.Component {
                         </Col>
                         <Col>
                             {
-                                UserService.isAuthenticated() && this.props.payoutMethods.length !== 0 && this.props.rewardTypes.length !== 0
+                                UserService.isAuthenticated() && this.props.payoutMethods.length !== 0 &&
+                                this.props.rewardTypes.length !== 0
                                     ?
                                     <Form>
                                         <Form.Control
