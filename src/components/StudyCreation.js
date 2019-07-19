@@ -29,10 +29,11 @@ export class StudyCreation extends React.Component {
             additionalLocationInfo: '',
             rewardCurrency: 'EUR',
             rewardAmount: '',
-            rewardType: 'PayPal',
+            published: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleCheckChange = this.handleCheckChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -49,6 +50,16 @@ export class StudyCreation extends React.Component {
 
         this.setState({
             [name]: value,
+        });
+    }
+
+    handleCheckChange(event) {
+        let target = event.target;
+        let name = target.name;
+        let checked = target.checked;
+
+        this.setState({
+            [name]: checked,
         });
     }
 
@@ -94,7 +105,7 @@ export class StudyCreation extends React.Component {
                 description: this.state.description,        // 2500
                 prerequisites: this.state.prerequisites,    // 1000
                 capacity: this.state.capacity,              // 1000 und positiv, keine buchstaben
-                country: countryCode,                       // 3    TODO ISO3166 country-code-lookup
+                country: countryCode,                       // 3
                 city: this.state.city,                      // 100
                 zip: this.state.zip,                        // 20
                 street: this.state.street,                  // 50
@@ -102,15 +113,11 @@ export class StudyCreation extends React.Component {
                 additionalLocationInfo: this.state.additionalLocationInfo,  // 255
                 rewardCurrency: this.state.rewardCurrency,  // 3 Zeichen
                 rewardAmount: this.state.rewardAmount,      // 20
-                rewardType: this.state.rewardType,          // selection
-                //TODO Tags 50
+                published: this.state.published,
+                payeeId: this.props.userId
             };
 
-            console.log(study);
-
-            // StudyService.createStudy(study)
-            //     .then(test => console.log(text))
-            //     .catch(e => console.error(e));
+            StudyService.createStudy(study).catch(e => console.error(e));
         } else {
             errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
             alert(errorMessage)
@@ -148,7 +155,7 @@ export class StudyCreation extends React.Component {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label className="form-label" className="form-label">Prerequisites</Form.Label>
+                            <Form.Label className="form-label">Prerequisites</Form.Label>
                             <Form.Control
                                 className="input-data"
                                 name='prerequisites'
@@ -302,21 +309,14 @@ export class StudyCreation extends React.Component {
                             </Col>
                         </Row>
 
-                        <Form.Group>
-                            <Form.Label className="form-label">Type</Form.Label>
-                            <div className="input-select-wrapper">
-                                <Form.Control
-                                    className="input-select"
-                                    name='rewardType'
-                                    as='select'
-                                    value={this.state.rewardType}
-                                    onChange={this.handleChange}
-                                >
-                                    <option>PayPal</option>
-                                    <option>IBAN</option>
-                            </Form.Control>
-                            </div>
-                        </Form.Group>
+                        <br/>
+                        <Form.Check
+                            name="published"
+                            type="checkbox"
+                            label="Publish this study."
+                            checked={this.state.published}
+                            onChange={this.handleCheckChange}
+                        />
 
                         <br />
                         <Button variant='primary' type='submit' className="input-button">
