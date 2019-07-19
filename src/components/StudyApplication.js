@@ -118,9 +118,10 @@ export class StudyApplication extends React.Component {
                             <strong>Capacity</strong><br/><br/>
                         </Col>
                         <Col>
-                            {this.props.availableCapacity
-                                ? this.props.study.capacity - this.props.availableCapacity + ' / ' + this.props.study.capacity
-                                : 'Loading...'
+                            {
+                                this.props.availableCapacity
+                                    ? this.props.study.capacity - this.props.availableCapacity + ' / ' + this.props.study.capacity
+                                    : 'Loading...'
                             }
                             <br/><br/>
                         </Col>
@@ -148,7 +149,12 @@ export class StudyApplication extends React.Component {
                             <strong>Time</strong><br/><br/>
                         </Col>
                         <Col>
-                            30 min<br/><br/>
+                            {
+                                this.props.timeslotLengthMin
+                                    ? this.props.timeslotLengthMin + ' min'
+                                    : 'Loading'
+                            }
+                            <br/><br/>
                         </Col>
                     </Row>
 
@@ -172,7 +178,8 @@ export class StudyApplication extends React.Component {
                                             onChange={this.handlePayoutMethodChange}
                                         >
                                             {this.props.payoutMethods.map((payoutMethod =>
-                                                    <option key={payoutMethod.id}>{this.getPayoutMethodName(payoutMethod)}</option>
+                                                    <option
+                                                        key={payoutMethod.id}>{this.getPayoutMethodName(payoutMethod)}</option>
                                             ))}
                                         </Form.Control>
                                     </Form>

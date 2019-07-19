@@ -28,9 +28,16 @@ export class StudyApplicationView extends React.Component {
                 let future = new Date(timeslot.start) >= new Date();
                 if (future && !timeslot.reserved) availableTS.push(timeslot);
             }
+
+            let start = new Date(timeslots[0].start);
+            let stop = new Date(timeslots[0].stop);
+            // divided by 1000 -> milliseconds to seconds
+            // divided by   60 -> seconds to minutes
+            let timeslotLengthMin = (stop.getTime() - start.getTime()) / (1000 * 60);
+
             this.setState({
                 timeslots: availableTS,
-                timeslotsLoading: false
+                timeslotLengthMin: timeslotLengthMin
             });
         }).catch(e => {
             console.error(e);
@@ -40,7 +47,7 @@ export class StudyApplicationView extends React.Component {
             this.setState({
                 availableCapacity: data.availableCapacity
             });
-        })
+        });
     }
 
     componentWillMount() {
@@ -99,6 +106,7 @@ export class StudyApplicationView extends React.Component {
                 payoutMethods={this.state.payoutMethods}
                 rewardTypes={this.state.rewardTypes}
                 availableCapacity={this.state.availableCapacity}
+                timeslotLengthMin={this.state.timeslotLengthMin}
             />
         );
     }
