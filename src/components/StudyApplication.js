@@ -31,7 +31,7 @@ export class StudyApplication extends React.Component {
             }
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handlePayoutMethodChange = this.handlePayoutMethodChange.bind(this);
     }
 
@@ -67,8 +67,7 @@ export class StudyApplication extends React.Component {
         });
     }
 
-    handleSubmit(timeslot) {
-        // TODO add checks
+    handleClick(timeslot) {
         StudyService.updateTimeslot(this.props.studyId, timeslot.id, {
             participantId: this.props.participantId, payoutMethodId: this.state.payoutMethodId
         }).then((data => this.props.history.goBack()).catch(e => console.error(e)));
@@ -119,7 +118,11 @@ export class StudyApplication extends React.Component {
                             <strong>Capacity</strong><br/><br/>
                         </Col>
                         <Col>
-                            3 / {this.props.study.capacity}<br/><br/>
+                            {this.props.availableCapacity
+                                ? this.props.study.capacity - this.props.availableCapacity + ' / ' + this.props.study.capacity
+                                : 'Loading...'
+                            }
+                            <br/><br/>
                         </Col>
                     </Row>
 
@@ -181,7 +184,7 @@ export class StudyApplication extends React.Component {
                     <br/><br/>
                     <TimeSlotManagement
                         timeslots={this.props.timeslots}
-                        handleSubmit={(timeslot) => this.handleSubmit(timeslot)}/>
+                        handleClick={(timeslot) => this.handleClick(timeslot)}/>
                 </Container>
             </Page>
         );
