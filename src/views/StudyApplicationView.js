@@ -35,6 +35,12 @@ export class StudyApplicationView extends React.Component {
         }).catch(e => {
             console.error(e);
         });
+
+        StudyService.getAvailableCapacity(id).then(data => {
+            this.setState({
+                availableCapacity: data.availableCapacity
+            });
+        })
     }
 
     componentWillMount() {
@@ -92,6 +98,7 @@ export class StudyApplicationView extends React.Component {
                 timeslots={this.state.timeslots}
                 payoutMethods={this.state.payoutMethods}
                 rewardTypes={this.state.rewardTypes}
+                availableCapacity={this.state.availableCapacity}
             />
         );
     }
