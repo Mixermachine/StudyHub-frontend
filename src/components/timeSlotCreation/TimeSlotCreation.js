@@ -8,8 +8,6 @@ import Col from "react-bootstrap/Col";
 import {TimeSlotCreationList} from "./TimeSlotCreationList";
 import Form from "react-bootstrap/Form";
 
-// TODO delete day, delete timeslot, edit day, edit timeslot
-
 export class TimeSlotCreation extends React.Component{
     constructor(props) {
         super(props);
@@ -19,8 +17,7 @@ export class TimeSlotCreation extends React.Component{
             createdDays: [],
             createdTimeSlots: [],
             availableTimeSlots: [],
-            timeSlotDurationMin: undefined,
-            timeSlotDuration: undefined
+            timeSlotDurationMin: undefined
         };
 
         this.handleCreateTimeSlotClick = this.handleCreateTimeSlotClick.bind(this);
@@ -41,26 +38,8 @@ export class TimeSlotCreation extends React.Component{
         this.setState({createdDays: createdDays});
     }
 
-    createTimeSlot(timeSlot) {
-        let createdTimeSlots = [...this.state.createdTimeSlots];
-        createdTimeSlots.push(timeSlot);
-        let availableTimeSlots = this.availableTimeSlots(this.state.selectedDay, createdTimeSlots);
-        this.setState({
-            createdTimeSlots: createdTimeSlots,
-            availableTimeSlots: availableTimeSlots
-        });
-    }
-
-    deleteTimeSlot(timeSlot) {
-        let createdTimeSlots = [];
-        for (let createdTimeSlot of this.state.createdTimeSlots) {
-            if (createdTimeSlot !== timeSlot) createdTimeSlots.push(createdTimeSlot);
-        }
-        this.setState({createdTimeSlots: createdTimeSlots});
-    }
-
     handleCreateTimeSlotClick(day) {
-        let availableTimeSlots = this.availableTimeSlots(day, this.state.createdTimeSlots);
+        let availableTimeSlots = this.availableTimeSlots(day, this.props.timeSlots);
         this.setState({
             availableTimeSlots: availableTimeSlots,
             selectedDay: day
@@ -69,12 +48,12 @@ export class TimeSlotCreation extends React.Component{
 
     handleTimeSlotDurationChange(event) {
         let value = event.target.value;
-        let timeSlotDurationMillis = value * 60 * 1000;
-
         this.setState({
             timeSlotDurationMin: value,
-            timeSlotDuration: timeSlotDurationMillis
         });
+
+        let timeSlotDurationMillis = value * 60 * 1000;
+        this.props.handleTimeSlotDurationChange(timeSlotDurationMillis);
     }
 
     checkTimeSlotDuration() {
@@ -92,6 +71,7 @@ export class TimeSlotCreation extends React.Component{
     }
 
     availableTimeSlots(day, createdTimeSlots) {
+        if (!day) return [];
         let timeSlots = [];
         for (let timeSlot of createdTimeSlots) {
             if (this.sameDate(timeSlot, day)) {
@@ -129,11 +109,11 @@ export class TimeSlotCreation extends React.Component{
                     </Col>
                     <Col>
                         <TimeSlotCreationList
-                            createdTimeSlots={this.state.availableTimeSlots}
-                            createTimeSlot={timeSlot => this.createTimeSlot(timeSlot)}
-                            deleteTimeSlot={timeSlot => this.deleteTimeSlot(timeSlot)}
+                            createdTimeSlots={[...this.availableTimeSlots(this.state.selectedDay, this.props.timeSlots)]}
+                            createTimeSlot={timeSlot => this.props.createTimeSlot(timeSlot)}
+                            deleteTimeSlot={timeSlot => this.props.deleteTimeSlot(timeSlot)}
                             selectedDay={this.state.selectedDay}
-                            duration={this.state.timeSlotDuration}
+                            duration={this.props.timeSlotDuration}
                             canCreate={this.checkTimeSlotDuration() && this.state.selectedDay}
                         />
                     </Col>
