@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {withRouter, NavLink} from 'react-router-dom'
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Nav, Navbar} from 'react-bootstrap';
 
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
@@ -113,7 +113,7 @@ class Header extends React.Component {
         return (
             <Navbar className="nav-header">
                 <Image className="nav-header-logo"
-                       src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2FStudyHub.png&action=download" />
+                       src='./media/images/StudyHub.png' />
                 <Navbar.Brand href="/"><div className="nav-header-brand" >StudyHub</div></Navbar.Brand>
                 <Container className="navbar-fill">
                     <Navbar.Collapse id="basic-navbar-nav">
