@@ -31,7 +31,9 @@ export class StudyCreation extends React.Component {
             rewardCurrency: 'EUR',
             rewardAmount: '',
             published: false,
-            isHidden: true
+            isHidden: true,
+            timeSlots: [],
+            timeSlotDuration: undefined
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -63,6 +65,26 @@ export class StudyCreation extends React.Component {
         this.setState({
             [name]: checked,
         });
+    }
+
+    createTimeSlot(timeSlot) {
+        let timeSlots = [...this.state.timeSlots];
+        timeSlots.push(timeSlot);
+        this.setState({
+            timeSlots: timeSlots,
+        });
+    }
+
+    deleteTimeSlot(timeSlot) {
+        let timeSlots = [];
+        for (let timeSlot of this.state.timeSlots) {
+            if (timeSlot !== timeSlot) timeSlots.push(createdTimeSlot);
+        }
+        this.setState({timeSlots: timeSlots});
+    }
+
+    handleTimeSlotDurationChange(duration) {
+        this.setState({timeSlotDuration: duration});
     }
 
     handleSubmit(event) {
@@ -119,7 +141,18 @@ export class StudyCreation extends React.Component {
                 payeeId: this.props.userId
             };
 
-            StudyService.createStudy(study).catch(e => console.error(e));
+            StudyService.createStudy(study).then(study => {
+                if (this.state.timeSlots.length !== 0 && this.state.timeSlotDuration) {
+                    let timeslots = [];
+                    for (let timeSlot of this.state.timeSlots) {
+                        console.log(timeSlot);
+                        let start = timeSlot;
+                        let stop = new Date(start.getTime() + this.state.timeSlotDuration);
+                        timeslots.push({start: start, stop: stop});
+                    }
+                    return StudyService.createTimeSlots({timeslots: timeslots}, study.id);
+                }
+            }).catch(e => console.error(e));
         } else {
             errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
             alert(errorMessage)
@@ -181,15 +214,21 @@ export class StudyCreation extends React.Component {
                         </Form.Group>
 
                         <br/>
-                        <TimeSlotCreation/>
+                        <TimeSlotCreation
+                            timeSlots={this.state.timeSlots}
+                            timeSlotDuration={this.state.timeSlotDuration}
+                            createTimeSlot={timeSlot => this.createTimeSlot(timeSlot)}
+                            deleteTimeSlot={timeSlot => this.deleteTimeSlot(timeSlot)}
+                            handleTimeSlotDurationChange={duration => this.handleTimeSlotDurationChange(duration)}
+                        />
                         <br/>
 
-                        <br />
+                        <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png" /></Col>
+                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png"/></Col>
                             <Col><h1>Location informations</h1></Col>
                         </Row>
-                        <br />
+                        <br/>
 
                         <Row>
                             <Col>
@@ -259,7 +298,8 @@ export class StudyCreation extends React.Component {
                                     value={this.state.country}
                                     onChange={this.handleChange}
                                 >
-                                    {CountryList.getData().map(country => (<option key={country.code}>{country.name}</option>))}
+                                    {CountryList.getData().map(country => (
+                                        <option key={country.code}>{country.name}</option>))}
                                 </Form.Control>
                             </div>
                         </Form.Group>
@@ -276,17 +316,18 @@ export class StudyCreation extends React.Component {
                             />
                         </Form.Group>
 
-                        <br />
+                        <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
+                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png"/></Col>
                             <Col><h1>Reward</h1></Col>
                         </Row>
-                        <br />
+                        <br/>
 
                         <Row>
                             <Col>
                                 <Form.Group>
-                                    <Form.Label className="form-label">Amount in {this.state.rewardCurrency}</Form.Label>
+                                    <Form.Label className="form-label">Amount
+                                        in {this.state.rewardCurrency}</Form.Label>
                                     <Form.Control
                                         className="input-data"
                                         name='rewardAmount'
@@ -324,7 +365,7 @@ export class StudyCreation extends React.Component {
                             onChange={this.handleCheckChange}
                         />
 
-                        <br />
+                        <br/>
                         <Button variant='primary' type='submit' className="input-button">
                             Create
                         </Button>
