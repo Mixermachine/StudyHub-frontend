@@ -145,7 +145,6 @@ export class StudyCreation extends React.Component {
                 if (this.state.timeSlots.length !== 0 && this.state.timeSlotDuration) {
                     let timeslots = [];
                     for (let timeSlot of this.state.timeSlots) {
-                        console.log(timeSlot);
                         let start = timeSlot;
                         let stop = new Date(start.getTime() + this.state.timeSlotDuration);
                         timeslots.push({start: start, stop: stop});
