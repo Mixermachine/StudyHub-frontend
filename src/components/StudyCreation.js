@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import StudyService from "../services/StudyService";
+import {TimeSlotCreation} from "./timeSlotCreation/TimeSlotCreation";
 
 export class StudyCreation extends React.Component {
 
@@ -30,6 +31,7 @@ export class StudyCreation extends React.Component {
             rewardCurrency: 'EUR',
             rewardAmount: '',
             published: false,
+            isHidden: true
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -177,6 +179,10 @@ export class StudyCreation extends React.Component {
                                 onChange={this.handleChange}
                             />
                         </Form.Group>
+
+                        <br/>
+                        <TimeSlotCreation/>
+                        <br/>
 
                         <br />
                         <Row>
