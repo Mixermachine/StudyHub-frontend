@@ -83,7 +83,7 @@ class Header extends React.Component {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} onClick={() => this.logout()} to="/logout">Sign Out</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} to="/" onClick={() => this.logout()}>Sign Out</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </ButtonToolbar>;
