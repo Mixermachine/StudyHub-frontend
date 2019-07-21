@@ -45,9 +45,6 @@ export class StudyListRow extends React.Component {
                     </Col>
                 </Row>
             </Container>
-
-
-
         );
     }
 }
