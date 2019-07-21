@@ -5,11 +5,16 @@ import React from 'react';
 import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+
+import students from '../../public/images/students.png'
+import researcher from '../../public/images/research.png'
+import payout from '../../public/images/payout.png'
+import faq from '../../public/images/faq.png'
 
 export const Support = () => (
     <Page>
+<<<<<<< Updated upstream
         <h1>Support</h1>
 
         <Accordion>
@@ -34,6 +39,57 @@ export const Support = () => (
                 </Accordion.Collapse>
             </Card>
         </Accordion>
+=======
+        <Container>
+            <h1>Support</h1>
+            <br />
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src={students} />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Create a study</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src={researcher} />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Managing data</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src={payout} />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">Payout</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src={faq} />
+                        <Card.Body>
+                            <Card.Title className="search-result-card-title">FAQ</Card.Title>
+                            <Card.Text>
+
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+>>>>>>> Stashed changes
         <br />
 
         <h2>Contact us</h2>

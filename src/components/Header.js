@@ -17,6 +17,7 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
+<<<<<<< Updated upstream
     }
 
     render() {
@@ -57,6 +58,107 @@ class Header extends React.Component {
                             </Dropdown.Menu>
                         </Dropdown>
                     </ButtonToolbar>
+=======
+
+        this.state = {
+            loading: false,
+            user: {}
+        }
+    }
+
+    componentWillMount() {
+        this.setState({
+            loading: true,
+        });
+
+        if(UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    user: user,
+                    loading: false,
+                });
+
+            }).catch(e => console.error(e));
+        }
+    }
+
+    logout() {
+        UserService.logout();
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        };
+
+        this.props.history.push('/');
+    }
+
+    render() {
+        let menu;
+        let usermenu;
+
+        if (UserService.isAuthenticated()) {
+            menu = <Nav className="mr-auto">
+                <Nav.Link as={NavLink} to="/studies/my"><div className="nav-header-links">Dashboard</div></Nav.Link>
+                <Nav.Link as={NavLink} to="/support"><div className="nav-header-links">Support</div></Nav.Link>
+            </Nav>;
+
+            usermenu = <ButtonToolbar className="justify-content-end">
+                <Dropdown as={ButtonGroup}>
+                    <Button className="nav-header-button" block onClick={() => this.props.history.push("/profile")}>
+                            <Row>
+                                <Col md="auto">
+                                    <Navbar.Text className="nav-header-button-text">
+                                        {this.state.user.firstName + ' ' + this.state.user.lastName}
+                                    </Navbar.Text>
+                                </Col>
+                                <Col>
+                                    <Image height="50"
+                                           src={userimg}
+                                           roundedCircle/>
+                                </Col>
+                            </Row>
+                    </Button>
+                    <Dropdown.Toggle className="nav-header-button">
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} onClick={() => this.logout()} to="/logout">Sign Out</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </ButtonToolbar>;
+        } else {
+            menu = <Nav className="mr-auto">
+                <Nav.Link as={NavLink} to="/register"><div className="nav-header-links">Sign up</div></Nav.Link>
+            </Nav>;
+
+            usermenu = <ButtonToolbar className="justify-content-end">
+                    <Dropdown as={ButtonGroup}><Button className="nav-header-button" block onClick={() => this.props.history.push("/login")}>
+                        <Row>
+                            <Col md="auto">
+                                <Navbar.Text className="nav-header-button-text">Login</Navbar.Text>
+                            </Col>
+                            <Col>
+                                <Image height="50"
+                                       src={userimg} />
+                            </Col>
+                        </Row>
+                    </Button>
+                </Dropdown>
+            </ButtonToolbar>;
+        }
+
+        return (
+            <Navbar className="nav-header">
+                <Image className="nav-header-logo"
+                       src={logo} />
+                <Navbar.Brand href="/"><div className="nav-header-brand" >StudyHub</div></Navbar.Brand>
+                <Container className="navbar-fill">
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        {menu}
+                    </Navbar.Collapse>
+                </Container>
+                <Navbar.Collapse style={{width: 250}} className="justify-content-end">
+                    {usermenu}
+>>>>>>> Stashed changes
                 </Navbar.Collapse>
             </Navbar>
         );
