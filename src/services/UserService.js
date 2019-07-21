@@ -20,9 +20,9 @@ export default class UserService {
                 gender: gender,
                 email: email,
                 password: pass
-            }, function (data) {
+            }, function(data) {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
@@ -85,9 +85,9 @@ export default class UserService {
                 gender: gender,
                 email: email,
                 password: pass
-            }, function (data) {
+            }, function(data) {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
@@ -98,9 +98,9 @@ export default class UserService {
             HttpService.post(`${UserService.baseURL()}/auth/login`, {
                 email: email,
                 password: pass
-            }, function (data) {
+            }, function(data) {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
@@ -117,7 +117,7 @@ export default class UserService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${UserService.baseURL()}/user`, data => {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
@@ -132,9 +132,17 @@ export default class UserService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${UserService.baseURL()}/user/${userId}/payout-method`, data => {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
+        });
+    }
+
+    static createParticipant(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/user/participant/${userId}`, {}, data => {
+                resolve(data);
+            }, textStatus => reject(textStatus))
         });
     }
 
