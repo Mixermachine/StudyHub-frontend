@@ -57,7 +57,7 @@ export class TimeSlotCreationList extends React.Component {
     render() {
         return (
             <Table striped bordered hover>
-                <thead>
+                <thead className="table-header">
                 <tr>
                     <th>Timeslots</th>
                     <th>Delete</th>
@@ -73,19 +73,20 @@ export class TimeSlotCreationList extends React.Component {
                 )}
                 </tbody>
                 <tr>
-                    <td colSpan={2}><Button onClick={() => this.setShowModal(true)}>Add a time slot</Button></td>
+                    <td colSpan={2}><Button className="input-button" onClick={() => this.setShowModal(true)}>Add a time slot</Button></td>
                     <Modal
                         centered
                         show={this.state.showModal}
                         onHide={() => this.setShowModal(false)}
                     >
                         <Modal.Header closeButton>
-                            <Modal.Title>Enter a the start time:</Modal.Title>
+                            <Modal.Title>Enter a the start time</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Container>
                                 <Row>
                                     <Col>
+                                        <div className="input-select">
                                         <Form.Control
                                             className="input-select"
                                             name="hour"
@@ -96,8 +97,10 @@ export class TimeSlotCreationList extends React.Component {
                                             {[...Array(24).keys()].map((hour, i) =>
                                                     <option key={hour}>{hour}</option>)}
                                         </Form.Control>
+                                        </div>
                                     </Col>
                                     <Col>
+                                        <div className="input-select">
                                         <Form.Control
                                             className="input-select"
                                             name="minute"
@@ -108,13 +111,14 @@ export class TimeSlotCreationList extends React.Component {
                                             {[...Array(60).keys()].map((minute, i) =>
                                                 <option key={minute}>{minute}</option>)}
                                         </Form.Control>
+                                        </div>
                                     </Col>
                                 </Row>
                             </Container>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={() => this.handleAddClick()}>Add</Button>
-                            <Button onClick={() => this.setShowModal(false)}>Cancel</Button>
+                            <Button className="input-button" onClick={() => this.handleAddClick()}>Add</Button>
+                            <Button className="input-button" onClick={() => this.setShowModal(false)}>Cancel</Button>
                         </Modal.Footer>
                     </Modal>
                 </tr>

@@ -12,6 +12,9 @@ import Container from 'react-bootstrap/Container';
 import StudyService from "../services/StudyService";
 import {TimeSlotCreation} from "./timeSlotCreation/TimeSlotCreation";
 
+import iconmoney from '../../public/images/icons/money.png'
+import iconaddress from '../../public/images/icons/address.png'
+
 export class StudyCreation extends React.Component {
 
     constructor(props) {
@@ -124,6 +127,7 @@ export class StudyCreation extends React.Component {
 
         if (!errorMessage) {
             let countryCode = CountryList.getCode(this.state.country);
+            let additionalLocationInfo = this.state.additionalLocationInfo || '-';
             let study = {
                 title: this.state.title,                    // 255
                 description: this.state.description,        // 2500
@@ -134,12 +138,14 @@ export class StudyCreation extends React.Component {
                 zip: this.state.zip,                        // 20
                 street: this.state.street,                  // 50
                 number: this.state.number,                  // 20 Zeichen
-                additionalLocationInfo: this.state.additionalLocationInfo,  // 255
+                additionalLocationInfo: additionalLocationInfo,  // 255
                 rewardCurrency: this.state.rewardCurrency,  // 3 Zeichen
                 rewardAmount: this.state.rewardAmount,      // 20
                 published: this.state.published,
                 payeeId: this.props.userId
             };
+
+            this.props.redirect();
 
             StudyService.createStudy(study).then(study => {
                 if (this.state.timeSlots.length !== 0 && this.state.timeSlotDuration) {
@@ -224,7 +230,7 @@ export class StudyCreation extends React.Component {
 
                         <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png"/></Col>
+                            <Col md="auto"><img src={iconaddress}/></Col>
                             <Col><h1>Location informations</h1></Col>
                         </Row>
                         <br/>
@@ -317,7 +323,7 @@ export class StudyCreation extends React.Component {
 
                         <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png"/></Col>
+                            <Col md="auto"><img src={iconmoney}/></Col>
                             <Col><h1>Reward</h1></Col>
                         </Row>
                         <br/>

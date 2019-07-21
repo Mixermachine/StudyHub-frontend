@@ -20,6 +20,7 @@ export class TimeSlotSelectionList extends React.Component {
             <div>
                 <h3><strong>Select a time slot</strong></h3>
                 <Table striped bordered hover>
+                    <thead className="table-header">
                     <thead>
                     <tr>
                         <th>Selection</th>

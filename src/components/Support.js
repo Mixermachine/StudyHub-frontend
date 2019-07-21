@@ -5,11 +5,15 @@ import React from 'react';
 import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+
+import students from '../../public/images/students.png'
+import researcher from '../../public/images/research.png'
+import payout from '../../public/images/payout.png'
+import faq from '../../public/images/faq.png'
 
 export const Support = () => (
     <Page>
@@ -19,7 +23,7 @@ export const Support = () => (
             <Row>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fstudents.png&action=download" />
+                        <Card.Img variant="top" src={students} />
                         <Card.Body>
                             <Card.Title className="search-result-card-title">Create a study</Card.Title>
                             <Card.Text>
@@ -30,7 +34,7 @@ export const Support = () => (
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Img variant="top" src={researcher} />
                         <Card.Body>
                             <Card.Title className="search-result-card-title">Managing data</Card.Title>
                             <Card.Text>
@@ -41,7 +45,7 @@ export const Support = () => (
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Img variant="top" src={payout} />
                         <Card.Body>
                             <Card.Title className="search-result-card-title">Payout</Card.Title>
                             <Card.Text>
@@ -52,7 +56,7 @@ export const Support = () => (
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                        <Card.Img variant="top" src={faq} />
                         <Card.Body>
                             <Card.Title className="search-result-card-title">FAQ</Card.Title>
                             <Card.Text>

@@ -55,7 +55,7 @@ export class DayCreationList extends React.Component {
     render() {
         return (
             <Table striped bordered hover>
-                <thead>
+                <thead className="table-header">
                 <tr>
                     <th>Available days</th>
                     <th>Timeslots</th>
@@ -71,14 +71,14 @@ export class DayCreationList extends React.Component {
                     />
                 )}
                 <tr>
-                    <td colSpan={3}><Button onClick={() => this.setShowModal(true)}>Add a day</Button></td>
+                    <td colSpan={3}><Button className="input-button" onClick={() => this.setShowModal(true)}>Add a day</Button></td>
                     <Modal
                         centered
                         show={this.state.showModal}
                         onHide={() => this.setShowModal(false)}
                     >
                         <Modal.Header closeButton>
-                            <Modal.Title>Enter a day to add:</Modal.Title>
+                            <Modal.Title>Enter a day to add</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form.Control
@@ -91,8 +91,8 @@ export class DayCreationList extends React.Component {
                             />
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={() => this.handleAddClick()}>Add</Button>
-                            <Button onClick={() => this.setShowModal(false)}>Cancel</Button>
+                            <Button className="input-button" onClick={() => this.handleAddClick()}>Add</Button>
+                            <Button className="input-button" onClick={() => this.setShowModal(false)}>Cancel</Button>
                         </Modal.Footer>
                     </Modal>
                 </tr>
