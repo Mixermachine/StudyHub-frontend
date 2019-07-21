@@ -19,9 +19,9 @@ export default class SecureCheckinService {
                     }
                 }, textStatus => reject(textStatus));
         }).then(response => {
-            if (response.token) {
+            if (response.secretToken) {
                 return SecureCheckinService.baseUrl() +
-                    `/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${response.token}`;
+                    `/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${response.secretToken}`;
             }
 
             return undefined;

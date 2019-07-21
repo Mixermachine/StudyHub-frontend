@@ -9,12 +9,10 @@ export class GenerateSecureCheckinView extends React.Component {
         super(props);
 
         this.state = {
-            studyId: 0,
-            timeslotId: 0
+            studyId: this.props.match.params.studyId,
+            timeslotId: this.props.match.params.timeslotId
         };
 
-        this.state.studyId = this.props.match.params.studyId;
-        this.state.timeslotId = this.props.match.params.timeslotId;
     }
 
     componentWillMount() {

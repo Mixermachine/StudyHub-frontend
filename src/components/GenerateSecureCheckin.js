@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import QRCode from 'react-qr-svg';
+import {QRCode} from 'react-qr-svg';
 import SecureCheckinService from '../services/SecureCheckinService';
 
 export default class GenerateSecureCheckin extends React.Component {
@@ -10,39 +10,54 @@ export default class GenerateSecureCheckin extends React.Component {
         super(props);
 
         this.state = {
-            valueForQRCode: "",
+            valueForQRCode: "INVALID, WAIT",
             status: "",
             studyId: props.studyId,
             timeslotId: props.timeslotId
         };
 
+        this.getNewQrText = this.getNewQrText.bind(this);
+
+        this.render = this.render.bind(this);
+
         this.getNewQrText();
 
-        setInterval(this.getNewQrText, 5000);
+        setInterval(this.getNewQrText, 3000);
+    }
+
+    updateQrCode(e) {
+        this.setState({valueForQRCode: e});
+    }
+
+    updateStatus(e) {
+        this.setState({state: e});
     }
 
     getNewQrText() {
-        SecureCheckinService.generateQrText(this.props.studyId, this.props.timeslotId)
+        return SecureCheckinService.generateQrText(this.state.studyId, this.state.timeslotId)
             .then(result => {
                 if (result) {
-                    status = "Please scan";
 
-                    this.state.valueForQRCode = result;
+                    this.updateQrCode(result);
+                    this.updateStatus("Please scan");
+                    //this.state.valueForQRCode = result;
                 } else {
-                    status = "Service stopped";
+                    this.updateStatus("Service stopped");
                 }
-            })
+            });
     }
 
     render() {
+        const {state} = this;
         return (
             <div style={{textAlign: "center"}}>
+                <p className="hightlight-text">{state.status}</p>
                 <QRCode
                     bgColor="#FFFFFF"
                     fgColor="#000000"
-                    level="Q"
-                    style={{width: 256}}
-                    value={this.state.valueForQRCode}
+                    level="L"
+                    style={{width: 512}}
+                    value={state.valueForQRCode}
                 />
             </div>
         );
