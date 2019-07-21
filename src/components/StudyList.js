@@ -12,11 +12,7 @@ export class StudyList extends React.Component {
 
     render() {
         return (
-            <div>
-                {
-                    this.props.studies.map((study, i) => <StudyListRow key={i} study={study}/>)
-                }
-            </div>
+                this.props.studies.map((study, i) => <StudyListRow key={i} study={study}/>)
         );
     }
 }

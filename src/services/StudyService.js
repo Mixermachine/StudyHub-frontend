@@ -13,7 +13,7 @@ export default class StudyService {
     static getStudy(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${StudyService.baseUrl()}/${id}`, data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving study');
@@ -25,7 +25,7 @@ export default class StudyService {
     static getStudies() {
         return new Promise((resolve, reject) => {
             HttpService.get(StudyService.baseUrl(), data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving studies');
@@ -37,11 +37,19 @@ export default class StudyService {
     static getTimeslots(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${StudyService.baseUrl()}/${id}/timeslot`, data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving timeslots');
                 }
+            }, textStatus => reject(textStatus));
+        });
+    }
+
+    static createTimeSlots(timeslots, studyId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${StudyService.baseUrl()}/${studyId}/timeslot`, timeslots,  data => {
+                resolve(data);
             }, textStatus => reject(textStatus));
         });
     }
@@ -69,6 +77,26 @@ export default class StudyService {
             }, textStatus => {
                 reject(textStatus);
             })
+        });
+    }
+
+    static searchStudy(searchText, city, zip, organizer, minReward) {
+        let query = '';
+        if (searchText) query += 'searchText=' + searchText + '&';
+        if (city) query += 'city=' + city + '&';
+        if (zip) query += 'zip=' + zip + '&';
+        if (organizer) query += 'organizer=' + organizer + '&';
+        if (minReward) query += 'minReward=' + minReward + '&';
+        if (query) query = '?' + query;
+        query = query.slice(0, -1);
+        return new Promise((resolve, reject) => {
+            HttpService.get(StudyService.baseUrl() + query, data => {
+                if (data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving studies');
+                }
+            }, textStatus => reject(textStatus));
         });
     }
 }
