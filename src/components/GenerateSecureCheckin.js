@@ -4,7 +4,7 @@ import React from 'react';
 import QRCode from 'react-qr-svg';
 import SecureCheckinService from '../services/SecureCheckinService';
 
-export class GenerateSecureCheckin extends React.Component {
+export default class GenerateSecureCheckin extends React.Component {
 
     constructor(props) {
         super(props);
@@ -36,15 +36,15 @@ export class GenerateSecureCheckin extends React.Component {
 
     render() {
         return (
-            <QRCode
-                bgColor="#FFFFFF"
-                fgColor="#000000"
-                level="Q"
-                style={{width: 256}}
-                value={this.state.valueForQRCode}
-            />
+            <div style={{textAlign: "center"}}>
+                <QRCode
+                    bgColor="#FFFFFF"
+                    fgColor="#000000"
+                    level="Q"
+                    style={{width: 256}}
+                    value={this.state.valueForQRCode}
+                />
+            </div>
         );
     }
-
-
 }
