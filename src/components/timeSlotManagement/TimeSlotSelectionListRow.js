@@ -20,7 +20,7 @@ export class TimeSlotSelectionListRow extends React.Component {
     }
 
     leadingZero(n) {
-        if (n.toString() < 2) {
+        if (n < 10) {
             return '0' + n;
         }
         return n;
