@@ -63,6 +63,7 @@ export class StudyApplicationView extends React.Component {
                 this.setState({
                     userId: userId,
                 });
+                UserService.createParticipant(userId).then(data => console.log(data)).catch(e => console.error(e));
                 return UserService.getPayoutMethods(userId);
             }).then(payoutMethods =>{
                 this.setState({
