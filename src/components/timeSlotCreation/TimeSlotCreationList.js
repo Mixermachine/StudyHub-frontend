@@ -108,8 +108,8 @@ export class TimeSlotCreationList extends React.Component {
                                             value={this.state.minute}
                                             onChange={this.handleChange}
                                         >
-                                            {[...Array(60).keys()].map((minute, i) =>
-                                                <option key={minute}>{minute}</option>)}
+                                            {[...Array(12).keys()].map((minute, i) =>
+                                                <option key={minute * 5}>{minute * 5}</option>)}
                                         </Form.Control>
                                         </div>
                                     </Col>

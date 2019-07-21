@@ -116,6 +116,9 @@ export class StudyCreation extends React.Component {
         errorMessage += StudyCreation.inBoundaries(this.state.number, 1, 20, 'Street number');
         errorMessage += StudyCreation.inBoundaries(this.state.additionalLocationInfo, 0, 255,
             'Additional location info');
+        if (this.state.timeSlotDuration && this.state.timeSlotDuration < 5) {
+            errorMessage += 'Time slot length has to be positive and at least 5.\n';
+        }
 
         let rewardAmount = Number(this.state.rewardAmount);
         if (isNaN(rewardAmount)) {
