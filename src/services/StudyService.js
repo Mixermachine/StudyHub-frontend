@@ -34,6 +34,16 @@ export default class StudyService {
         });
     }
 
+    static createStudy(study) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(StudyService.baseUrl(), study, data => {
+                resolve(data);
+            }, textStatus => {
+                reject(textStatus);
+            })
+        });
+    }
+
     static getTimeslots(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${StudyService.baseUrl()}/${id}/timeslot`, data => {
@@ -46,6 +56,14 @@ export default class StudyService {
         });
     }
 
+    static createTimeSlots(timeslots, studyId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${StudyService.baseUrl()}/${studyId}/timeslot`, timeslots,  data => {
+                resolve(data);
+            }, textStatus => reject(textStatus));
+        });
+    }
+
     static updateTimeslot(studyId, timeslotId, timeslot) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${StudyService.baseUrl()}/${studyId}/timeslot/${timeslotId}`, timeslot, data => {
@@ -54,13 +72,4 @@ export default class StudyService {
         });
     }
 
-    static createStudy(study) {
-        return new Promise((resolve, reject) => {
-            HttpService.post(StudyService.baseUrl(), study, data => {
-                resolve(data);
-            }, textStatus => {
-                reject(textStatus);
-            })
-        });
-    }
 }
