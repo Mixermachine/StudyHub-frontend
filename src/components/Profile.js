@@ -53,7 +53,6 @@ export class Profile extends React.Component {
             <Page>
                 <Container>
                     <p className="hightlight-text">Hello {this.state.user.firstName} {this.state.user.lastName}</p>
-
                     <p>Birthday: {this.state.user.DoB}</p>
                     <p>Email: {this.state.user.email}</p>
                     <p>Gender: {genderval}</p>
@@ -61,4 +60,4 @@ export class Profile extends React.Component {
             </Page>
         );
     }
-};
+}

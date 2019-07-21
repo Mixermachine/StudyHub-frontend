@@ -9,7 +9,6 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import {AlertMessage} from "./movie/AlertMessage";
 
 import students from '../../public/images/students.png'
 import researcher from '../../public/images/research.png'
@@ -247,11 +246,11 @@ export class Register extends React.Component {
                     <Button className="input-button" variant="primary" id="submit" type="submit">
                         Register
                     </Button>
-                    <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                    <p>{this.props.error ? `${this.props.error}` : ''}</p>
                 </Form>
 
                 </Container>
             </Page>
         );
     }
-};
+}
