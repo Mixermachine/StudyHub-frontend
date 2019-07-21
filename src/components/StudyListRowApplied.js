@@ -20,28 +20,28 @@ export class StudyListRowApplied extends React.Component {
         return (
             <Container>
                 <Card>
-                <Card.Header as="h5">
-                    <Row>
-                        <Col>{this.props.study.Study.title}</Col>
-                    </Row>
-                </Card.Header>
-                <Card.Body>
-                    <Row>
-                        <p style={{"marginLeft": "15px"}}>{this.props.study.Study.description}</p>
-                    </Row>
-                    <Row>
-                        <Col md="auto"><img src={iconaddress} /></Col>
-                        <Col>{this.props.study.Study.street} {this.props.study.Study.number}<br />
-                            {this.props.study.Study.zip} {this.props.study.Study.city}</Col>
-                        <Col md="auto"><img src={icontime} /></Col>
-                        <Col>30 min</Col>
-                        <Col md="auto"><img src={iconmoney} /></Col>
+                    <Card.Header as="h5">
+                        <Row>
+                            <Col>{this.props.study.Study.title}</Col>
+                        </Row>
+                    </Card.Header>
+                    <Card.Body>
+                        <Row>
+                            <p style={{"marginLeft": "15px"}}>{this.props.study.Study.description}</p>
+                        </Row>
+                        <Row>
+                            <Col md="auto"><img src={iconaddress}/></Col>
+                            <Col>{this.props.study.Study.street} {this.props.study.Study.number}<br/>
+                                {this.props.study.Study.zip} {this.props.study.Study.city}</Col>
+                            <Col md="auto"><img src={icontime}/></Col>
+                            <Col>{(new Date(this.props.study.stop).getTime() - new Date(this.props.study.start).getTime()) / 60000} min</Col>
+                            <Col md="auto"><img src={iconmoney}/></Col>
 
-                        <Col>{this.props.study.Study.rewardAmount} {this.props.study.Study.rewardCurrency}</Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-                <br />
+                            <Col>{this.props.study.Study.rewardAmount} {this.props.study.Study.rewardCurrency}</Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+                <br/>
             </Container>
         );
     }

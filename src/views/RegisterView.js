@@ -4,8 +4,6 @@ import React from 'react';
 
 import {Register} from '../components/Register';
 import UserService from "../services/UserService";
-import UserSignup from "../components/movie/UserSignup";
-
 
 export class RegisterView extends React.Component {
 

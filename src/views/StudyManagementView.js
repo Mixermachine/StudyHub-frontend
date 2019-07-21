@@ -3,8 +3,6 @@
 import React from 'react';
 
 import { StudyManagement } from '../components/StudyManagement';
-import StudyService from "../services/StudyService";
-import UserService from "../services/UserService";
 
 export class StudyManagementView extends React.Component {
 

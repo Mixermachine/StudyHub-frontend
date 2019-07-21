@@ -23,7 +23,7 @@ export class MyStudies extends React.Component {
             studies_created: [],
             studies_applied: [],
             user: {}
-        }
+        };
 
         if(UserService.isAuthenticated()) {
             UserService.getCurrentUser().then(user => {
@@ -52,13 +52,13 @@ export class MyStudies extends React.Component {
     render() {
         let studyapplied, studycreated;
 
-        if(this.state.studies_created.length == 0) {
+        if(this.state.studies_created.length === 0) {
             studycreated = <div>It's empty here. Let's create a study. <img src={sadicon} /></div>;
         } else {
             studycreated = <StudyListCreated studies={this.state.studies_created} />;
         }
 
-        if(this.state.studies_applied.length == 0) {
+        if(this.state.studies_applied.length === 0) {
             studyapplied = <div>It's empty here. Let's apply for a study. <img src={sadicon} /></div>;
         } else {
             studyapplied = <StudyListApplied studies={this.state.studies_applied}  />;

@@ -4,7 +4,6 @@ import React from 'react';
 import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {AlertMessage} from "./movie/AlertMessage";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -101,7 +100,7 @@ export class Login extends React.Component {
                                 <Button className="input-button" variant="primary" id="submit" type="submit">
                                     Login
                                 </Button>
-                                <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                                <p>{this.props.error ? `${this.props.error}` : ''}</p>
                                 <br /><br /><br /><br /><br /><br /><br />
                             </Form>
                         </Col>
@@ -112,8 +111,6 @@ export class Login extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-
-
             </Page>
         );
     }

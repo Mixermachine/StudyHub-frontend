@@ -4,7 +4,6 @@ import React from 'react';
 
 import { Settings } from '../components/Settings';
 import UserService from "../services/UserService";
-import {Register} from "../components/Register";
 
 export class SettingsView extends React.Component {
 

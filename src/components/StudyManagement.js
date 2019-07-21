@@ -7,10 +7,6 @@ import UserService from "../services/UserService";
 import Container from "react-bootstrap/Container";
 import StudyService from "../services/StudyService";
 import {ParticipantList} from "./ParticipantList";
-import Button from "react-bootstrap/Button";
-import Link from "react-router-dom/es/Link";
-
-
 
 export class StudyManagement extends React.Component {
 
@@ -76,10 +72,3 @@ export class StudyManagement extends React.Component {
         )
     }
 }
-
-/*
-
-
-                    <br />
-                    <Link to='/studies/create'><Button className="input-button">Schedule</Button></Link>
- */
