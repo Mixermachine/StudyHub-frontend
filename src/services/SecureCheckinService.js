@@ -1,7 +1,7 @@
 import HttpService from './HttpService';
 import QRCode from 'qrcode';
 
-export default class RewardService {
+export default class SecureCheckinService {
     constructor() {
     }
 
@@ -29,4 +29,7 @@ export default class RewardService {
         });
     }
 
+    static checkin(studyId, timeslotId, token) {
+
+    }
 }
