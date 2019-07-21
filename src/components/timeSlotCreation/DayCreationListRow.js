@@ -16,8 +16,8 @@ export class DayCreationListRow extends React.Component {
         return (
             <tr>
                 <td>{year + '-' + month + '-' + date}</td>
-                <td><Button onClick={() => this.props.handleCreateTimeSlotClick()}>Timeslots</Button></td>
-                <td><Button onClick={() => this.props.deleteDay()}>Delete</Button></td>
+                <td><Button className="input-button" onClick={() => this.props.handleCreateTimeSlotClick()}>Timeslots</Button></td>
+                <td><Button className="input-button" onClick={() => this.props.deleteDay()}>Delete</Button></td>
             </tr>
         );
     }

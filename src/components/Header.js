@@ -49,12 +49,8 @@ class Header extends React.Component {
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
         };
-        if(this.props.location.pathname != '/') {
-            this.props.history.push('/');
-        }
-        else {
-            window.location.reload();
-        }
+
+        this.props.history.push('/');
     }
 
     render() {
@@ -104,7 +100,7 @@ class Header extends React.Component {
                             </Col>
                             <Col>
                                 <Image height="50"
-                                       src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin_icon.png&action=download" />
+                                       src={userimg} />
                             </Col>
                         </Row>
                     </Button>
@@ -122,7 +118,7 @@ class Header extends React.Component {
                         {menu}
                     </Navbar.Collapse>
                 </Container>
-                <Navbar.Collapse className="justify-content-end">
+                <Navbar.Collapse style={{width: 250}} className="justify-content-end">
                     {usermenu}
                 </Navbar.Collapse>
             </Navbar>
