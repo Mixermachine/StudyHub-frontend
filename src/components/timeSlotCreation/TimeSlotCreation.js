@@ -36,6 +36,8 @@ export class TimeSlotCreation extends React.Component{
             if (createdDay !== day) createdDays.push(createdDay);
         }
         this.setState({createdDays: createdDays});
+        let timeSlots = this.availableTimeSlots(day, [...this.props.timeSlots]);
+        timeSlots.forEach(timeslot => this.props.deleteTimeSlot(timeslot));
     }
 
     handleCreateTimeSlotClick(day) {

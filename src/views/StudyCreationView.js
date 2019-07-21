@@ -12,7 +12,7 @@ export class StudyCreationView extends React.Component {
 
         this.state = {
             userIdLoading: true
-        }
+        };
 
         this.redirectAfterCreation = this.redirectAfterCreation.bind(this);
     }
