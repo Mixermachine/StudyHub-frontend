@@ -155,4 +155,14 @@ export default class UserService {
             );
         });
     }
+
+    static createPayee(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/user/payee/${userId}`, {},
+                data => {
+                    resolve(data);
+                }, textStatus => reject(textStatus)
+            );
+        });
+    }
 }
