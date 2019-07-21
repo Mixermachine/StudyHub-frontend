@@ -12,7 +12,13 @@ export class StudyCreationView extends React.Component {
 
         this.state = {
             userIdLoading: true
-        }
+        };
+
+        this.redirectAfterCreation = this.redirectAfterCreation.bind(this);
+    }
+
+    redirectAfterCreation() {
+        this.props.history.push('/studies/my');
     }
 
     componentWillMount() {
@@ -28,7 +34,10 @@ export class StudyCreationView extends React.Component {
         if (this.state.userIdLoading) return (<h2>Loading...</h2>);
 
         return (
-            <StudyCreation userId={this.state.userId}/>
+            <StudyCreation
+                userId={this.state.userId}
+                redirect={this.redirectAfterCreation}
+            />
         );
     }
 }
