@@ -7,7 +7,9 @@ export default class UserService {
     constructor() {
     }
 
-    static baseURL() {return "http://localhost:3000"; }
+    static baseURL() {
+        return "http://localhost:3000";
+    }
 
     static register(firstname, lastname, pass, dob, gender, email) {
         return new Promise((resolve, reject) => {
@@ -18,9 +20,9 @@ export default class UserService {
                 gender: gender,
                 email: email,
                 password: pass
-            }, function(data) {
+            }, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -83,9 +85,9 @@ export default class UserService {
                 gender: gender,
                 email: email,
                 password: pass
-            }, function(data) {
+            }, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -96,15 +98,15 @@ export default class UserService {
             HttpService.post(`${UserService.baseURL()}/auth/login`, {
                 email: email,
                 password: pass
-            }, function(data) {
+            }, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
     }
 
-    static logout(){
+    static logout() {
         window.localStorage.removeItem('jwtToken');
     }
 
@@ -115,7 +117,7 @@ export default class UserService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${UserService.baseURL()}/user`, data => {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -130,9 +132,19 @@ export default class UserService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${UserService.baseURL()}/user/${userId}/payout-method`, data => {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
+        });
+    }
+
+    static createCreator(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/user/creator/${userId}`, {organizerType: 's'},
+                data => {
+                    resolve(data);
+                }, textStatus => reject(textStatus)
+            );
         });
     }
 }
