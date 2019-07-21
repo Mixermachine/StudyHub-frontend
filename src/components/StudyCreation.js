@@ -77,8 +77,8 @@ export class StudyCreation extends React.Component {
 
     deleteTimeSlot(timeSlot) {
         let timeSlots = [];
-        for (let timeSlot of this.state.timeSlots) {
-            if (timeSlot !== timeSlot) timeSlots.push(createdTimeSlot);
+        for (let ts of this.state.timeSlots) {
+            if (ts !== timeSlot) timeSlots.push(ts);
         }
         this.setState({timeSlots: timeSlots});
     }
