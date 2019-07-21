@@ -10,7 +10,7 @@ export default class SecureCheckinService {
 
     static generateQrText(studyId, timeslotId) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseUrl()}/study/${studyId}/timeslot/${timeslotId}/generate-secure-checkin`,
+            HttpService.get(`${SecureCheckinService.baseUrl()}/study/${studyId}/timeslot/${timeslotId}/generate-secure-checkin`,
                 data => {
                     if (data != undefined || Object.keys(data).length !== 0) {
                         resolve(data);
@@ -20,7 +20,7 @@ export default class SecureCheckinService {
                 }, textStatus => reject(textStatus));
         }).then(response => {
             if (response.token) {
-                return RewardService.baseUrl() +
+                return SecureCheckinService.baseUrl() +
                     `/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${response.token}`;
             }
 
@@ -30,7 +30,7 @@ export default class SecureCheckinService {
 
     static checkin(studyId, timeslotId, token) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${RewardService.baseURL()}/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${token}`,
+            HttpService.get(`${SecureCheckinService.baseURL()}/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${token}`,
                 data => {
                     if (data != undefined || Object.keys(data).length !== 0) {
                         resolve(data);
