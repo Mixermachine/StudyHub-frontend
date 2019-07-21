@@ -68,6 +68,8 @@ export class StudyApplication extends React.Component {
     }
 
     handleClick(timeslot) {
+        this.props.redirect();
+
         StudyService.updateTimeslot(this.props.studyId, timeslot.id, {
             participantId: this.props.participantId, payoutMethodId: this.state.payoutMethodId
         }).then((data => this.props.history.goBack()).catch(e => console.error(e)));
