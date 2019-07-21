@@ -10,6 +10,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 
+import login from '../../public/images/login.png'
+
 export class Login extends React.Component {
 
     constructor(props) {
@@ -105,7 +107,7 @@ export class Login extends React.Component {
                         </Col>
                         <Col>
                             <Card>
-                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin.png&action=download" />
+                                <Card.Img variant="top" src={login} />
                             </Card>
                         </Col>
                     </Row>

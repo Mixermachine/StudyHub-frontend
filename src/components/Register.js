@@ -11,6 +11,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import {AlertMessage} from "./movie/AlertMessage";
 
+import students from '../../public/images/students.png'
+import researcher from '../../public/images/research.png'
+
+import iconstar from '../../public/images/icons/star.png'
+import iconmoney from '../../public/images/icons/money.png'
+import iconshare from '../../public/images/icons/share.png'
+import iconqueue from '../../public/images/icons/queue.png'
+import iconfemale from '../../public/images/icons/female.png'
+import icondatabase from '../../public/images/icons/database.png'
+import iconcheap from '../../public/images/icons/cheap.png'
+
 export class Register extends React.Component {
 
     constructor(props) {
@@ -111,27 +122,27 @@ export class Register extends React.Component {
                     <Row>
                         <Col>
                             <Card>
-                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fstudents.png&action=download" />
+                                <Card.Img variant="top" src={students} />
                                 <Card.Body>
                                     <Card.Title className="search-result-card-title">Students</Card.Title>
                                     <Card.Text>
-                                        <img src="https://img.icons8.com/windows/32/000000/filled-star.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Finding interesting studies to join<br />
-                                        <img src="https://img.icons8.com/windows/32/000000/money.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Earn money in your free time<br />
-                                        <img src="https://img.icons8.com/windows/32/000000/share.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Networking with researcher and students<br /><br />
+                                        <img src={iconstar}/>&nbsp;&nbsp;&nbsp;&nbsp;Finding interesting studies to join<br />
+                                        <img src={iconmoney}/>&nbsp;&nbsp;&nbsp;&nbsp;Earn money in your free time<br />
+                                        <img src={iconshare}/>&nbsp;&nbsp;&nbsp;&nbsp;Networking with researcher and students<br /><br />
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col>
                             <Card>
-                                <Card.Img variant="top" src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Fresearch.png&action=download" />
+                                <Card.Img variant="top" src={researcher} />
                                 <Card.Body>
                                     <Card.Title className="search-result-card-title">Researcher</Card.Title>
                                     <Card.Text>
-                                        <img src="https://img.icons8.com/windows/32/000000/joining-queue.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Finding participants for studies and managing them<br />
-                                        <img src="https://img.icons8.com/windows/32/000000/talk-female.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Getting feedback from participants<br />
-                                        <img src="https://img.icons8.com/windows/32/000000/accept-database.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Centralized data management<br />
-                                        <img src="https://img.icons8.com/windows/32/000000/cheap-2.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Calculable costs for each participant
+                                        <img src={iconqueue}/>&nbsp;&nbsp;&nbsp;&nbsp;Finding participants for studies and managing them<br />
+                                        <img src={iconfemale}/>&nbsp;&nbsp;&nbsp;&nbsp;Getting feedback from participants<br />
+                                        <img src={icondatabase}/>&nbsp;&nbsp;&nbsp;&nbsp;Centralized data management<br />
+                                        <img src={iconcheap}/>&nbsp;&nbsp;&nbsp;&nbsp;Calculable costs for each participant
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
