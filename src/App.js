@@ -14,6 +14,8 @@ import { StudyFindingView } from './views/StudyFindingView';
 import { StudyManagementView } from './views/StudyManagementView';
 import { SupportView } from './views/SupportView';
 import UserService from "./services/UserService";
+import {SecureCheckinView} from './views/SecureCheckinView';
+import {GenerateSecureCheckinView} from './views/GenerateSecureCheckinView';
 
 
 export default class App extends React.Component {
@@ -70,24 +72,11 @@ export default class App extends React.Component {
                             return (<Redirect to={'/login'}/>)
                         }}, path: '/studies/manage/:id'},
                 { component: SupportView, path: '/support'},
-
-                /*{ component: MovieDetailView , path: '/show/:id'},
-                { render: (props) => {
-                        if(UserService.isAuthenticated()) {
-                            return (<MovieFormView {... props} />)
-                        }
-                        else {
-                            return (<Redirect to={'/login'}/>)
-                        }} , path: '/edit/:id'},
-                { render: (props) => {
-                    if(UserService.isAuthenticated()) {
-                        return (<MovieFormView {... props} />)
-                    }
-                    else {
-                        return (<Redirect to={'/login'}/>)
-                    }}, path: '/add',},
-                { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}*/
+                {component: SecureCheckinView, path: '/studies/:studyId/timeslots/:timeslotId/secure-checkin'},
+                {
+                    component: GenerateSecureCheckinView,
+                    path: '/studies/:studyId/timeslots/:timeslotId/generate-secure-checkin'
+                },
             ]
         };
     }

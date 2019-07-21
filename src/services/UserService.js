@@ -123,6 +123,23 @@ export default class UserService {
         });
     }
 
+    static getUser(id) {
+        let token = window.localStorage['jwtToken'];
+        if (!token) return {};
+
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/${id}`, data => {
+                if (data !== undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving study');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static isAuthenticated() {
         return !!window.localStorage['jwtToken'];
     }
