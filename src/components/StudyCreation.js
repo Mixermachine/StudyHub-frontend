@@ -124,6 +124,7 @@ export class StudyCreation extends React.Component {
 
         if (!errorMessage) {
             let countryCode = CountryList.getCode(this.state.country);
+            let additionalLocationInfo = this.state.additionalLocationInfo || '-';
             let study = {
                 title: this.state.title,                    // 255
                 description: this.state.description,        // 2500
@@ -134,12 +135,14 @@ export class StudyCreation extends React.Component {
                 zip: this.state.zip,                        // 20
                 street: this.state.street,                  // 50
                 number: this.state.number,                  // 20 Zeichen
-                additionalLocationInfo: this.state.additionalLocationInfo,  // 255
+                additionalLocationInfo: additionalLocationInfo,  // 255
                 rewardCurrency: this.state.rewardCurrency,  // 3 Zeichen
                 rewardAmount: this.state.rewardAmount,      // 20
                 published: this.state.published,
                 payeeId: this.props.userId
             };
+
+            this.props.redirect();
 
             StudyService.createStudy(study).then(study => {
                 if (this.state.timeSlots.length !== 0 && this.state.timeSlotDuration) {
