@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {GenerateSecureCheckin} from '../components/GenerateSecureCheckin';
+import GenerateSecureCheckin from '../components/GenerateSecureCheckin';
 
 export class GenerateSecureCheckinView extends React.Component {
 
