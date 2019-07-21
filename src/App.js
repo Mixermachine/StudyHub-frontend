@@ -35,23 +35,6 @@ export default class App extends React.Component {
                 { component: StudyManagementView, path: '/studies/manage/:id'},
                 { component: SupportView, path: '/support'},
                 { component: AttendTimeslotView, path: '/attend-timeslot'},
-                /*{ component: MovieDetailView , path: '/show/:id'},
-                { render: (props) => {
-                        if(UserService.isAuthenticated()) {
-                            return (<MovieFormView {... props} />)
-                        }
-                        else {
-                            return (<Redirect to={'/login'}/>)
-                        }} , path: '/edit/:id'},
-                { render: (props) => {
-                    if(UserService.isAuthenticated()) {
-                        return (<MovieFormView {... props} />)
-                    }
-                    else {
-                        return (<Redirect to={'/login'}/>)
-                    }}, path: '/add',},
-                { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}*/
             ]
         };
     }

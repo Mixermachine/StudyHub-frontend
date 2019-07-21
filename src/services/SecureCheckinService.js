@@ -6,7 +6,7 @@ export default class SecureCheckinService {
     }
 
     static baseUrl() {
-        return 'http://localhost:3000/reward';
+        return 'http://localhost:3000';
     }
 
     static generateQrCode(studyId, timeslotId) {
