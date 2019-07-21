@@ -14,6 +14,9 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import UserService from "../services/UserService";
 
+import userimg from '../../public/images/login_icon.png'
+import logo from '../../public/images/StudyHub.png'
+
 class Header extends React.Component {
 
     constructor(props) {
@@ -75,7 +78,7 @@ class Header extends React.Component {
                                 </Col>
                                 <Col>
                                     <Image height="50"
-                                           src="https://webdisk.ads.mwn.de/Handlers/Download.ashx?file=Home%2FDesktop%2FStudyHub%2Flogin_icon.png&action=download"
+                                           src={userimg}
                                            roundedCircle/>
                                 </Col>
                             </Row>
@@ -93,7 +96,6 @@ class Header extends React.Component {
                 <Nav.Link as={NavLink} to="/register"><div className="nav-header-links">Sign up</div></Nav.Link>
             </Nav>;
 
-            /*usermenu = <Nav.Link as={NavLink} to="/login"><div className="nav-header-links">Login</div></Nav.Link>*/
             usermenu = <ButtonToolbar className="justify-content-end">
                     <Dropdown as={ButtonGroup}><Button className="nav-header-button" block onClick={() => this.props.history.push("/login")}>
                         <Row>
@@ -113,7 +115,7 @@ class Header extends React.Component {
         return (
             <Navbar className="nav-header">
                 <Image className="nav-header-logo"
-                       src='./media/images/StudyHub.png' />
+                       src={logo} />
                 <Navbar.Brand href="/"><div className="nav-header-brand" >StudyHub</div></Navbar.Brand>
                 <Container className="navbar-fill">
                     <Navbar.Collapse id="basic-navbar-nav">

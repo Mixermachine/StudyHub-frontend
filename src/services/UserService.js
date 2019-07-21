@@ -62,6 +62,18 @@ export default class UserService {
         });
     }
 
+    static getPayoutMethods(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/${id}/payout-method/`, data => {
+                if (data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving payment methods');
+                }
+            }, textStatus => reject(textStatus));
+        });
+    }
+
     static changeUser(firstname, lastname, pass, dob, gender, email) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${UserService.baseURL()}/user`, {
