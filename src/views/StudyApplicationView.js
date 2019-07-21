@@ -34,6 +34,12 @@ export class StudyApplicationView extends React.Component {
         }).catch(e => {
             console.error(e);
         });
+
+        this.redirectAfterApplication = this.redirectAfterApplication.bind(this);
+    }
+
+    redirectAfterApplication() {
+        this.props.history.push('/studies/my')
     }
 
     componentWillMount() {
@@ -91,6 +97,7 @@ export class StudyApplicationView extends React.Component {
                 timeslots={this.state.timeslots}
                 payoutMethods={this.state.payoutMethods}
                 rewardTypes={this.state.rewardTypes}
+                redirect={this.redirectAfterApplication}
             />
         );
     }
