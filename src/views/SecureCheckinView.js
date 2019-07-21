@@ -1,14 +1,10 @@
 'use strict';
 
 import React from 'react';
-
-import {Support} from '../components/Support';
 import StudyService from "../services/StudyService";
-import UserService from "../services/UserService";
-import {StudyApplication} from "../components/StudyApplication";
-import {AttendTimeslot} from "../components/AttendTimeslot";
+import {SecureCheckin} from "../components/SecureCheckin";
 
-export class AttendTimeslotView extends React.Component {
+export class SecureCheckinView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,7 +14,8 @@ export class AttendTimeslotView extends React.Component {
         this.setState({
             studyLoading: true,
             timeslotsLoading: true,
-            users: {}  //TODO: why is users undefined when I try to read it in AttendTimeslot.js
+            users: {}
+            //TODO: why is users undefined when I try to read it in SecureCheckin.js
         });
 
         //let id = this.props.match.params.id;
@@ -37,7 +34,7 @@ export class AttendTimeslotView extends React.Component {
         StudyService.getTimeslots(id).then(timeslots => {
             let availableTS = [];
             for (let timeslot of timeslots) {
-                if(!timeslot.attended && timeslot.participantId !== null) {
+                if (!timeslot.attended && timeslot.participantId !== null) {
                     availableTS.push(timeslot);
                     // I wanted function contained in line 57 here :/
                 }
@@ -71,7 +68,7 @@ export class AttendTimeslotView extends React.Component {
         }
 
         return (
-            <AttendTimeslot
+            <SecureCheckin
                 participantId={this.state.userId}
                 study={this.state.study}
                 studyId={this.props.match.params.id}

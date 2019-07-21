@@ -13,7 +13,8 @@ import { StudyCreationView } from './views/StudyCreationView';
 import { StudyFindingView } from './views/StudyFindingView';
 import { StudyManagementView } from './views/StudyManagementView';
 import { SupportView } from './views/SupportView';
-import { AttendTimeslotView } from './views/AttendTimeslotView';
+import {SecureCheckinView} from './views/SecureCheckinView';
+import {GenerateSecureCheckinView} from './views/GenerateSecureCheckinView';
 
 
 export default class App extends React.Component {
@@ -34,7 +35,11 @@ export default class App extends React.Component {
                 { component: StudyFindingView, path: '/', exact: true},
                 { component: StudyManagementView, path: '/studies/manage/:id'},
                 { component: SupportView, path: '/support'},
-                { component: AttendTimeslotView, path: '/attend-timeslot'},
+                {component: SecureCheckinView, path: '/studies/:studyId/timeslots/:timeslotId/secure-checkin'},
+                {
+                    component: GenerateSecureCheckinView,
+                    path: 'studies/:studyId/timeslots/:timeslotId/generate-secure-checkin'
+                },
             ]
         };
     }

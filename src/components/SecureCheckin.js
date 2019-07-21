@@ -3,12 +3,8 @@
 import React from 'react';
 
 import Page from './Page';
-import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
-import StudyService from "../services/StudyService";
-import UserService from "../services/UserService";
-import {TimeSlotSelectionListRow} from "./timeSlotManagement/TimeSlotSelectionListRow";
 
-export class AttendTimeslot extends React.Component {
+export class SecureCheckin extends React.Component {
 
     constructor(props) {
         super(props);
@@ -47,11 +43,6 @@ export class AttendTimeslot extends React.Component {
                             <hr/>
                         </div>
                     )}
-
-
-
-
-
                 </div>
             </Page>
         );
