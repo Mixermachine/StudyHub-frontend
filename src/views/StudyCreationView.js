@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { StudyCreation } from '../components/StudyCreation';
+import {StudyCreation} from '../components/StudyCreation';
 import UserService from "../services/UserService";
 
 export class StudyCreationView extends React.Component {
@@ -22,12 +22,15 @@ export class StudyCreationView extends React.Component {
     }
 
     componentWillMount() {
-        UserService.getCurrentUser().then(user => {
-            this.setState({
-                userId: user.id,
-                userIdLoading: false
+        if (UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    userId: user.id,
+                    userIdLoading: false
+                });
+                UserService.createCreator(user.id).catch(e => {});
             });
-        })
+        } else this.props.history.push('/login');
     }
 
     render() {

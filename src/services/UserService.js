@@ -7,7 +7,9 @@ export default class UserService {
     constructor() {
     }
 
-    static baseURL() {return "http://localhost:3000"; }
+    static baseURL() {
+        return "http://localhost:3000";
+    }
 
     static register(firstname, lastname, pass, dob, gender, email) {
         return new Promise((resolve, reject) => {
@@ -104,7 +106,7 @@ export default class UserService {
         });
     }
 
-    static logout(){
+    static logout() {
         window.localStorage.removeItem('jwtToken');
     }
 
@@ -141,6 +143,16 @@ export default class UserService {
             HttpService.post(`${UserService.baseURL()}/user/participant/${userId}`, {}, data => {
                 resolve(data);
             }, textStatus => reject(textStatus))
+        });
+    }
+
+    static createCreator(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/user/creator/${userId}`, {organizerType: 's'},
+                data => {
+                    resolve(data);
+                }, textStatus => reject(textStatus)
+            );
         });
     }
 }
