@@ -71,11 +71,15 @@ export class StudyManagement extends React.Component {
                         </thead>
                         <ParticipantList timeslots={this.state.timeslots} />
                     </table>
-
-                    <br />
-                    <Link to='/studies/create'><Button className="input-button">Schedule</Button></Link>
                 </Container>
             </Page>
         )
     }
 }
+
+/*
+
+
+                    <br />
+                    <Link to='/studies/create'><Button className="input-button">Schedule</Button></Link>
+ */

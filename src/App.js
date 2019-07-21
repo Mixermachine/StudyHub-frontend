@@ -13,6 +13,7 @@ import { StudyCreationView } from './views/StudyCreationView';
 import { StudyFindingView } from './views/StudyFindingView';
 import { StudyManagementView } from './views/StudyManagementView';
 import { SupportView } from './views/SupportView';
+import UserService from "./services/UserService";
 import {SecureCheckinView} from './views/SecureCheckinView';
 import {GenerateSecureCheckinView} from './views/GenerateSecureCheckinView';
 
@@ -26,14 +27,50 @@ export default class App extends React.Component {
             title: 'StudyHub',
             routes: [
                 { component: LoginView, path: '/login'},
-                { component: MyStudiesView, path: '/studies/my', exact: true},
-                { component: ProfileView, path: '/profile', exact: true},
+                { render: (props) => {
+                    if(UserService.isAuthenticated()) {
+                        return (<MyStudiesView {... props} />)
+                    }
+                    else {
+                        return (<Redirect to={'/login'}/>)
+                    }}, path: '/studies/my'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<ProfileView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/profile'},
                 { component: RegisterView, path: '/register', exact: true},
-                { component: SettingsView, path: '/settings'},
-                { component: StudyApplicationView, path: '/studies/application/:id'},
-                { component: StudyCreationView, path: '/studies/create'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<SettingsView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/settings'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<StudyApplicationView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/studies/application/:id'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<StudyCreationView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/studies/create'},
                 { component: StudyFindingView, path: '/', exact: true},
-                { component: StudyManagementView, path: '/studies/manage/:id'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<StudyManagementView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/studies/manage/:id'},
                 { component: SupportView, path: '/support'},
                 {component: SecureCheckinView, path: '/studies/:studyId/timeslots/:timeslotId/secure-checkin'},
                 {
