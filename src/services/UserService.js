@@ -127,10 +127,10 @@ export default class UserService {
         return !!window.localStorage['jwtToken'];
     }
 
-    static getPayoutMethods(userId) {
-        if (!UserService.isAuthenticated()) return undefined;
+    static addPayoutMethods(userId, paymentInfo) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${UserService.baseURL()}/user/${userId}/payout-method`, data => {
+            HttpService.post(`${UserService.baseURL()}/user/${userId}/payout-method/`, paymentInfo,
+                function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

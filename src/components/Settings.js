@@ -12,6 +12,10 @@ import Row from "react-bootstrap/Row";
 import UserService from "../services/UserService";
 import Col from "react-bootstrap/Col";
 import {PaymentMethodList} from "./PaymentMethodList";
+import RewardService from "../services/RewardService";
+import {SelectRow} from "./SelectListRow";
+import {PaymentMethodListRow} from "./PaymentMethodListRow";
+import {StudyListApplied} from "./StudyListApplied";
 
 export class Settings extends React.Component {
 
@@ -23,6 +27,8 @@ export class Settings extends React.Component {
             password: '',
             passwordwdh: '',
             payments: [],
+            payments_select: [],
+            payoutMethodId: 2147400001,
         }
 
         if(UserService.isAuthenticated()) {
@@ -31,14 +37,21 @@ export class Settings extends React.Component {
                     user: user,
                 });
 
-                UserService.getPayoutMethods(user.id).then(studies => {
+                UserService.getPayoutMethods(user.id).then(payments => {
                     this.setState({
-                        payments: studies,
+                        payments: payments,
+                    });
+                }).catch(e => console.error(e));
+
+                RewardService.getRewards().then(payments => {
+                    this.setState({
+                        payments_select: payments,
                     });
                 }).catch(e => console.error(e));
             }).catch(e => console.error(e));
         }
 
+        this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -64,7 +77,7 @@ export class Settings extends React.Component {
 
         let errorMessage = '';
 
-        errorMessage += Settings.inBoundaries(this.password, 3, 255, 'Password', 3);
+        /*errorMessage += Settings.inBoundaries(this.password, 3, 255, 'Password', 3);
 
 
         if(this.state.password != this.state.passwordwdh) {
@@ -77,11 +90,35 @@ export class Settings extends React.Component {
         } else {
             errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
             alert(errorMessage)
-        }
+        }*/
+
+
+    }
+
+    /*addPaymentMethod() {
+        UserService.addPayoutMethods(this.state.user.id, {
+            rewardTypeId: this.state.payoutMethodId,
+            paymentInfo: this.state.paymentInfo,
+        });
+
+        this.window.location.reload();
+    }*/
+
+    handleChangePayment(event) {
+        let value = event.target.value;
+
+        this.setState({
+            payoutMethodId: value,
+        });
     }
 
     render() {
         let payment;
+        let reward_select = "";
+
+        this.state.payments_select.forEach(function(element) {
+            reward_select = reward_select + "<option value='" + element.id + "'>" + element.name + "</option>";
+        });
 
         if(this.state.payments.length == 0) {
             payment = <div>Let's add a payment method to get rewarded.</div>;
@@ -90,10 +127,11 @@ export class Settings extends React.Component {
                 <thead className="table-header">
                 <tr>
                     <th scope="col">Method</th>
+                    <th scope="col">Information</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
-
+                <PaymentMethodList payments={this.state.payments}  />
             </table>;
         }
 
@@ -124,7 +162,7 @@ export class Settings extends React.Component {
                                            onChange={this.handleChange}  />
                         </Form.Group>
 
-                        <Button className="input-button" variant="primary" type="submit">
+                        <Button className="input-button" variant="primary">
                             Change password
                         </Button>
                     </Form>
@@ -134,17 +172,31 @@ export class Settings extends React.Component {
                         <Container>
                             <Row>
                                 <Col>
+                                    <Form.Label>Method</Form.Label>
                                     <div className="input-select-wrapper">
                                         <Form.Control className="input-select"
-                                                      type="text" as="select">
-                                            <option>PayPal</option>
-                                            <option>Direct Deposit</option>
-                                            <option>Amazon Gift Card</option>
+                                                      type="text" as="select"
+                                                      value={this.state.payoutMethodId}
+                                                      onChange={this.handleChangePayment}>
+                                            {
+                                                this.state.payments_select.map((payment, i) => <SelectRow key={i} payment={payment}/>)
+                                            }
                                         </Form.Control>
                                     </div>
                                 </Col>
                                 <Col>
-                                    <Button className="input-button" variant="primary" type="submit">
+                                    <Form.Group>
+                                        <Form.Label>Information</Form.Label>
+                                        <Form.Control  className="input-data"
+                                                       name="paymentInfo"
+                                                       type="paymentInfo"
+                                                       required={true}
+                                                       value={this.state.paymentInfo}
+                                                       onChange={this.handleChange}  />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Button className="input-button" variant="primary">
                                         Add
                                     </Button>
                                 </Col>
@@ -158,3 +210,9 @@ export class Settings extends React.Component {
         );
     }
 };
+
+/*
+<Button className="input-button" variant="primary" onClick={this.addPaymentMethod()}>
+                                        Add
+                                    </Button>
+ */

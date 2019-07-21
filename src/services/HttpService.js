@@ -18,7 +18,7 @@ export default class HttpService {
             headers: header
         }).then((resp) => {
             if(this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
+                window.location = "/login";
             }
             else {
                 return resp.json();
