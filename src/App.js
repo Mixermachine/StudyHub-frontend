@@ -38,7 +38,7 @@ export default class App extends React.Component {
                 {component: SecureCheckinView, path: '/studies/:studyId/timeslots/:timeslotId/secure-checkin'},
                 {
                     component: GenerateSecureCheckinView,
-                    path: 'studies/:studyId/timeslots/:timeslotId/generate-secure-checkin'
+                    path: '/studies/:studyId/timeslots/:timeslotId/generate-secure-checkin'
                 },
             ]
         };

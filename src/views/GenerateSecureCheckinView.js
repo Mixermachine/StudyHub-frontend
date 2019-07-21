@@ -1,13 +1,20 @@
 'use strict';
 
 import React from 'react';
-import StudyService from "../services/StudyService";
-import {SecureCheckin} from "../components/SecureCheckin";
+import {GenerateSecureCheckin} from '../components/GenerateSecureCheckin';
 
 export class GenerateSecureCheckinView extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            studyId: 0,
+            timeslotId: 0
+        };
+
+        this.state.studyId = this.props.match.params.studyId;
+        this.state.timeslotId = this.props.match.params.timeslotId;
     }
 
     componentWillMount() {
@@ -21,10 +28,8 @@ export class GenerateSecureCheckinView extends React.Component {
 
         return (
             <GenerateSecureCheckin
-                participantId={this.state.userId}
-                study={this.state.study}
-                studyId={this.props.match.params.id}
-                timeslots={this.state.timeslots}
+                studyId={this.state.studyId}
+                timeslotId={this.state.timeslotId}
             />
         );
     }
