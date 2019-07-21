@@ -1,5 +1,5 @@
 import HttpService from './HttpService';
-import QRCode from 'qrcode';
+import QRImage from 'qr-image';
 
 export default class SecureCheckinService {
     constructor() {
@@ -21,8 +21,11 @@ export default class SecureCheckinService {
                 }, textStatus => reject(textStatus));
         }).then(response => {
             if (response.token) {
-                return QRCode.toDataURL(RewardService.baseUrl() +
-                    `/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${response.token}`);
+                let img = QRImage.image(RewardService.baseUrl() +
+                    `/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${response.token}`,
+                    {type: 'png'});
+
+                return img.pipe(require('fs').createWriteStream(response.token + '.png'));
             }
 
             return null;
