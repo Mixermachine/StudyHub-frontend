@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import QRCode from 'react-qr-svg';
 import SecureCheckinService from '../services/SecureCheckinService';
 
@@ -11,17 +11,18 @@ export class GenerateSecureCheckin extends React.Component {
 
         this.state = {
             valueForQRCode: "",
-            status: ""
+            status: "",
+            studyId: props.studyId,
+            timeslotId: props.timeslotId
         };
 
         this.getNewQrText();
-
 
         setInterval(this.getNewQrText, 5000);
     }
 
     getNewQrText() {
-        SecureCheckinService.generateQrText(props.studyId, props.timeslotId)
+        SecureCheckinService.generateQrText(this.props.studyId, this.props.timeslotId)
             .then(result => {
                 if (result) {
                     status = "Please scan";
@@ -35,15 +36,13 @@ export class GenerateSecureCheckin extends React.Component {
 
     render() {
         return (
-            <View style={styles.MainContainer}>
-                <QRCode
-                    bgColor="#FFFFFF"
-                    fgColor="#000000"
-                    level="Q"
-                    style={{width: 256}}
-                    value={this.state.valueForQRCode}
-                />
-            </View>
+            <QRCode
+                bgColor="#FFFFFF"
+                fgColor="#000000"
+                level="Q"
+                style={{width: 256}}
+                value={this.state.valueForQRCode}
+            />
         );
     }
 

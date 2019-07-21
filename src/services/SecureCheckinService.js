@@ -10,7 +10,7 @@ export default class SecureCheckinService {
 
     static generateQrText(studyId, timeslotId) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${RewardService.baseURL()}/study/${studyId}/timeslot/${timeslotId}/generate-secure-checkin`,
+            HttpService.get(`${this.baseUrl()}/study/${studyId}/timeslot/${timeslotId}/generate-secure-checkin`,
                 data => {
                     if (data != undefined || Object.keys(data).length !== 0) {
                         resolve(data);
