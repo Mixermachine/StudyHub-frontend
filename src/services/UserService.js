@@ -135,4 +135,12 @@ export default class UserService {
             });
         });
     }
+
+    static createParticipant(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/user/participant/${userId}`, {}, data => {
+                resolve(data);
+            }, textStatus => reject(textStatus))
+        });
+    }
 }
