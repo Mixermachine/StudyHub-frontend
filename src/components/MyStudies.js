@@ -11,6 +11,8 @@ import UserService from "../services/UserService";
 import {StudyListCreated} from "./StudyListCreated";
 import {StudyListApplied} from "./StudyListApplied";
 
+import sadicon from '../../public/images/icons/sad.png'
+
 export class MyStudies extends React.Component {
 
     constructor(props) {
@@ -51,13 +53,13 @@ export class MyStudies extends React.Component {
         let studyapplied, studycreated;
 
         if(this.state.studies_created.length == 0) {
-            studycreated = <div>It's empty here. Let's create a study. <img src="https://img.icons8.com/windows/32/000000/sad.png" /></div>;
+            studycreated = <div>It's empty here. Let's create a study. <img src={sadicon} /></div>;
         } else {
             studycreated = <StudyListCreated studies={this.state.studies_created} />;
         }
 
         if(this.state.studies_applied.length == 0) {
-            studyapplied = <div>It's empty here. Let's apply for a study. <img src="https://img.icons8.com/windows/32/000000/sad.png" /></div>;
+            studyapplied = <div>It's empty here. Let's apply for a study. <img src={sadicon} /></div>;
         } else {
             studyapplied = <StudyListApplied studies={this.state.studies_applied}  />;
         }

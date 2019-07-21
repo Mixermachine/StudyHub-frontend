@@ -15,6 +15,7 @@ export class DaySelectionList extends React.Component {
             <div>
                 <h3><strong>Select a day</strong></h3>
                 <Table striped bordered hover>
+                    <thead className="table-header">
                     <thead>
                     <tr>
                         <th>Selection</th>

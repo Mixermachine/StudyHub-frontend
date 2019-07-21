@@ -12,6 +12,9 @@ import Container from 'react-bootstrap/Container';
 import StudyService from "../services/StudyService";
 import {TimeSlotCreation} from "./timeSlotCreation/TimeSlotCreation";
 
+import iconmoney from '../../public/images/icons/money.png'
+import iconaddress from '../../public/images/icons/address.png'
+
 export class StudyCreation extends React.Component {
 
     constructor(props) {
@@ -227,7 +230,7 @@ export class StudyCreation extends React.Component {
 
                         <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/address.png"/></Col>
+                            <Col md="auto"><img src={iconaddress}/></Col>
                             <Col><h1>Location informations</h1></Col>
                         </Row>
                         <br/>
@@ -320,7 +323,7 @@ export class StudyCreation extends React.Component {
 
                         <br/>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png"/></Col>
+                            <Col md="auto"><img src={iconmoney}/></Col>
                             <Col><h1>Reward</h1></Col>
                         </Row>
                         <br/>

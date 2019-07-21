@@ -28,7 +28,7 @@ export class TimeSlotCreationListRow extends React.Component {
         return (
             <tr>
                 <td>{startHour + ':' + startMin + ' - ' + stopHour + ':' + stopMin}</td>
-                <td><Button onClick={() => this.props.deleteTimeSlot()}>Delete</Button></td>
+                <td><Button className="input-button" onClick={() => this.props.deleteTimeSlot()}>Delete</Button></td>
             </tr>
         );
     }

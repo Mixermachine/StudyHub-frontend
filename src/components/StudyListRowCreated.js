@@ -9,6 +9,9 @@ import Col from "react-bootstrap/Col";
 import Link from 'react-router-dom/Link';
 import StudyService from "../services/StudyService";
 
+import iconmoney from '../../public/images/icons/money.png'
+import iconconference from '../../public/images/icons/conference.png'
+
 export class StudyListRowCreated extends React.Component {
 
     constructor(props) {
@@ -57,9 +60,9 @@ export class StudyListRowCreated extends React.Component {
                             <p style={{"marginLeft": "15px"}}>{this.props.study.description}</p>
                         </Row>
                         <Row>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/conference.png" /></Col>
+                            <Col md="auto"><img src={iconconference} /></Col>
                             <Col>{this.props.study.capacity - this.props.study.availableCapacity} / {this.props.study.capacity}</Col>
-                            <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
+                            <Col md="auto"><img src={iconmoney} /></Col>
                             <Col>{this.props.study.rewardAmount} {this.props.study.rewardCurrency}</Col>
                         </Row>
                     </Card.Body>

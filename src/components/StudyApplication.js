@@ -14,6 +14,12 @@ import Form from "react-bootstrap/Form";
 import Link from 'react-router-dom/Link';
 import Button from "react-bootstrap/Button";
 
+import iconpages from '../../public/images/icons/pages.png'
+import iconmoney from '../../public/images/icons/money.png'
+import iconconference from '../../public/images/icons/conference.png'
+import iconaddress from '../../public/images/icons/address.png'
+import icontime from '../../public/images/icons/time.png'
+
 export class StudyApplication extends React.Component {
 
     constructor(props) {
@@ -92,7 +98,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/overview-pages-2.png"/><br/><br/>
+                            <img src={iconpages}/><br/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Prerequisites</strong><br/><br/>
@@ -104,7 +110,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/money-bag.png"/><br/><br/>
+                            <img src={iconmoney}/><br/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Reward</strong><br/><br/>
@@ -116,7 +122,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/conference.png"/><br/><br/>
+                            <img src={iconconference}/><br/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Capacity</strong><br/><br/>
@@ -130,7 +136,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/address.png"/><br/><br/><br/><br/>
+                            <img src={iconaddress}/><br/><br/><br/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Address</strong><br/><br/><br/><br/>
@@ -144,7 +150,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/time.png"/><br/><br/>
+                            <img src={icontime}/><br/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Time</strong><br/><br/>
@@ -157,7 +163,7 @@ export class StudyApplication extends React.Component {
 
                     <Row>
                         <Col md="auto">
-                            <img src="https://img.icons8.com/windows/32/000000/money.png"/><br/>
+                            <img src={iconmoney}/><br/>
                         </Col>
                         <Col md="2">
                             <strong>Payout</strong><br/>
