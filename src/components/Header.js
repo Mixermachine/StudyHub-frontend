@@ -118,7 +118,7 @@ class Header extends React.Component {
                         {menu}
                     </Navbar.Collapse>
                 </Container>
-                <Navbar.Collapse style={{width: 250}} className="justify-content-end">
+                <Navbar.Collapse className="justify-content-end">
                     {usermenu}
                 </Navbar.Collapse>
             </Navbar>

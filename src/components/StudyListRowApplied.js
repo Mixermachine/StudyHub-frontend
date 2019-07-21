@@ -36,6 +36,7 @@ export class StudyListRowApplied extends React.Component {
                         <Col md="auto"><img src={icontime} /></Col>
                         <Col>30 min</Col>
                         <Col md="auto"><img src={iconmoney} /></Col>
+
                         <Col>{this.props.study.Study.rewardAmount} {this.props.study.Study.rewardCurrency}</Col>
                     </Row>
                 </Card.Body>
