@@ -11,18 +11,16 @@ export default class GenerateSecureCheckin extends React.Component {
 
         this.state = {
             valueForQRCode: "INVALID, WAIT",
-            status: "",
+            status: "Please wait",
             studyId: props.studyId,
             timeslotId: props.timeslotId
         };
 
         this.getNewQrText = this.getNewQrText.bind(this);
 
-        this.render = this.render.bind(this);
-
         this.getNewQrText();
 
-        setInterval(this.getNewQrText, 3000);
+        setInterval(this.getNewQrText, 5000);
     }
 
     updateQrCode(e) {
@@ -39,7 +37,7 @@ export default class GenerateSecureCheckin extends React.Component {
                 if (result) {
 
                     this.updateQrCode(result);
-                    this.updateStatus("Please scan");
+                    this.updateStatus("Ready");
                     //this.state.valueForQRCode = result;
                 } else {
                     this.updateStatus("Service stopped");
@@ -51,7 +49,7 @@ export default class GenerateSecureCheckin extends React.Component {
         const {state} = this;
         return (
             <div style={{textAlign: "center"}}>
-                <p className="hightlight-text">{state.status}</p>
+                <p className="hightlight-text">{state.state !== undefined ? state.state : "Please wait"}</p>
                 <QRCode
                     bgColor="#FFFFFF"
                     fgColor="#000000"
