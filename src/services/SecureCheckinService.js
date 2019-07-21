@@ -30,6 +30,15 @@ export default class SecureCheckinService {
     }
 
     static checkin(studyId, timeslotId, token) {
-
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${RewardService.baseURL()}/study/${studyId}/timeslot/${timeslotId}/secure-checkin/${token}`,
+                data => {
+                    if (data != undefined || Object.keys(data).length !== 0) {
+                        resolve(data);
+                    } else {
+                        reject('Error while retrieving generate-secure-checkin');
+                    }
+                }, textStatus => reject(textStatus));
+        });
     }
 }
