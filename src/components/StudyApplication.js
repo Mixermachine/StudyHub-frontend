@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col"
 import StudyService from "../services/StudyService";
 import UserService from "../services/UserService";
 import Form from "react-bootstrap/Form";
+import Link from 'react-router-dom/Link';
+import Button from "react-bootstrap/Button";
 
 export class StudyApplication extends React.Component {
 
@@ -179,7 +181,11 @@ export class StudyApplication extends React.Component {
                                             ))}
                                         </Form.Control>
                                     </Form>
-                                    : <br/>
+                                    :
+                                    (!UserService.isAuthenticated()
+                                            ? <Link to="/login"><Button className="input-button">Login</Button></Link>
+                                            : <Link to="/settings"><Button className="input-button">Add payout method</Button></Link>
+                                    )
                             }
                         </Col>
                     </Row>
