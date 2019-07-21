@@ -37,10 +37,6 @@ export class Register extends React.Component {
             passwordwdh: ''
         };
 
-        this.genderDivers;
-        this.genderFemale;
-        this.genderMale;
-
         this.handleChangeGenderMale = this.handleChangeGenderMale.bind(this);
         this.handleChangeGenderFemale = this.handleChangeGenderFemale.bind(this);
         this.handleChangeGenderDivers = this.handleChangeGenderDivers.bind(this);
@@ -94,6 +90,10 @@ export class Register extends React.Component {
 
         if(this.state.password != this.state.passwordwdh) {
             errorMessage += "Password don't match."
+        }
+
+        if (!Date.parse(this.state.DoB)) {
+            errorMessage += "Date is not valid."
         }
 
         if (!errorMessage) {
