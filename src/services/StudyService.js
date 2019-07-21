@@ -13,7 +13,7 @@ export default class StudyService {
     static getStudy(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${StudyService.baseUrl()}/${id}`, data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving study');
@@ -25,7 +25,7 @@ export default class StudyService {
     static getStudies() {
         return new Promise((resolve, reject) => {
             HttpService.get(StudyService.baseUrl(), data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving studies');
@@ -37,7 +37,7 @@ export default class StudyService {
     static getTimeslots(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${StudyService.baseUrl()}/${id}/timeslot`, data => {
-                if (data != undefined || Object.keys(data).length !== 0) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 } else {
                     reject('Error while retrieving timeslots');
