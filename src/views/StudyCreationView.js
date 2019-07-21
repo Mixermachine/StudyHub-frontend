@@ -29,6 +29,7 @@ export class StudyCreationView extends React.Component {
                     userIdLoading: false
                 });
                 UserService.createCreator(user.id).catch(e => {});
+                UserService.createPayee(user.id).catch(e => {});
             });
         } else this.props.history.push('/login');
     }
