@@ -15,14 +15,6 @@ export class StudyListRow extends React.Component {
 
     render() {
         return (
-            /*<tr>
-                <td></td>
-                <td>
-                    {this.props.study.street + ' ' + this.props.study.number + ', ' + this.props.study.city + '. ' + this.props.study.country}
-                </td>
-                <td>{this.props.study.rewardAmount + ' ' + this.props.study.rewardType}</td>
-                <td><Link to={'studies/application/' + this.props.study.id}><Button>Details</Button></Link></td>
-            </tr>*/
             <Container className="search-result-card">
                 <Row>
                     <Col>
@@ -38,9 +30,9 @@ export class StudyListRow extends React.Component {
                                             {this.props.study.zip} {this.props.study.city}</Col>
 
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/conference.png" /></Col>
-                                        <Col>3 / {this.props.study.capacity}</Col>
+                                        <Col>{this.props.study.capacity - this.props.study.availableCapacity} / {this.props.study.capacity}</Col>
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/time.png" /></Col>
-                                        <Col>30 min</Col>
+                                        <Col>{this.props.study.timeslotDuration / 60000} min</Col>
                                         <Col md="auto"><img src="https://img.icons8.com/windows/32/000000/money-bag.png" /></Col>
                                         <Col>{this.props.study.rewardAmount} {this.props.study.rewardCurrency}</Col>
                                     </Row>

@@ -26,6 +26,30 @@ export default class UserService {
         });
     }
 
+    static getStudiesCreated(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseUrl()}/${id}/created-studies`, data => {
+                if (data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving studies');
+                }
+            }, textStatus => reject(textStatus));
+        });
+    }
+
+    static getStudiesApplied(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseUrl()}/${id}/applied-studies`, data => {
+                if (data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                } else {
+                    reject('Error while retrieving studies');
+                }
+            }, textStatus => reject(textStatus));
+        });
+    }
+
     static changeUser(firstname, lastname, pass, dob, gender, email) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${UserService.baseURL()}/user`, {
