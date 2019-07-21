@@ -13,6 +13,7 @@ export class StudyFindingView extends React.Component {
             loading: false,
             studies: [],
         };
+        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
 
     componentWillMount() {
@@ -29,12 +30,21 @@ export class StudyFindingView extends React.Component {
         }).catch(e => console.error(e));
     }
 
+    handleSearchClick(searchText, city, zip, organizer, minReward) {
+        StudyService.searchStudy(searchText, city, zip, organizer, minReward).then(studies => {
+            this.setState({
+                studies: [...studies],
+            })
+        }).catch(e => console.error(e));
+    }
+
     render() {
         if (this.state.loading) return (<h2>Loading...</h2>);
 
         return (
             <StudyFinding
                 studies={this.state.studies}
+                handleSearchClick={this.handleSearchClick}
             />
         );
     }
