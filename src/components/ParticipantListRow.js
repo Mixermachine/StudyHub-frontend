@@ -92,7 +92,7 @@ export class ParticipantListRow extends React.Component {
     render() {
         let start_datetime = new Date(this.props.timeslot.start);
         let end_datetime = new Date(this.props.timeslot.stop);
-        let link = '/studies/' + this.props.timeslot.studyId + '/timeslot/' + this.props.timeslot.id +  '/generate-secure-login'
+        let link = '/studies/' + this.props.timeslot.studyId + '/timeslots/' + this.props.timeslot.id + '/generate-secure-checkin'
 
         return (
             <tr>
