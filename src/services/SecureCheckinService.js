@@ -36,7 +36,7 @@ export default class SecureCheckinService {
                     if (data != undefined || Object.keys(data).length !== 0) {
                         resolve(data);
                     } else {
-                        reject('Error while retrieving generate-secure-checkin');
+                        reject('Error while retrieving secure-checkin');
                     }
                 }, textStatus => reject(textStatus));
         });
