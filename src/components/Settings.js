@@ -6,9 +6,12 @@ import Page from './Page'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 
 import UserService from "../services/UserService";
+import Col from "react-bootstrap/Col";
+import {PaymentMethodList} from "./PaymentMethodList";
 
 export class Settings extends React.Component {
 
@@ -16,11 +19,25 @@ export class Settings extends React.Component {
         super(props);
 
         this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
+            user: {},
             password: '',
-            passwordwdh: ''
+            passwordwdh: '',
+            payments: [],
         }
 
+        if(UserService.isAuthenticated()) {
+            UserService.getCurrentUser().then(user => {
+                this.setState({
+                    user: user,
+                });
+
+                UserService.getPayoutMethods(user.id).then(studies => {
+                    this.setState({
+                        payments: studies,
+                    });
+                }).catch(e => console.error(e));
+            }).catch(e => console.error(e));
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,6 +81,22 @@ export class Settings extends React.Component {
     }
 
     render() {
+        let payment;
+
+        if(this.state.payments.length == 0) {
+            payment = <div>Let's add a payment method to get rewarded.</div>;
+        } else {
+            payment = <table>
+                <thead className="table-header">
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+
+            </table>;
+        }
+
         return (
             <Page>
                 <Container>
@@ -94,6 +127,31 @@ export class Settings extends React.Component {
                         <Button className="input-button" variant="primary" type="submit">
                             Change password
                         </Button>
+                    </Form>
+                    <br />
+                    <h2>Payment</h2>
+                    <Form>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <div className="input-select-wrapper">
+                                        <Form.Control className="input-select"
+                                                      type="text" as="select">
+                                            <option>PayPal</option>
+                                            <option>Direct Deposit</option>
+                                            <option>Amazon Gift Card</option>
+                                        </Form.Control>
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <Button className="input-button" variant="primary" type="submit">
+                                        Add
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <br />
+                            {payment}
+                        </Container>
                     </Form>
                 </Container>
             </Page>

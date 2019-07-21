@@ -5,59 +5,202 @@ import React from 'react';
 import Page from './Page';
 
 import {TimeSlotManagement} from './timeSlotManagement/TimeSlotManagement';
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 import StudyService from "../services/StudyService";
 import UserService from "../services/UserService";
+import Form from "react-bootstrap/Form";
+import Link from 'react-router-dom/Link';
+import Button from "react-bootstrap/Button";
+
+import iconpages from '../../public/images/icons/pages.png'
+import iconmoney from '../../public/images/icons/money.png'
+import iconconference from '../../public/images/icons/conference.png'
+import iconaddress from '../../public/images/icons/address.png'
+import icontime from '../../public/images/icons/time.png'
 
 export class StudyApplication extends React.Component {
 
     constructor(props) {
         super(props);
 
-        UserService.getCurrentUser().then(data => {
-            this.setState()
-        });
+        let payoutMethod = this.props.payoutMethods[0];
+        if (payoutMethod) {
+            let payoutMethodName = this.getPayoutMethodName(payoutMethod);
+            this.state = {
+                payoutMethodId: this.props.payoutMethods[0].id,
+                payoutMethodName: payoutMethodName
+            };
+        } else {
+            this.state = {
+                payoutMethodId: undefined,
+                payoutMethodName: undefined
+            }
+        }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handlePayoutMethodChange = this.handlePayoutMethodChange.bind(this);
     }
 
-    handleSubmit(timeslot) {
-        StudyService.updateTimeslot(this.props.studyId, timeslot.id, {participantId: this.props.participantId})
-            .then((data => this.props.history.goBack()).catch(e => console.error(e)));
+    getPayoutMethodName(payoutMethod) {
+        for (let rewardType of this.props.rewardTypes) {
+            if (rewardType.id === payoutMethod.rewardTypeId) {
+                return rewardType.name
+            }
+        }
+    }
+
+    getRewardType(rewardTypeName) {
+        for (let rewardType of this.props.rewardTypes) {
+            if (rewardType.name === rewardTypeName) return rewardType;
+        }
+    }
+
+    getPayoutMethodId(rewardType) {
+        for (let payoutMethod of this.props.payoutMethods) {
+            if (payoutMethod.rewardTypeId === rewardType.id) return payoutMethod.id;
+        }
+    }
+
+    handlePayoutMethodChange(event) {
+        let value = event.target.value;
+
+        let rewardType = this.getRewardType(value);
+        let payoutMethodId = this.getPayoutMethodId(rewardType);
+
+        this.setState({
+            payoutMethodId: payoutMethodId,
+            payoutMethodName: value
+        });
+    }
+
+    handleClick(timeslot) {
+        this.props.redirect();
+
+        StudyService.updateTimeslot(this.props.studyId, timeslot.id, {
+            participantId: this.props.participantId, payoutMethodId: this.state.payoutMethodId
+        }).then((data => this.props.history.goBack()).catch(e => console.error(e)));
     }
 
     render() {
         return (
             <Page>
-                <div>
+                <Container>
                     <h1>{this.props.study.title}</h1>
 
-                    <h2>Description</h2>
-                    <p>{this.props.study.description}</p>
+                    <Row>
+                        <Col>
+                            {this.props.study.description}
+                        </Col>
+                    </Row>
+                    <br/>
 
-                    <hr/>
+                    <Row>
+                        <Col md="auto">
+                            <img src={iconpages}/><br/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Prerequisites</strong><br/><br/>
+                        </Col>
+                        <Col>
+                            {this.props.study.prerequisites}<br/><br/>
+                        </Col>
+                    </Row>
 
-                    <h2>Prerequisites</h2>
-                    <p>{this.props.study.prerequisites}</p>
+                    <Row>
+                        <Col md="auto">
+                            <img src={iconmoney}/><br/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Reward</strong><br/><br/>
+                        </Col>
+                        <Col>
+                            {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}<br/><br/>
+                        </Col>
+                    </Row>
 
-                    <hr/>
+                    <Row>
+                        <Col md="auto">
+                            <img src={iconconference}/><br/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Capacity</strong><br/><br/>
+                        </Col>
+                        <Col>
+                            {this.props.study.capacity - this.props.study.availableCapacity + ' / ' +
+                            this.props.study.capacity}
+                            <br/><br/>
+                        </Col>
+                    </Row>
 
-                    <h2>Reward: {this.props.study.rewardAmount + ' ' + this.props.study.rewardCurrency}</h2>
+                    <Row>
+                        <Col md="auto">
+                            <img src={iconaddress}/><br/><br/><br/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Address</strong><br/><br/><br/><br/>
+                        </Col>
+                        <Col>
+                            {this.props.study.street + ' ' + this.props.study.number}<br/>
+                            {this.props.study.zip + ' ' + this.props.study.city}<br/>
+                            {this.props.study.country}<br/><br/>
+                        </Col>
+                    </Row>
 
-                    <hr/>
+                    <Row>
+                        <Col md="auto">
+                            <img src={icontime}/><br/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Time</strong><br/><br/>
+                        </Col>
+                        <Col>
+                            {this.props.study.timeslotDuration / 60000} min
+                            <br/><br/>
+                        </Col>
+                    </Row>
 
-                    <h2>Capacity: {this.props.study.capacity}</h2>
+                    <Row>
+                        <Col md="auto">
+                            <img src={iconmoney}/><br/>
+                        </Col>
+                        <Col md="2">
+                            <strong>Payout</strong><br/>
+                        </Col>
+                        <Col>
+                            {
+                                UserService.isAuthenticated() && this.props.payoutMethods.length !== 0 &&
+                                this.props.rewardTypes.length !== 0
+                                    ?
+                                    <Form>
+                                        <Form.Control
+                                            name="payoutMethodName"
+                                            className="input-select"
+                                            as="select"
+                                            value={this.state.payoutMethodName}
+                                            onChange={this.handlePayoutMethodChange}
+                                        >
+                                            {this.props.payoutMethods.map((payoutMethod =>
+                                                    <option
+                                                        key={payoutMethod.id}>{this.getPayoutMethodName(payoutMethod)}</option>
+                                            ))}
+                                        </Form.Control>
+                                    </Form>
+                                    :
+                                    (!UserService.isAuthenticated()
+                                            ? <Link to="/login"><Button className="input-button">Login</Button></Link>
+                                            : <Link to="/settings"><Button className="input-button">Add payout method</Button></Link>
+                                    )
+                            }
+                        </Col>
+                    </Row>
 
-                    <hr/>
-
-                    <h2>Location</h2>
-                    <p>{this.props.study.street + ' ' + this.props.study.number + ', ' + this.props.study.zip + ' ' + this.props.study.city + '. ' + this.props.study.country}</p>
-
-                    <hr/>
-                </div>
-
-                <div>
-                    <TimeSlotManagement timeslots={this.props.timeslots} handleSubmit={(timeslot) => this.handleSubmit(timeslot)}/>
-                </div>
+                    <br/><br/>
+                    <TimeSlotManagement
+                        timeslots={this.props.timeslots}
+                        handleClick={(timeslot) => this.handleClick(timeslot)}/>
+                </Container>
             </Page>
         );
     }
