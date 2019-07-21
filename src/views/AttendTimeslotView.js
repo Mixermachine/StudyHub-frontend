@@ -18,6 +18,7 @@ export class AttendTimeslotView extends React.Component {
         this.setState({
             studyLoading: true,
             timeslotsLoading: true,
+            users: {}  //TODO: why is users undefined when I try to read it in AttendTimeslot.js
         });
 
         //let id = this.props.match.params.id;
@@ -27,7 +28,7 @@ export class AttendTimeslotView extends React.Component {
         StudyService.getStudy(id).then(study => {
             this.setState({
                 study: study,
-                studyLoading: false
+                studyLoading: false,
             });
         }).catch(e => {
             console.error(e);
@@ -36,16 +37,32 @@ export class AttendTimeslotView extends React.Component {
         StudyService.getTimeslots(id).then(timeslots => {
             let availableTS = [];
             for (let timeslot of timeslots) {
-                if(!timeslot.attended && !timeslot.participantId)
+                if(!timeslot.attended && timeslot.participantId !== null) {
                     availableTS.push(timeslot);
+                    // I wanted function contained in line 57 here :/
+                }
             }
             this.setState({
                 timeslots: availableTS,
                 timeslotsLoading: false
             });
+
         }).catch(e => {
             console.error(e);
         });
+
+        //TODO: After timeslots are fetched (does not work), if I put this in line 42 it always logges out :/
+        /*
+        for (let timeslot of this.props.timeslots) {
+            UserService.getUser(timeslot.participantId).then(user => {
+                // set state to set: users.participantId = user
+            });
+        }
+        */
+
+        //TODO: Add button to get and show QR code, generate QR code first...
+        //TODO: Refresh QR-code every 5 seconds
+        //TODO: Implement view for response when QR code is read
     }
 
     render() {

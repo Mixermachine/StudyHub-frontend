@@ -12,10 +12,6 @@ export class AttendTimeslot extends React.Component {
 
     constructor(props) {
         super(props);
-
-        UserService.getCurrentUser().then(data => {
-            this.setState()
-        });
     }
 
     hoursMinutes(d) {
@@ -30,6 +26,7 @@ export class AttendTimeslot extends React.Component {
     }
 
     render() {
+        let self = this;
         return (
             <Page>
                 <div>
@@ -45,7 +42,7 @@ export class AttendTimeslot extends React.Component {
                         <div>
                             <h2>Time Slot {i+1}</h2>
                             <p>Time: {this.hoursMinutes(new Date(timeslot.start))} - {this.hoursMinutes(new Date(timeslot.stop))}</p>
-                            <p>Insert Name</p>
+                            <p>{(this.props.users[timeslot.participantId] !== undefined) ? self.props.users[timeslot.participantId].firstName + " " + self.props.users[timeslot.participantId].lastName : ""}</p>
                             <p>Button to show QR code</p>
                             <hr/>
                         </div>
