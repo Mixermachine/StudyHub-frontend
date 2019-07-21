@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Link from 'react-router-dom/Link';
 
 export class StudyListRow extends React.Component {
 
@@ -38,15 +39,12 @@ export class StudyListRow extends React.Component {
                                     </Row>
                                 </Card.Text>
                                 <br />
-                                <Button className="input-button" variant="primary">More details</Button>
+                                <Link to={'studies/application/' + this.props.study.id}><Button className="input-button" variant="primary">More details</Button></Link>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
             </Container>
-
-
-
         );
     }
 }
