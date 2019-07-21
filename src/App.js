@@ -14,13 +14,6 @@ import { StudyFindingView } from './views/StudyFindingView';
 import { StudyManagementView } from './views/StudyManagementView';
 import { SupportView } from './views/SupportView';
 
-import { MovieDetailView }   from './views/movie/MovieDetailView';
-import { MovieFormView }   from './views/movie/MovieFormView';
-import { UserLoginView } from "./views/movie/UserLoginView";
-import { UserSignupView } from "./views/movie/UserSignupView";
-
-import UserService from "./services/UserService";
-
 
 export default class App extends React.Component {
 
@@ -38,7 +31,7 @@ export default class App extends React.Component {
                 { component: StudyApplicationView, path: '/studies/application/:id'},
                 { component: StudyCreationView, path: '/studies/create'},
                 { component: StudyFindingView, path: '/', exact: true},
-                { component: StudyManagementView, path: '/studies/manage'},
+                { component: StudyManagementView, path: '/studies/manage/:id'},
                 { component: SupportView, path: '/support'},
                 /*{ component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {

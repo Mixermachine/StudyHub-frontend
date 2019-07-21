@@ -62,6 +62,14 @@ export default class StudyService {
         });
     }
 
+    static updateStudy(study) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${StudyService.baseUrl()}/${study.id}`, study, data => {
+                resolve(data);
+            }, textStatus => reject(textStatus));
+        });
+    }
+
     static createStudy(study) {
         return new Promise((resolve, reject) => {
             HttpService.post(StudyService.baseUrl(), study, data => {
