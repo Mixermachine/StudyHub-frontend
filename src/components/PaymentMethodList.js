@@ -14,7 +14,7 @@ export class PaymentMethodList extends React.Component {
         return (
             <tbody>
                 {
-                    this.props.payments.map((method, i) => <PaymentMethodListRow key={i} method={method}/>)
+                    this.props.payments.map((payment, i) => <PaymentMethodListRow key={i} payment={payment}/>)
                 }
             </tbody>
         );
