@@ -85,7 +85,7 @@ export class Settings extends React.Component {
 
                 this.window.location.reload();
             } else {
-                errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
+                errorMessage = 'Some inputs are not filled correctly: \n' + errorMessage;
                 alert(errorMessage)
             }
     }
