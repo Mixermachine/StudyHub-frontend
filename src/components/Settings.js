@@ -53,7 +53,7 @@ export class Settings extends React.Component {
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAddPaymentSubmit = this.handleAddPaymentSubmit.bind(this);
     }
 
     handleChange(event) {
@@ -72,37 +72,23 @@ export class Settings extends React.Component {
         return '';
     }
 
-    handleSubmit(event) {
+    handleAddPaymentSubmit(event) {
         event.preventDefault();
 
         let errorMessage = '';
 
-        /*errorMessage += Settings.inBoundaries(this.password, 3, 255, 'Password', 3);
+            if (!errorMessage) {
+                UserService.addPayoutMethods(this.state.user.id, {
+                    rewardTypeId: this.state.payoutMethodId,
+                    paymentInfo: this.state.paymentInfo,
+                });
 
-
-        if(this.state.password != this.state.passwordwdh) {
-            errorMessage += "Passwords don't match."
-        }
-
-        if (!errorMessage) {
-            this.state.user.password = this.state.password;
-            this.props.onSubmit(this.state.user);
-        } else {
-            errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
-            alert(errorMessage)
-        }*/
-
-
+                this.window.location.reload();
+            } else {
+                errorMessage = 'Some inputs are not filled correctly:\n' + errorMessage;
+                alert(errorMessage)
+            }
     }
-
-    /*addPaymentMethod() {
-        UserService.addPayoutMethods(this.state.user.id, {
-            rewardTypeId: this.state.payoutMethodId,
-            paymentInfo: this.state.paymentInfo,
-        });
-
-        this.window.location.reload();
-    }*/
 
     handleChangePayment(event) {
         let value = event.target.value;
@@ -168,7 +154,7 @@ export class Settings extends React.Component {
                     </Form>
                     <br />
                     <h2>Payment</h2>
-                    <Form>
+                    <Form onSubmit={this.handleAddPaymentSubmit}>
                         <Container>
                             <Row>
                                 <Col>
@@ -196,7 +182,7 @@ export class Settings extends React.Component {
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Button className="input-button" variant="primary">
+                                    <Button className="input-button" variant="primary" id="submit" type="submit">
                                         Add
                                     </Button>
                                 </Col>

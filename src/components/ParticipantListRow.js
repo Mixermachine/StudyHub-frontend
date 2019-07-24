@@ -93,8 +93,10 @@ export class ParticipantListRow extends React.Component {
         let start_datetime = new Date(this.props.timeslot.start);
         let end_datetime = new Date(this.props.timeslot.stop);
         let link = '/studies/' + this.props.timeslot.studyId + '/timeslots/' + this.props.timeslot.id + '/generate-secure-checkin'
+        let button = "";
 
-        let button = <Link to={link}><Button className="input-button">Check-In</Button></Link>;
+        if(!this.isEmpty(this.state.user))
+            button = <Link to={link}><Button className="input-button">Check-In</Button></Link>;
 
         return (
             <tr>
@@ -106,5 +108,13 @@ export class ParticipantListRow extends React.Component {
                 <td>{button}</td>
             </tr>
         );
+    }
+
+    isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
     }
 }

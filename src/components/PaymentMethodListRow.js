@@ -32,11 +32,12 @@ export class PaymentMethodListRow extends React.Component {
     }
 
     render() {
+
         return (
             <tr>
                 <td>{this.getMethod(this.props.payment.id)}</td>
                 <td>{this.props.payment.paymentInfo}</td>
-                <td><Link to=''><Button className="input-button">Delete</Button></Link></td>
+                <td>{button}</td>
             </tr>
         );
     }
