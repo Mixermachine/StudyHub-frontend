@@ -8,14 +8,11 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
-
 import UserService from "../services/UserService";
 import Col from "react-bootstrap/Col";
 import {PaymentMethodList} from "./PaymentMethodList";
 import RewardService from "../services/RewardService";
 import {SelectRow} from "./SelectListRow";
-import {PaymentMethodListRow} from "./PaymentMethodListRow";
-import {StudyListApplied} from "./StudyListApplied";
 
 export class Settings extends React.Component {
 
@@ -76,7 +73,7 @@ export class Settings extends React.Component {
         event.preventDefault();
 
         let errorMessage = '';
-
+      
             if (!errorMessage) {
                 UserService.addPayoutMethods(this.state.user.id, {
                     rewardTypeId: this.state.payoutMethodId,
@@ -195,10 +192,4 @@ export class Settings extends React.Component {
             </Page>
         );
     }
-};
-
-/*
-<Button className="input-button" variant="primary" onClick={this.addPaymentMethod()}>
-                                        Add
-                                    </Button>
- */
+}

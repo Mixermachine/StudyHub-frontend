@@ -4,7 +4,6 @@ import React from 'react';
 
 import {Login} from '../components/Login';
 import UserService from "../services/UserService";
-import UserLogin from "../components/movie/UserLogin";
 
 export class LoginView extends React.Component {
 

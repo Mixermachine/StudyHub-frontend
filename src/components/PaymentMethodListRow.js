@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import UserService from "../services/UserService";
 import Button from "react-bootstrap/Button";
 import Link from "react-router-dom/es/Link";
 import RewardService from "../services/RewardService";
