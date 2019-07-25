@@ -93,6 +93,13 @@ export class Register extends React.Component {
 
         if (!Date.parse(this.state.DoB)) {
             errorMessage += "Date is not valid."
+        } else {
+            let date = new Date(this.state.DoB);
+            let datenow = new Date();
+
+            if(datenow.getFullYear() - date.getFullYear() < 13) {
+                errorMessage += "You have to be at least 13 years."
+            }
         }
 
         if (!errorMessage) {
