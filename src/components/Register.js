@@ -151,22 +151,22 @@ export class Register extends React.Component {
                     <br /><br />
                 <Form onSubmit={this.handleSubmit} >
                     <Form.Group>
-                        <Form.Label><div className="form-label">Firstname</div></Form.Label>
+                        <Form.Label><div className="form-label">First name</div></Form.Label>
                         <Form.Control className="input-data"
                                       name="firstName"
                                       type="text"
-                                      placeholder="Enter firstname"
+                                      placeholder="Enter first name"
                                       required={true}
                                       value={this.state.firstName}
                                       onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label><div className="form-label">Lastname</div></Form.Label>
+                        <Form.Label><div className="form-label">Last name</div></Form.Label>
                         <Form.Control className="input-data"
                                       name="lastName"
                                       type="text"
-                                      placeholder="Enter lastname"
+                                      placeholder="Enter last name"
                                       required={true}
                                       value={this.state.lastName}
                                       onChange={this.handleChange} />

@@ -155,19 +155,29 @@ export default class UserService {
         });
     }
 
-    static createParticipant(userId) {
+    static createParticipant(userId, callback) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/user/participant/${userId}`, {}, data => {
+                resolve(data);
+                callback();
+            }, textStatus => reject(textStatus))
+        });
+    }
+
+    static isParticipant(userId) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/participant/${userId}`, {}, data => {
                 resolve(data);
             }, textStatus => reject(textStatus))
         });
     }
 
-    static createCreator(userId) {
+    static createCreator(userId, callback) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/user/creator/${userId}`, {organizerType: 's'},
                 data => {
                     resolve(data);
+                    callback();
                 }, textStatus => reject(textStatus)
             );
         });

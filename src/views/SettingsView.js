@@ -12,20 +12,10 @@ export class SettingsView extends React.Component {
         this.state = {};
     }
 
-    changeUser(user) {
-        UserService.changeUser(user.firstName, user.lastName, user.password, user.DoB, user.gender, user.email).then((data) => {
-            this.props.history.push('/');
-        }).catch((e) => {
-            console.error(e);
-            this.setState({
-                error: e
-            });
-        })
-    }
 
     render() {
         return (
-            <Settings onSubmit={(user) => this.changeUser(user)} error={this.state.error}></Settings>
+            <Settings></Settings>
         );
     }
 }

@@ -75,12 +75,15 @@ export class Settings extends React.Component {
         let errorMessage = '';
       
             if (!errorMessage) {
-                UserService.addPayoutMethods(this.state.user.id, {
-                    rewardTypeId: this.state.payoutMethodId,
-                    paymentInfo: this.state.paymentInfo,
-                });
 
-                this.window.location.reload();
+                UserService.createParticipant(this.state.user.id, function() {
+                    UserService.addPayoutMethods(this.state.user.id, {
+                        rewardTypeId: this.state.payoutMethodId,
+                        paymentInfo: this.state.paymentInfo,
+                    }, function() {
+                        location.reload();
+                    })
+                });
             } else {
                 errorMessage = 'Some inputs are not filled correctly: \n' + errorMessage;
                 alert(errorMessage)
