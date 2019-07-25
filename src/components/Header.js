@@ -67,7 +67,7 @@ class Header extends React.Component {
                 <Dropdown as={ButtonGroup}>
                     <Button className="nav-header-button" block onClick={() => this.props.history.push("/profile")}>
                             <Row>
-                                <Col md="auto">
+                                <Col>
                                     <Navbar.Text className="nav-header-button-text">
                                         {this.state.user.firstName + ' ' + this.state.user.lastName}
                                     </Navbar.Text>
@@ -79,7 +79,7 @@ class Header extends React.Component {
                                 </Col>
                             </Row>
                     </Button>
-                    <Dropdown.Toggle className="nav-header-button">
+                    <Dropdown.Toggle className="nav-header-button-arrow">
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} to="/settings">Settings</Dropdown.Item>
@@ -95,7 +95,7 @@ class Header extends React.Component {
             usermenu = <ButtonToolbar className="justify-content-end">
                     <Dropdown as={ButtonGroup}><Button className="nav-header-button" block onClick={() => this.props.history.push("/login")}>
                         <Row>
-                            <Col md="auto">
+                            <Col>
                                 <Navbar.Text className="nav-header-button-text">Login</Navbar.Text>
                             </Col>
                             <Col>

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Button from "react-bootstrap/Button";
-import Link from "react-router-dom/es/Link";
 import RewardService from "../services/RewardService";
 
 export class PaymentMethodListRow extends React.Component {
@@ -34,9 +33,9 @@ export class PaymentMethodListRow extends React.Component {
 
         return (
             <tr>
-                <td>{this.getMethod(this.props.payment.id)}</td>
+                <td>{this.getMethod(this.props.payment.rewardTypeId)}</td>
                 <td>{this.props.payment.paymentInfo}</td>
-                <td>{button}</td>
+                <td><Button className="input-button">Delete</Button></td>
             </tr>
         );
     }

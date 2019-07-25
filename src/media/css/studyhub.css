@@ -120,6 +120,17 @@ h3 {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+    width: 250px;
+}
+
+.nav-header-button-arrow {
+    background: #3d3d3d;
+    height: 100%;
+    display: block;
+    border: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 
 .nav-header-button:hover {
