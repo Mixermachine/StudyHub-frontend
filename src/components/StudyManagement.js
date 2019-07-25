@@ -7,6 +7,7 @@ import UserService from "../services/UserService";
 import Container from "react-bootstrap/Container";
 import StudyService from "../services/StudyService";
 import {ParticipantList} from "./ParticipantList";
+import Button from "react-bootstrap/Button";
 
 export class StudyManagement extends React.Component {
 
@@ -53,7 +54,9 @@ export class StudyManagement extends React.Component {
                     <h1>Manage {this.state.study.title}</h1>
                     <p>{this.state.study.description}</p>
                     <p>You have currently {this.state.study.capacity - this.state.study.availableCapacity} of {this.state.study.capacity} participants registered in your study.</p>
-
+                    <p>
+                        <Button className="input-button">Edit study</Button>
+                    </p>
                     <table>
                         <thead className="table-header">
                         <tr>
