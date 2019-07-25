@@ -87,6 +87,7 @@ export class Register extends React.Component {
             errorMessage += "Email is not correct."
         }
 
+
         if(this.state.password != this.state.passwordwdh) {
             errorMessage += "Password don't match."
         }
